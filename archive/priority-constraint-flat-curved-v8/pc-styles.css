@@ -1,0 +1,57 @@
+/* Priorities vs one budget: plays once when scrolled into view (.pc-go); static end state otherwise */
+.pc-stage{aspect-ratio:1000/470;background:none;border:0;border-radius:0;overflow:visible}
+.pc-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.pc-n{display:none}
+@media(max-width:640px){.pc-stage{aspect-ratio:440/660}.pc-w{display:none}.pc-n{display:block}}
+.pc-label.pc-label-d{fill:#d7dfe5}
+.pc-n .pc-label{font-size:14.5px}
+.pc-legacy .pc-glow{stroke:#b9c9d6}
+.pc-label{font-size:11.5px;font-weight:650;letter-spacing:.01em;fill:var(--ink);font-family:inherit}
+.pc-head{transform-box:fill-box;transform-origin:center}
+.pc-att{transform-box:fill-box;transform-origin:center}
+.pc-legacy{--pc-c:#11171d;color:#11171d;--pc-tint:#eceff1;--pc-edge:#d2d7db}
+.pc-innov{--pc-c:var(--ochre);color:var(--ochre);--pc-tint:var(--ochre-tint);--pc-edge:color-mix(in srgb,var(--ochre) 34%,#fff)}
+.pc-tint{fill:var(--pc-tint)}
+.pc-edge{stroke:var(--pc-edge)}
+.pc-glow{opacity:0;stroke:var(--pc-c)}
+.pc-link{fill:none;stroke:#cfd8dd;stroke-width:1.2;stroke-dasharray:1;stroke-dashoffset:0}
+.pc-hot{stroke-dasharray:1;fill:none;stroke:var(--pc-c);stroke-width:1.8;stroke-linecap:round;opacity:0}
+.pc-node{fill:#fff;stroke:var(--pc-c);stroke-width:1.4}
+.pc-arc{fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;stroke-dasharray:.74 1}
+.pc-ringg{transform-box:view-box}
+.pc-stack,.pc-topcoin{transform-box:fill-box;transform-origin:center bottom}
+.pc-go .pc-stack{animation:pc-fade .9s ease-out .2s both,pc-pulse 2.2s ease-in-out 1.2s both,pc-pulse 2.2s ease-in-out 2.7s both,pc-pulse 2.2s ease-in-out 4.2s both,pc-pulse 2.2s ease-in-out 5.7s both,pc-pulse 2.2s ease-in-out 7.2s both,pc-pulse 2.2s ease-in-out 8.7s both,pc-pulsec 2.4s ease-in-out 12.4s both}
+.pc-go .pc-topcoin{animation:pc-lift 2.2s ease-in-out 1.2s both,pc-lift 2.2s ease-in-out 2.7s both,pc-lift 2.2s ease-in-out 4.2s both,pc-lift 2.2s ease-in-out 5.7s both,pc-lift 2.2s ease-in-out 7.2s both,pc-lift 2.2s ease-in-out 8.7s both,pc-liftc 2.4s ease-in-out 12.4s both}
+.pc-frame{fill:none;stroke:#4a5a67;stroke-width:2;stroke-linecap:round;stroke-dasharray:1}
+.pc-go .pc-table{animation:pc-fade .8s ease-out both}
+.pc-go .pc-fig{animation:pc-fade .9s ease-out calc(.3s + var(--k)*.08s) both}
+.pc-go .pc-frame{animation:pc-draw 2.4s cubic-bezier(.3,.7,.2,1) 8.8s both}
+.pc-go .pc-in{animation:pc-in 1s cubic-bezier(.2,.7,.2,1) calc(var(--a) - .3s) both}
+.pc-go .pc-link{animation:pc-draw 1.1s ease-in-out calc(var(--a) - 1.1s) both}
+.pc-go .pc-node{animation:pc-fade .4s ease-out calc(var(--a) - 1.3s) both}
+.pc-ping{fill:none;stroke:var(--pc-c);stroke-width:1.6;opacity:0;transform-box:fill-box;transform-origin:center}
+.pc-go .pc-ping{animation:pc-ping 1.1s ease-out calc(var(--a) - 1.3s) both}
+.pc-go .pc-att{animation:pc-act 2.2s ease-in-out var(--a) both}
+.pc-go .pc-glow{animation:pc-glow 2.2s ease-in-out var(--a) both}
+.pc-go .pc-hot{animation:pc-hot 3.4s ease-in-out calc(var(--a) - 1.1s) both}
+.pc-go .pc-ringg{animation:pc-fade 1.6s ease-out 8.2s both,pc-ringc 2.4s ease-in-out 12.4s both}
+.pc-go .pc-arc{animation:pc-arcin 2.2s cubic-bezier(.3,.7,.2,1) 8.8s both}
+/* several demands land at once */
+.pc-go .pc-cv.pc-att{animation:pc-act 2.2s ease-in-out var(--a) both,pc-conv 2.4s ease-in-out 12.4s both}
+.pc-go .pc-cv.pc-glow{animation:pc-glow 2.2s ease-in-out var(--a) both,pc-glow 2.4s ease-in-out 12.4s both}
+.pc-go .pc-cv.pc-hot{animation:pc-hot 3.4s ease-in-out calc(var(--a) - 1.1s) both,pc-hot 2.4s ease-in-out 12.4s both}
+@keyframes pc-ping{0%{opacity:0;transform:scale(1)}15%{opacity:.85}100%{opacity:0;transform:scale(3.4)}}
+@keyframes pc-in{from{opacity:0;transform:translateY(-16px) scale(1.06)}to{opacity:1;transform:none}}
+@keyframes pc-fade{from{opacity:0}to{opacity:1}}
+@keyframes pc-act{0%,100%{transform:translateY(0) scale(1)}25%,60%{transform:translateY(-4px) scale(1.03)}}
+@keyframes pc-conv{0%,100%{transform:translateY(0) scale(1)}30%,65%{transform:translateY(-3px) scale(1.025)}}
+@keyframes pc-glow{0%,100%{opacity:0}25%,60%{opacity:1}}
+@keyframes pc-hot{0%{opacity:0;stroke-dashoffset:1}6%{opacity:1}30%,62%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+@keyframes pc-pulse{0%,100%{transform:scale(1)}30%,60%{transform:scale(1.03)}}
+@keyframes pc-pulsec{0%,100%{transform:scale(1)}30%,65%{transform:scale(1.06)}}
+@keyframes pc-lift{0%,100%{transform:translateY(0)}30%,60%{transform:translateY(-4px)}}
+@keyframes pc-liftc{0%,100%{transform:translateY(0)}30%,65%{transform:translateY(-7px)}}
+@keyframes pc-ringc{0%,100%{transform:scale(1)}30%,65%{transform:scale(.965)}}
+@keyframes pc-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pc-arcin{from{stroke-dasharray:0 1}to{stroke-dasharray:.74 1}}
+@media(prefers-reduced-motion:reduce){.pc-stage *{animation:none!important}}

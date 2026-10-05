@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.env
+.env.*
+!.env.example
+*.db
+*.db-*
+/media
+.backup-*
+tsconfig.tsbuildinfo
+README.md
+
+archive
+.playwright-mcp
+.claude
