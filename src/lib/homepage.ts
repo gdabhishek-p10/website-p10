@@ -3,6 +3,11 @@ import { getPayload } from 'payload'
 
 import type { Media } from '@/payload-types'
 
+const PILLAR_ORDER = ['ai', 'build', 'modernize']
+
+// Single-line statements carry no trailing full stop; multi-sentence copy is left as written
+const noStop = (t: string) => (/\.$/.test(t) && !/\.\s/.test(t) ? t.slice(0, -1) : t)
+
 type MediaRef = number | Media | null | undefined
 
 export interface Img {
@@ -51,7 +56,7 @@ export async function getHomeData(draft = false) {
       before: home.hero.headlineBefore,
       accent: home.hero.headlineAccent,
       after: home.hero.headlineAfter,
-      lede: home.hero.lede,
+      lede: noStop(home.hero.lede),
       prompts: texts(home.hero.prompts),
     },
     logos: (home.clients?.logos ?? []).flatMap((l) => {
@@ -60,33 +65,35 @@ export async function getHomeData(draft = false) {
     }),
     problem: {
       heading: home.problem.heading,
-      lede: home.problem.lede ?? '',
+      lede: noStop(home.problem.lede ?? ''),
       image: img(home.problem.image),
       items: (home.problem.items ?? []).map((i) => ({
         icon: i.icon,
         label: i.label,
         headline: i.headline,
-        description: i.description,
+        description: noStop(i.description),
       })),
     },
     pillars: {
       heading: home.pillars.heading,
-      lede: home.pillars.lede ?? '',
-      items: (home.pillars.items ?? []).map((p) => ({
+      lede: noStop(home.pillars.lede ?? ''),
+      items: [...(home.pillars.items ?? [])]
+        .sort((x, y) => PILLAR_ORDER.indexOf(x.key) - PILLAR_ORDER.indexOf(y.key))
+        .map((p) => ({
         key: p.key,
         title: p.title,
-        body: p.body,
+        body: noStop(p.body),
         chips: texts(p.chips),
       })),
     },
     engineering: {
       heading: home.engineering.heading,
-      lede: home.engineering.lede ?? '',
+      lede: noStop(home.engineering.lede ?? ''),
       diagram: img(home.engineering.diagram),
     },
     caseStudies: {
       heading: home.caseStudies.heading,
-      lede: home.caseStudies.lede ?? '',
+      lede: noStop(home.caseStudies.lede ?? ''),
       items: (home.caseStudies.items ?? []).flatMap((c) => {
         const image = img(c.image)
         if (!image) return []
@@ -95,7 +102,7 @@ export async function getHomeData(draft = false) {
             theme: c.theme,
             tag: c.tag,
             title: c.title,
-            desc: c.desc ?? '',
+            desc: noStop(c.desc ?? ''),
             image,
             video: img(c.video)?.url ?? null,
             storyUrl: c.storyUrl || '#',
@@ -105,7 +112,7 @@ export async function getHomeData(draft = false) {
     },
     aiLabs: {
       heading: home.aiLabs.heading,
-      lede: home.aiLabs.lede ?? '',
+      lede: noStop(home.aiLabs.lede ?? ''),
       entries: (home.aiLabs.entries ?? []).flatMap((e, idx) => {
         const video = img(e.video)
         const poster = img(e.poster)
@@ -116,7 +123,7 @@ export async function getHomeData(draft = false) {
             tabLabel: e.tabLabel,
             name: e.name,
             head: e.head,
-            copy: e.copy,
+            copy: noStop(e.copy),
             chips: texts(e.chips),
             url: e.url ?? '',
             video: video.url,
@@ -127,7 +134,7 @@ export async function getHomeData(draft = false) {
     },
     industries: {
       heading: home.industries.heading,
-      lede: home.industries.lede ?? '',
+      lede: noStop(home.industries.lede ?? ''),
       items: (home.industries.items ?? []).map((i) => i.name),
     },
   }

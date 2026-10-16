@@ -2,8 +2,9 @@
 import { useEffect, useRef, useState } from 'react';
 import type { HomeData } from '@/lib/homepage';
 
-export default function Hero({ hero }: { hero: HomeData['hero'] }) {
+export default function Hero({ hero, onAsk }: { hero: HomeData['hero']; onAsk: (q: string) => void }) {
   const [text, setText] = useState('');
+  const [value, setValue] = useState('');
   const [fading, setFading] = useState(false);
   const stateRef = useRef({ prompt: 0, char: 0 });
   const { prompts } = hero;
@@ -46,13 +47,32 @@ export default function Hero({ hero }: { hero: HomeData['hero'] }) {
             <span>{hero.accent}</span> {hero.after}
           </h1>
           <p className="lede">{hero.lede}</p>
-          <div className="hero-chat">
+          <form
+            className="hero-chat"
+            onClick={(e) => (e.currentTarget.querySelector('input') as HTMLInputElement | null)?.focus()}
+            onSubmit={(e) => {
+              e.preventDefault();
+              onAsk(value.trim());
+              setValue('');
+            }}
+          >
             <span className="hero-chat-icon">✦</span>
             <span className="hero-chat-field">
-              <span className={['hero-chat-text', fading ? 'fade' : ''].join(' ').trim()}>{text}</span>
-              <span className="hero-chat-caret" />
+              <input
+                className="hero-chat-input"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                aria-label="Ask People10 AI"
+                autoComplete="off"
+              />
+              {value === '' && (
+                <span className="hero-chat-ghost" aria-hidden="true">
+                  <span className={['hero-chat-text', fading ? 'fade' : ''].join(' ').trim()}>{text}</span>
+                  <span className="hero-chat-caret" />
+                </span>
+              )}
             </span>
-            <button className="hero-chat-send" type="button" aria-label="Send">
+            <button className="hero-chat-send" type="submit" aria-label="Ask">
               <svg viewBox="0 0 24 24" fill="none">
                 <path
                   d="M4 12h15M13 5l7 7-7 7"
@@ -63,7 +83,7 @@ export default function Hero({ hero }: { hero: HomeData['hero'] }) {
                 />
               </svg>
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </section>

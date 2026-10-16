@@ -46,7 +46,7 @@ export default function Platform({ icons, labels, ariaLabels, appear, act, tint,
 
   // signal path from the cube to the active segment
   const sigPath = signal && (() => {
-    const a: [number, number] = [PCX, PCY - 56], b = iconPos(signal.i);
+    const a: [number, number] = [PCX, PCY - 100], b = iconPos(signal.i); // starts at the top of the box
     const c: [number, number] = [(a[0] + b[0]) / 2, Math.min(a[1], b[1]) - 70];
     const at = (u: number): [number, number] => [(1 - u) ** 2 * a[0] + 2 * (1 - u) * u * c[0] + u * u * b[0], (1 - u) ** 2 * a[1] + 2 * (1 - u) * u * c[1] + u * u * b[1]];
     return { d: `M${a} Q${c} ${b}`, at };
@@ -54,9 +54,9 @@ export default function Platform({ icons, labels, ariaLabels, appear, act, tint,
   const lead = leader && calloutGeom(leader.i);
 
   // the cube
-  const cx = PCX, cy = PCY + 12, w = 94, d = 47, hh = 86;
-  const P = (x: number, y: number) => `${x},${y}`;
-  const plate = { w: 128, d: 64, th: 22 };
+  const cx = PCX, dcy = PCY + 6, fw = 150, sx = 34, sy = 14, bh = 112; // base disc centre; front width, side depth, rise of the side/top; box height
+  const bw = fw + sx, left = cx - bw / 2, fr = left + fw, right = left + bw; // a box turned a few degrees: straight front, thin top and side
+  const bb = dcy + 14, bt = bb - bh; // the box's bottom rests just in front of the disc's centre
 
   return (
     <svg className="p3" width={PW} height={PH} viewBox={`0 0 ${PW} ${PH}`} aria-hidden={false}>
@@ -64,6 +64,7 @@ export default function Platform({ icons, labels, ariaLabels, appear, act, tint,
         <linearGradient id={`${uid}top`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fffefb" /><stop offset="1" stopColor="#f3ebda" /></linearGradient>
         <linearGradient id={`${uid}gold`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fff1c6" /><stop offset="1" stopColor="#ffdf8a" /></linearGradient>
         <linearGradient id={`${uid}wall`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#efe5d0" /><stop offset="1" stopColor="#d9cbad" /></linearGradient>
+        <linearGradient id={`${uid}cs`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f6c552" /><stop offset="1" stopColor="#dd9a24" /></linearGradient>
         <linearGradient id={`${uid}cl`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffe9a6" /><stop offset="1" stopColor="#f5c04a" /></linearGradient>
         <linearGradient id={`${uid}cr`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffeeb8" /><stop offset="1" stopColor="#f0b33a" /></linearGradient>
         <linearGradient id={`${uid}ct`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#fff6d6" /><stop offset="1" stopColor="#ffd96e" /></linearGradient>
@@ -116,23 +117,23 @@ export default function Platform({ icons, labels, ariaLabels, appear, act, tint,
         </g>
       )}
 
-      {/* P10 core */}
+      {/* P10 core: a straight glass box standing on a round base, centred in the platform's hole */}
       <g style={{ opacity: cubeAppear, transform: `translateY(${(1 - cubeAppear) * 24}px)` }}>
-        <ellipse className="p3-glow" cx={cx} cy={cy - 24} rx="190" ry="120" fill={`url(#${uid}glow)`} style={{ opacity: 0.55 + 0.45 * pulse }} />
+        <ellipse className="p3-glow" cx={cx} cy={dcy - 40} rx="200" ry="120" fill={`url(#${uid}glow)`} style={{ opacity: 0.55 + 0.45 * pulse }} />
         <g>
-          <polygon points={[P(cx - plate.w, cy), P(cx, cy + plate.d), P(cx, cy + plate.d + plate.th), P(cx - plate.w, cy + plate.th)].join(' ')} fill="#0f1012" />
-          <polygon points={[P(cx + plate.w, cy), P(cx, cy + plate.d), P(cx, cy + plate.d + plate.th), P(cx + plate.w, cy + plate.th)].join(' ')} fill="#1c1e22" />
-          <polygon points={[P(cx, cy - plate.d), P(cx + plate.w, cy), P(cx, cy + plate.d), P(cx - plate.w, cy)].join(' ')} fill={`url(#${uid}pt)`} />
-          <polygon points={[P(cx, cy - plate.d), P(cx + plate.w, cy), P(cx, cy + plate.d), P(cx - plate.w, cy)].join(' ')} fill="none" stroke="#f1b63e" strokeOpacity={0.35 + 0.4 * pulse} strokeWidth="1.5" />
+          <ellipse cx={cx} cy={dcy + 22} rx="132" ry="42" fill="#0e0f11" />
+          <rect x={cx - 132} y={dcy} width="264" height="22" fill="#18191c" />
+          <ellipse cx={cx} cy={dcy} rx="132" ry="42" fill={`url(#${uid}pt)`} />
+          <ellipse cx={cx} cy={dcy} rx="132" ry="42" fill="none" stroke="#f1b63e" strokeOpacity={0.35 + 0.4 * pulse} strokeWidth="1.5" />
         </g>
         <g className="p3-cube">
-          <polygon points={[P(cx - w, cy - hh), P(cx, cy - hh + d), P(cx, cy + d), P(cx - w, cy)].join(' ')} fill={`url(#${uid}cl)`} stroke="#fff6dc" strokeOpacity=".8" strokeWidth="1.2" strokeLinejoin="round" />
-          <polygon points={[P(cx + w, cy - hh), P(cx, cy - hh + d), P(cx, cy + d), P(cx + w, cy)].join(' ')} fill={`url(#${uid}cr)`} stroke="#fff6dc" strokeOpacity=".6" strokeWidth="1.2" strokeLinejoin="round" />
-          <polygon points={[P(cx, cy - hh - d), P(cx + w, cy - hh), P(cx, cy - hh + d), P(cx - w, cy - hh)].join(' ')} fill={`url(#${uid}ct)`} stroke="#fffaf0" strokeOpacity=".9" strokeWidth="1.2" strokeLinejoin="round" />
-          <g transform={`translate(${cx - w} ${cy - hh}) matrix(1 .5 0 1 0 0)`}>
-            <text x={w / 2} y="46" textAnchor="middle" className="p3-p10">P10</text>
-            <text x={w / 2} y="64" textAnchor="middle" className="p3-intel">INTELLIGENCE</text>
-          </g>
+          <ellipse className="p3-contact" cx={cx} cy={bb + 1} rx={bw / 2 + 6} ry="11" />
+          <polygon points={`${fr},${bt} ${right},${bt - sy} ${right},${bb - sy} ${fr},${bb}`} fill={`url(#${uid}cs)`} stroke="#fff6dc" strokeOpacity=".6" strokeWidth="1.2" strokeLinejoin="round" />
+          <polygon points={`${left},${bt} ${left + sx},${bt - sy} ${right},${bt - sy} ${fr},${bt}`} fill={`url(#${uid}ct)`} stroke="#fffaf0" strokeOpacity=".9" strokeWidth="1.2" strokeLinejoin="round" />
+          <rect x={left} y={bt} width={fw} height={bh} rx="3" fill={`url(#${uid}cl)`} stroke="#fff6dc" strokeOpacity=".9" strokeWidth="1.3" />
+          <rect x={left + 6} y={bt + 6} width={fw - 12} height="12" rx="6" fill="#fff" opacity=".4" />
+          <text x={left + fw / 2} y={bt + 60} textAnchor="middle" className="p3-p10">P10</text>
+          <text x={left + fw / 2} y={bt + 86} textAnchor="middle" className="p3-intel">INTELLIGENCE</text>
         </g>
       </g>
 

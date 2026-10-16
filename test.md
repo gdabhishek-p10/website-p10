@@ -1,190 +1,184 @@
-# PoC Portfolio: Buyer, Market Size and Priority Analysis (P&C Insurance, US + UK/Lloyd's)
+# CTI Discovery Brief and Solution Proposal
 
-*Prepared 1 October 2026.*
+Oct 7, 2026 · @Abhishek
 
-**Assumptions**
-- The "[industry]" and "[geography]" placeholders were unfilled, so I used P&C insurance and US + UK/Lloyd's.
-- The nine PoCs were read from the "PoC Portfolio at a Glance" screenshot.
-- Anything marked **(A)** is my assumption, not a sourced fact.
-- Source tags like [S3] point to the Sources list at the end.
+## Summary
 
----
+Rupen Philloura, General Manager of CTI's Miami Cruise Terminal A, wants two things now: one connected view of terminal safety and asset management, and biometric identification for employees. He prefers integrating the systems he named (Octave Attune EAM, SafetyCulture, Honeywell) over adding another standalone tool.
 
-## 1. Buyers: PoC-by-buyer matrix
+We propose two pieces:
 
-● = primary buyer, ○ = secondary buyer. Sponsor roles are my judgment (A) and were not researched.
+- **Safety and asset layer:** an integration layer, one dashboard and automated workflows across his existing systems, with AI monitoring added once the base works.
+- **Employee biometrics:** an identity service that plugs into CTI's existing access control and workforce systems, built around consent and privacy.
 
-| # | PoC | US carriers | UK insurers / Lloyd's managing agents | MGAs / coverholders | Agencies / brokers | TPAs | Reinsurers | Likely internal sponsor (A) |
-|---|---|---|---|---|---|---|---|---|
-| 01 | Intelligent Underwriting Platform (commercial property) | ● | ● | ● | | | ○ | Chief Underwriting Officer, Head of Commercial Property |
-| 02 | FNOL Triage & Routing | ● | ● | ○ | | ● | | Chief Claims Officer, Claims Transformation lead |
-| 03 | CAT Surge: Real-Time Exposure & Response | ● | ● | ○ | | | ● | Head of Cat / Exposure Management, Chief Risk Officer |
-| 04 | AI-Powered Subrogation Identification | ● | ○ | | | ● | | Head of Recovery / Subrogation, Chief Claims Officer, CFO |
-| 05 | AI Fraud Scoring | ● | ● | ○ | | ○ | | Head of SIU / Fraud |
-| 06 | Customer Churn / Retention Prediction | ● | ○ | ○ | ● | | | Chief Distribution or Customer Officer, Head of Retention |
-| 07 | Prodigy: Agency Copilot | ○ (agency channel) | | ○ | ● | | | Agency principal, Operations Director |
-| 08 | Sage: Policyholder Assistant | ● | ● | ○ | | ○ | | Chief Customer Officer, Head of Contact Centre |
-| 09 | Bordereaux Processing for MGAs | ● (as capacity providers) | ● | ● | | ○ | ● | Head of Delegated Authority, MGA COO |
+Still to confirm with Rupen: which systems CTI runs today, how they share data now, whether the licences include API access, and the scope and legal approach for biometrics. These are listed in the last section.
 
----
+## Prospect and company
 
-## 2. Buyer segments: counts
+**Rupen Philloura** is General Manager of Miami Cruise Terminal A, according to [CTI's team page](https://cruisetermint.com/team/). He has 20+ years in operations and transportation across the public and private sectors. Most recently he was Director of Terminal Operations, Customer Service and the Airport Operations Center at Miami International Airport, leading 200+ staff. Earlier he held senior roles at San Francisco and Tampa airports and ran an aviation consultancy. His LinkedIn profile could not be read automatically, so this comes from CTI's own page.
 
-| Segment | Count | Unit | Source and notes | PoCs served |
-|---|---|---|---|---|
-| US P&C insurers | **~2,500+** | Legal entities | S&P analysed 2,500+ P&C entities [S1]. No reliable group count found. | 01–06, 08, 09 |
-| US MGAs | **~700–1,100** | Legal entities | 850+ found in statutory filings plus ~250 small ones estimated, so ~1,100 [S3]. A second source says 700+ met the NAIC reporting threshold [S5]. A third says ~600 [S6]. | 01, 02, 03, 05, 06, 08, 09 |
-| UK MGAs | **233–359** | Firms | 233 MGA Association members [S5]. 359 FCA-authorised London Market intermediaries including MGAs, 2024 [S9]. | 01, 09 |
-| Lloyd's managing agents | **57** | Legal entities | Lloyd's, at 31 Dec 2025 [S7] | 01, 02, 03, 05, 08, 09 |
-| Lloyd's syndicates | 103 | Syndicates (managed by the 57 agents) | [S7] | Not a separate buyer |
-| Lloyd's coverholders | 3,015 | Approved entities, global | [S7] | 09 (mostly as bordereaux producers) |
-| UK personal and commercial insurers | **274** | FCA-authorised firms, 2024 | [S9] | 02, 05, 06, 08 |
-| All PRA-regulated UK insurers | 584 | All types, including life and ISPVs | [S10] | Cross-check only |
-| US independent agencies | **~37,000** | Agencies, down from 39,000 in 2024 | Big "I" 2026 study [S12] | 06, 07 |
-| UK P&C intermediaries | **3,921** | FCA-authorised firms, 2024, excluding appointed representatives | [S9] | 07 |
-| US reinsurance carriers | **~219** | "Businesses" | IBISWorld [S14], low confidence | 03, 09 |
-| TPAs | **No reliable count found** | n/a | Only market-size reports. Named leaders: Sedgwick, Crawford, CorVel, Charles Taylor [S15]. | 02, 04 |
+**Cruise Terminals International (CTI)** develops and operates cruise terminals and port infrastructure. Its team page says about 400 people work on its projects worldwide.
 
-### Overlaps (so they are not double-counted)
+| Location | What CTI does there |
+| --- | --- |
+| Miami, USA | Owns and operates Terminal A at PortMiami under a long-term concession. 2.1M+ guests in 2024. 1,460-ft pier for Icon-class ships. Shore power completed August 2024. |
+| Barcelona, Spain | Developing Terminal G for Royal Caribbean Group, set to open in 2026. |
+| Fiumicino, Italy | Waterfront and cruise port development, about 600M euros. |
+| Ravenna, Italy | Cruise terminal built as the first public-private partnership of its kind in Italy. |
+| St. Thomas, USVI | Redevelopment of Crown Bay. |
 
-- US MGAs, UK MGAs and Lloyd's coverholders overlap heavily. US MGAs placed about $8.5B at Lloyd's [S4].
-- Lloyd's managing agents appear in both the FCA and PRA lists.
-- Some reinsurers sit in the US P&C carrier rankings, for example Everest Re and PartnerRe [S16].
-- The US agency figure covers independent P&C agencies only. IBISWorld's 430,059 "brokers and agencies" is a much wider universe [S13].
-- Entity counts overstate decision-makers, because buying decisions happen at group level.
+Other people likely to matter: David Candib (SVP Commercial & Operations, ex-Carnival port operations) for the safety and operations side, and Sandra Guzman (Head of HR) for workforce and biometrics. Greg Lanter became CEO in January 2026. Sources: [CTI team page](https://cruisetermint.com/team/), [CTI Miami page](https://cruisetermint.com/destination/miami/).
 
----
+## What Rupen asked for
 
-## 3. Reality check: where raw counts overstate the market
+These points come from our discussion notes.
 
-### Concentration
+**1. Terminal safety and asset management**
 
-- The top 10 US P&C groups hold about 48% of premium [S2]. The biggest carriers build in-house or buy enterprise suites.
-- In the UK, 18 insurers make up over 80% of the PRA-regulated general insurance market [S11].
-- About 30,000 of 39,000 US independent agencies earn under $1.25M in revenue [S13], so most have little budget.
-- Only 19 US MGAs write $500M or more [S5].
+- How CTI can monitor safety issues across the terminal.
+- How assets are tracked and managed.
+- He named Hexagon Octave, SafetyCulture and Honeywell.
+- The discussion was about integrating these systems, not creating another isolated tool.
+- Topics covered: APIs, dashboards, workflow automation and possibly AI-driven safety monitoring.
 
-### AI adoption
+**2. Employee biometrics**
 
-- UK insurers: 95% say they use AI, but that is a small sample of 118 firms across all financial services, and "using AI" is a loose definition [S17].
-- US carriers: AI in production is at 22% [S21]. Another survey puts full adoption at 34%, up from 8% [S20, secondary].
-- Underwriting: only 16% of P&C insurers use AI to augment underwriters, and 60% plan to by 2028 [S22, secondary].
-- Claims, issuance and churn: 23% use AI for claims processing, 18% for policy issuance and 15% for churn prediction [S18].
-- Agencies: AI use rose from 15% to 46% (2024 to 2026) [S12]. Those agencies are now harder to sell to.
-- 67% of insurers and MGAs plan to raise AI spend [S19, secondary].
+- He asked specifically about biometric implementation for employees.
+- Topics covered: employee identification and authentication, and how biometrics could connect with access control, attendance and workforce systems, and operational workflows.
 
-### Competitive crowding (my read of vendor landscapes, mostly vendor-written sources)
+The notes do not say whether his systems are disconnected today or what gap he wants closed. We should not assume either until he confirms.
 
-| PoC | Crowding | Who is in the way |
-|---|---|---|
-| 05 Fraud | Heaviest | Verisk, FRISS, Shift Technology and SAS lead detection [S23] |
-| 02 FNOL | Heavy | Guidewire, Duck Creek, Snapsheet, Five Sigma and Shift hold FNOL and triage [S27] |
-| 08 Sage | Heavy | Many voice and chat vendors with Guidewire and Duck Creek connectors [S27] |
-| 03 CAT | Heavy at the modelling layer | Moody's RMS and Verisk dominate; ZestyAI and Cape Analytics take property-level risk [S26] |
-| 07 Prodigy | Moderate to heavy | Applied (bought Planck and Cytora), Vertafore (Velocity AI, April 2026), Indemn, AgencyZoom [S28] |
-| 01 Underwriting | Moderate to heavy | Cytora (now owned by Applied) and AIG's in-house assistant [S22, S28] |
-| 09 Bordereaux | Heavy in London, lighter in the US | VIPR claims ~50% of Lloyd's managing agents (a vendor claim); Quantemplate and FurtherAI also compete [S25] |
-| 04 Subrogation | Moderate | Shift, Avalon, CLARA, EXL and WNS [S24] |
-| 06 Churn | Moderate | Earnix and Verisk analytics. Adoption is low (15%) [S18, S29]. |
+## Terminal safety in plain terms
 
----
+Terminal safety means keeping passengers, staff, contractors and equipment safe, and keeping the terminal compliant with the rules that apply to it.
 
-## 3b. Addressable buyers per PoC
+**Why it is risky.** On ship turnaround day, thousands of passengers arrive, bags are moved, vehicles drive around and workers repair things, all within a few hours. Accidents can happen where people and vehicles mix, on wet floors, and when equipment fails. Other risk areas are fire and life safety, hazardous work such as work at height or electrical work, and crowd or medical emergencies.
 
-The raw counts above are sourced. The filters below are my assumptions (A), so treat the ranges as illustrative.
+**Who is responsible.** The terminal operator covers the building and its own staff. The cruise line covers the ship and often sets its own terminal requirements. The port authority sets port-wide rules, and regulators cover things like maritime security. No single party sees the whole picture.
 
-**Main assumption (A):** only **150–300 US carrier buying units** are realistic. That is the 2,500+ entities collapsed to groups, minus the top ~25 enterprise players, captives and tiny niche writers.
+**How it works day to day**
 
-| # | PoC | Addressable buyers (A) | How I got there | Overstatement flag |
-|---|---|---|---|---|
-| 01 | Underwriting | **~500–900** | US MGAs 30–40% (~210–440), UK MGAs ~70–125, Lloyd's agents ~45, UK insurers ~80, US carriers 25% (~40–75) | Moderate |
-| 09 | Bordereaux | **~500–800** | 50% of US and UK MGAs plus Lloyd's agents | High: the MGA pools overlap |
-| 07 | Prodigy | **~4,000–5,000** | ~7,000–9,000 agencies above $1.25M revenue, less the 46% already using AI | High: low spend per agency |
-| 02 | FNOL | **~150–250** | Auto-writing carriers (65%) plus ~50 UK | Heavy crowding |
-| 08 | Sage | **~140–230** | Carriers with large service operations (60%) plus ~50 UK | Heavy crowding |
-| 06 | Churn | **~125–200** | Personal-lines carriers (50%) plus ~50 UK; agency demand reaches you through their AMS vendor | Moderate |
-| 04 | Subrogation | **~135–270, plus TPAs (uncounted)** | Claims-heavy carriers (90%) | Moderate |
-| 05 | Fraud | **~150–250** | Same pool as FNOL | Heavy crowding |
-| 03 | CAT | **~200–320** | Property carriers (70%) ~105–210, Lloyd's agents ~55, reinsurers ~40–55 | Heavy crowding |
+1. **Prevent:** write safety rules, train staff and plan for risks.
+2. **Check:** inspect the building and equipment regularly with checklists.
+3. **Spot problems:** alarms, cameras and staff reports show when something is wrong.
+4. **Fix fast:** the control room sends the right person to deal with it.
+5. **Record and learn:** log every incident, find the cause and make sure the fix is done.
 
----
+In many organizations each step lives in a different tool. Whether that is true at CTI is a question for Rupen, not something we know.
 
-## 4. Priority ranking
+## The three systems
 
-Each PoC is scored 1–5 on four criteria with equal weights; for crowding, 5 means the least crowded. The scores are my judgment (A).
+Each tool answers a different question, and Attune EAM is the one to understand best.
 
-| Rank | PoC | Buyers | Demand | Crowding | Deal and motion | Total |
-|---|---|---|---|---|---|---|
-| 1 | 01 Underwriting | 4 | 5 | 2 | 4 | **15** |
-| 2 | 09 Bordereaux | 4 | 4 | 2 | 4 | **14** |
-| 3= | 04 Subrogation | 3 | 3 | 3 | 4 | **13** |
-| 3= | 07 Prodigy | 5 | 4 | 2 | 2 | **13** |
-| 5 | 06 Churn | 3 | 3 | 3 | 3 | **12** |
-| 6= | 02 FNOL | 3 | 4 | 1 | 3 | **11** |
-| 6= | 05 Fraud | 3 | 4 | 1 | 3 | **11** |
-| 8= | 03 CAT Surge | 3 | 3 | 1 | 3 | **10** |
-| 8= | 08 Sage | 3 | 3 | 1 | 3 | **10** |
+| System | Simple role | Integration notes |
+| --- | --- | --- |
+| [Octave Attune EAM](https://www.octave.com/products/asset-performance-management/attune/eam) (formerly HxGN EAM) | "What equipment do we have, and is it maintained?" | Described as API-first on [G2](https://www.g2.com/products/octave-attune-eam-hxgn-eam/reviews). Octave's support job ad mentions REST and SOAP APIs. Supports SAML single sign-on. |
+| [SafetyCulture](https://www.getapp.co.uk/software/102403/iauditor) | "Did staff check things, and what did they find?" | Has an open API for exporting inspection data. Some features sit on higher-priced plans. |
+| [Honeywell building systems](https://buildings.honeywell.com/ca/en/automation/life-safety) | "Are alarms, cameras and doors working, and what is happening now?" | Fire and life safety, security, and one-screen building control. Access control and video sit under its security products. |
 
-### Tier 1: lead with these
+Octave is Hexagon's software business, now branded separately. The spin-off was still awaiting approval in the sources we found.
 
-- **01 Underwriting.** Underwriting is where insurers expect AI to pay off most, yet only about 16% use it there today. Buyers are plentiful and deals are mid-to-large. Applied and Cytora are real competitors.
-- **09 Bordereaux.** It has a clear pain point and a clear buyer. Compete in US program business and with carriers auditing MGAs, not head-on with VIPR in London.
+**What Attune EAM does**
 
-### Tier 2: pursue selectively
+- **Assets:** one record per piece of equipment, with location, history and details.
+- **Work orders:** every repair or planned job, with the technician, parts and hours.
+- **Inspections:** routes and checks on equipment. An out-of-range result can create a repair work order automatically.
+- **Safety management:** hazards and precautions, permits to work, and lock-out/tag-out procedures.
+- **Inventory and purchasing:** spare parts and stock levels.
+- **Mobile app:** technicians can see and close work orders and record inspections, even offline.
 
-- **04 Subrogation.** The ROI is measurable and only a few vendors compete. Evidence of demand is thin: the $15B "missed recoveries" figure comes from a vendor press release citing the NAIC [S24].
-- **07 Prodigy.** The pool is the largest by far, but deal sizes are small, AMS vendors are bundling AI, and agencies say they lack AI knowledge (60%) [S12]. This works only through a channel or an AMS marketplace.
-- **06 Churn.** Adoption is low (15%), which leaves room. Budget evidence is weak, and Earnix and the AMS vendors are adjacent.
+**Automatic scheduling of regular servicing.** Preventive maintenance schedules generate work orders at a frequency or meter reading you set, for one item or a system of items (per [Octave's help docs](https://docs.hexagonppm.com/r/en-US/HxGN-EAM-Help/1275437)). For example, "inspect this item monthly" or "service after a set number of running hours." The work order then appears on the technician's mobile app. Alert management can also create work orders or send emails when conditions are met.
 
-### Tier 3: deprioritise, or bundle into other PoCs
+**AI in Octave.** Octave Aria is a built-in assistant that helps users search and understand EAM data and documents. Attune APM adds failure prediction from equipment data. This AI works inside Octave's own data, so our value is AI that looks across all three systems together. We have not confirmed which of these CTI has licensed.
 
-- **02 FNOL, 05 Fraud, 08 Sage.** These sit in the most crowded segments and are often bundled into claims suites. Demand is real, but you would be displacing incumbents.
-- **03 CAT Surge.** It's a narrow buyer pool, and Moody's and Verisk own the data and the models. Revisit it as a feature inside Underwriting.
+**Overlap to clarify.** Attune EAM and SafetyCulture can both run inspections and trigger follow-up. We need to know how CTI splits that work, so the integration connects the tools instead of duplicating them.
 
----
+## Proposed solution 1: unified safety and asset layer
 
-## 5. What I did NOT research
+We build a layer that sits on top of CTI's existing systems and replaces none of them.
 
-- Deal sizes and sales cycles. Everything on these is my judgment, with only a few vendor price anecdotes.
-- US carrier group counts. I found no reliable figure, so the 150–300 buying units are my assumption.
-- TPA counts, in either the US or the UK. I also did not look at self-insureds, captives, risk retention groups, surplus lines or fronting carriers.
-- Brokers and wholesalers, including the London market brokers, and US broker counts beyond independent agencies.
-- Regulatory constraints on each PoC: NAIC AI model bulletins, state rules, FCA Consumer Duty and Colorado-style AI laws.
-- Primary-source checks. Several adoption figures reached me through secondary blogs: Conning, WTW, AM Best and Grant Thornton via [S19, S20, S22]. I did not read the originals.
-- Which vendors have already signed which carriers, and whether anyone has built your PoCs in-house.
-- The sponsor roles in section 1, which I have not validated with any buyers.
-- Segments outside US + UK/Lloyd's, including Canada, EU and Bermuda.
-- Dating: the UK FCA firm counts are 2024 data, and the 3,921 intermediary figure may count differently from other years.
+- **Integration layer:** connectors that pull data from each system through its API or webhooks into one data model for incidents, inspections, alarms and assets.
+- **Operations dashboard:** one live view for the terminal GM and operations team. It shows open safety issues by zone, overdue inspections, asset status and turnaround-day readiness, with drill-down into the source system.
+- **Workflow automation:** rules that connect the systems. A failed inspection could create a work order in Attune EAM, notify the zone supervisor and escalate if it is not closed in time. An alarm could attach the asset's maintenance history automatically.
+- **Single asset view:** each asset (gangway, conveyor, lift, fire system) linked to its maintenance history, inspections and incidents.
+- **AI layer, added after the base works:** pattern detection across incidents and inspections to flag repeat problem areas, and plain-language summaries for daily or weekly reports. Video analytics on existing cameras, for example to spot missing PPE or blocked exits, is an optional pilot that needs a privacy review first.
 
----
+The diagram below shows how data flows through the layer. The first build should be limited to what CTI's API access and licences allow.
+
+&#91;embedded content: integration layer · 3 sources, 3 outputs\]
+
+Each system keeps doing its own job. The layer reads from all three and feeds one dashboard, shared workflows and AI insights.
+
+## Proposed solution 2: employee biometrics
+
+Biometric identification should add to CTI's existing access and workforce systems, not replace them.
+
+- **Identity layer:** biometric verification (face or fingerprint, depending on the hardware CTI prefers) for staff and contractors.
+- **Access control link:** doors and restricted zones check the biometric against the person's role and permissions.
+- **Attendance link:** verified clock-ins feed the attendance and workforce system, which reduces buddy punching.
+- **Operational link:** the safety platform can show who was in a zone during an incident, and contractor induction and certification checks can be tied to access.
+- **Privacy by design:** consent and opt-out handling, templates stored on the device or encrypted, retention limits and audit logs.
+
+**Points to check before scoping**
+
+- Terminal A is a US port facility, so staff access is probably already governed by rules such as TWIC and port or CBP requirements. Biometrics would likely supplement these, not replace them. Confirm with CTI.
+- Florida has no biometric law like Illinois' BIPA that we are aware of, but CTI's counsel should confirm. If this extends to Italy or Spain, GDPR treats biometric data as special-category data. That needs a strong legal basis, a data protection impact assessment and often employee-representative consultation.
+- Ask about union or workforce consultation, and whether HR (Sandra Guzman) owns the workforce-system side.
+
+## Suggested phasing
+
+Start small at Miami Terminal A and expand once the pilot proves value. Durations are our own rough estimates, to be confirmed after discovery.
+
+1. **Discovery (about 2-3 weeks):** map CTI's current systems, APIs, access control hardware and TWIC and port requirements. Check what PortMiami and the cruise lines control.
+2. **Safety and asset pilot (about 6-10 weeks):** the integration layer and dashboard for Terminal A, covering one or two of the three systems and a small set of workflows.
+3. **Biometrics pilot:** one entry point or one staff group, integrated with the existing access control.
+4. **Expand:** add the AI monitoring layer, then extend to Barcelona Terminal G, which opens in 2026 and is the easiest place to build this in from the start.
+
+## Questions for the next call, and things to verify
+
+**Questions for Rupen**
+
+- [ ] Is this scoped to Miami Terminal A only, or all CTI sites?
+- [ ] Who decides and who holds the budget: Rupen, David Candib (Commercial & Operations) or Sandra Guzman (HR) for the workforce side?
+- [ ] Which of Attune EAM, SafetyCulture and Honeywell are live today, and which are only being considered?
+- [ ] Is Attune EAM cloud or on-premise, and which version? Does the licence include API access? Is Aria or Attune APM used?
+- [ ] How do you split inspections between Attune EAM and SafetyCulture, and how do the systems share data now?
+- [ ] Where do things fall through the cracks today?
+- [ ] Which access control and attendance systems must the biometrics connect to?
+- [ ] Which three safety incident types do you most want to catch earlier?
+- [ ] What are the timeline and the success measure?
+
+**Things we have not verified**
+
+- Octave's actual API documentation and which endpoints CTI's version exposes. Our evidence is a review site and a job ad.
+- Current API terms and plans for SafetyCulture and Honeywell products at CTI.
+- Legal position on biometrics in each CTI location, which needs CTI's counsel.
+- Rupen's LinkedIn profile, which blocks automated access.
+
+**Risks**
+
+- Video analytics on existing cameras is the highest-risk piece for privacy and staff acceptance, so we position it as an optional pilot.
+- Octave already sells AI, so a generic "AI for maintenance" pitch would overlap with it. Our angle is AI across all the systems.
 
 ## Sources
 
-- [S1] [S&P Global: 2025 US P&C market report](https://www.spglobal.com/market-intelligence/en/news-insights/research/2025-us-p-and-c-insurance-market-report-projects-stability-amid-broader-volatility)
-- [S2] [Agency Checklists: NAIC 2025 market share, top P&C insurers](https://agencychecklists.com/2025/03/17/naic-2025-market-share-report-pc-insurers-74868/)
-- [S3] [Insurance Journal: MGAs by the numbers (Conning)](https://www.insurancejournal.com/news/national/2025/07/09/830954.htm)
-- [S4] [Conning: 2025 MGA study](https://www.conning.com/about-us/news/ir-pr---mga-2025)
-- [S5] [Genasys: MGA briefing (secondary)](https://www.genasystech.com/mga-policy-administration-briefing/)
-- [S6] [Beinsure: MGA rankings (low-quality source)](https://beinsure.com/top-ranking-mga-worldwide/)
-- [S7] [Lloyd's: how the market works](https://www.lloyds.com/about-lloyds/our-market/lloyds-market)
-- [S9] [FCA: authorised firms data, Feb 2025](https://www.fca.org.uk/freedom-information/information-authorised-firms-enforcement-outcomes-february-2025)
-- [S10] [PRA Business Plan 2025/26](https://www.bankofengland.co.uk/prudential-regulation/publication/2025/april/pra-business-plan-2025-26)
-- [S11] [PRA: 2026 DyGIST update](https://www.bankofengland.co.uk/prudential-regulation/publication/2025/july/update-on-2026-dygist)
-- [S12] [ProgramBusiness: Big "I" 2026 Agency Universe Study](https://programbusiness.com/news/independent-agency-count-falls-to-37000-as-ai-use-marketing-spending-rise/)
-- [S13] [Producerflow: US agency statistics (OPTIS estimate)](https://www.producerflow.com/blog/us-insurance-agency-producer-statistics)
-- [S14] [IBISWorld: US reinsurance carriers](https://www.ibisworld.com/united-states/industry/reinsurance-carriers/1329/)
-- [S15] [GlobeNewswire: TPA market report 2026](https://www.globenewswire.com/news-release/2026/04/27/3281499/0/en/insurance-third-party-administrators-tpas-global-market-report-2026-yoy-revenue-grew-by-32-billion-ai-driven-claims-automation-to-boost-insurance-tpa-growth-through-2030.html)
-- [S16] [Reinsurance News: Top 100 US P&C insurers](https://www.reinsurancene.ws/top-100-u-s-property-casualty-insurance-companies/)
-- [S17] [Bank of England / FCA: AI in UK financial services 2024](https://www.bankofengland.co.uk/report/2024/artificial-intelligence-in-uk-financial-services-2024)
-- [S18] [Earnix: 2026 insurance trends report](https://earnix.com/newsroom/press-releases/ai-insurance-trends-report-2026/)
-- [S19] [ScienceSoft: Q2 2026 insurance AI trends (secondary)](https://www.scnsoft.com/insurance/insurance-ai-trends)
-- [S20] [Outcome Catalyst: insurance AI trends 2026 (secondary, cites Conning)](https://www.outcomecatalyst.com/blog/insurance-ai-data-trends-2026)
-- [S21] [Roots: State of AI adoption in insurance 2025](https://www.roots.ai/hubfs/Reports%20and%20Whitepapers/Roots%20-%20State%20of%20AI%20Adoption%20in%20Insurance%202025.pdf)
-- [S22] [Insuretech Trends: agentic AI in underwriting (secondary, cites WTW)](https://insuretechtrends.com/5-ways-agentic-ai-is-transforming-insurance-underwriting-in-2026/)
-- [S23] [Hesper AI: fraud platforms 2026 (vendor)](https://gethesperai.com/blog/top-fraud-detection-platforms-2026/)
-- [S24] [Guideflow: subrogation software 2026](https://www.guideflow.com/blog/subrogation-software) and [Reinsurance News: CLARA subrogation launch](https://www.reinsurancene.ws/clara-analytics-introduces-ai-enhanced-subrogation-detection-to-maximise-claim-recoveries/)
-- [S25] [VIPR Solutions](https://www.viprsolutions.com/), [Quantemplate](https://www.quantemplate.com/solutions/bordereaux-management) and [FurtherAI](https://www.furtherai.com/blog/software-for-bordereaux-management) (all vendor sites)
-- [S26] [Aon catastrophe risk management survey](https://www.aon.com/getmedia/8d001a7c-277d-4833-a1af-1c2ae7e37384/20250806-global-catastrophe-risk-mgmt-survey.pdf) and [Carrier Management: ZestyAI and Verisk launches](https://www.carriermanagement.com/news/2026/09/03/291681.htm)
-- [S27] [Hesper AI: claims automation 2026 (vendor)](https://gethesperai.com/blog/insurance-claims-automation-2026-whats-automated/)
-- [S28] [Applied Epic review](https://insuranceaitools.com/tools/applied-epic/) and [Vertafore AI](https://aiproplaybook.com/tools/vertafore-ai)
-- [S29] [Insurify: Verisk retention report](https://insurify.com/car-insurance/news/insurers-use-ai-to-predict-customer-churn/)
+- [CTI team page](https://cruisetermint.com/team/)
+- [CTI Miami page](https://cruisetermint.com/destination/miami/)
+- [CTI home](https://cruisetermint.com/)
+- [Octave brand launch](https://www.octave.com/newsroom/press-releases/2026/octave-launches-new-brand)
+- [Octave Attune EAM product page](https://www.octave.com/products/asset-performance-management/attune/eam)
+- [Octave Attune EAM overview](https://www.octave.com/eam)
+- [Octave Attune](https://www.octave.com/ru/attune)
+- [Attune EAM 12.3.1 release review](https://progressive-tsl.com/discover-whats-new-in-octave-attune-eam-12-3-1/)
+- [Octave IDC MarketScape announcement](https://www.octave.com/newsroom/press-releases/2026/octave-named-leader-in-idc-marketscape)
+- [G2 reviews of Attune EAM](https://www.g2.com/products/octave-attune-eam-hxgn-eam/reviews)
+- [EAM safety management docs](https://docs.hexagonppm.com/r/en-US/EAM-System-Overview/1261945)
+- [EAM inspection docs](https://docs.hexagonppm.com/r/en-US/EAM-System-Overview/1261939)
+- [EAM Mobile docs](https://docs.hexagonppm.com/r/en-US/HxGN-EAM-Mobile-User/12.0/1262482)
+- [EAM PM schedules help](https://docs.hexagonppm.com/r/en-US/HxGN-EAM-Help/1275437)
+- [SafetyCulture on GetApp](https://www.getapp.co.uk/software/102403/iauditor)
+- [SafetyCulture API connector docs](https://docs.nexla.com/user-guides/connectors/safetyculture_api)
+- [Honeywell life safety](https://buildings.honeywell.com/ca/en/automation/life-safety)
+- [Honeywell security](https://buildings.honeywell.com/pl/en/products/security)
+
+Product details come from search results and vendor pages, not from hands-on testing. Search snippets were not all opened in full.
