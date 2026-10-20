@@ -45,7 +45,7 @@ export default function HomeClient({ data }: { data: HomeData }) {
         <Hero hero={data.hero} onAsk={(q) => setChat((c) => ({ open: true, seed: q, nonce: c.nonce + 1 }))} />
         <CredLogos logos={data.logos} />
         <Reality problem={data.problem} />
-        <PropositionStack pillars={data.pillars} animated={animated} />
+        <PropositionStack pillars={data.pillars} />
         <CaseStudies caseStudies={data.caseStudies} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
         <EngineeringAI engineering={data.engineering} />
         <AILabs aiLabs={data.aiLabs} onPlay={(src, poster) => setModal({ open: true, src, poster })} />

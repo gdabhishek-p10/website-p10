@@ -58,10 +58,9 @@ async function main() {
         headlineAfter: 'Enterprise',
         lede: 'Strengthen the systems you run, build what comes next, and apply AI where it creates measurable impact',
         prompts: chips([
-          'Modernize our legacy ERP without disrupting the business…',
-          'Build a customer portal our teams can ship features on…',
-          'Deploy an AI agent that resolves support tickets…',
-          'Give me a roadmap to become an intelligent enterprise…',
+          'Modernize our legacy ERP…',
+          'Build a customer portal…',
+          'Deploy an AI support agent…',
         ]),
       },
       clients: { logos: logoIds },

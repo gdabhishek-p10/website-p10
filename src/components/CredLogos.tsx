@@ -6,6 +6,7 @@ export default function CredLogos({ logos }: { logos: Img[] }) {
   return (
     <section className="cred" aria-label="Selected clients">
       <div className="container">
+        <p className="cred-title">Trusted by leading organizations in every industry</p>
         <div className="cred-inner">
           <div className="client-logo-grid">
             <div className="client-logo-track">
