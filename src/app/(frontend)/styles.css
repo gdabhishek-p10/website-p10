@@ -94,12 +94,63 @@ header.header-hidden{transform:translateY(-100%)}
 .cred{padding:28px 0;border-bottom:1px solid var(--line);background:var(--paper)}
 
 /* Reality */
-.reality{padding:90px 0 60px;background:var(--paper)}
-.reality-top{display:flex;flex-direction:column;align-items:center;text-align:center;margin:0 auto 40px}
-.reality-top .lede{margin:0 auto;text-wrap:balance}
-
-.reality-stage{position:relative;max-width:100%;margin:0 auto}
-.reality-photo{position:relative;width:100%;display:block;aspect-ratio:21/9;overflow:hidden;background:#fff;border-radius:var(--radius)}
+.reality{padding:90px 0 60px;background:var(--paper);overflow:hidden}
+.reality-top{display:flex;flex-direction:column;align-items:center;text-align:center;margin:0 auto}
+.reality-accent{background:linear-gradient(90deg,#5d5bd4,#8b6cf0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.reality-top .lede{margin:14px auto 0;max-width:none;white-space:nowrap}
+.reality-art{position:relative;width:min(calc(100% - 2*var(--gutter)),var(--max));margin:24px auto 12px}
+.reality-art .rs{display:block;width:100%;height:auto}
+/* animated artwork: pure CSS keyframes on the SVG parts */
+.rs *{transform-box:fill-box}
+.rs-float{animation:rs-float 6s ease-in-out infinite}
+.rs-f2{animation-duration:7.2s;animation-delay:-2s}
+.rs-f3{animation-duration:6.6s;animation-delay:-4s}
+.rs-f4{animation-duration:5.6s;animation-delay:-1s}
+@keyframes rs-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.rs-orbit{transform-box:view-box;transform-origin:1000px 135px;animation:rs-spin 30s linear infinite}
+.rs-counter{transform-origin:center;animation:rs-spin 30s linear infinite reverse}
+@keyframes rs-spin{to{transform:rotate(360deg)}}
+.rs-core{transform-origin:center;animation:rs-breathe 4s ease-in-out infinite}
+@keyframes rs-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.rs-pulse{transform-origin:center;animation:rs-pulse 4s ease-in-out infinite}
+@keyframes rs-pulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}
+.rs-dot{animation-duration:2s}
+.rs-flow{animation:rs-flow 5s linear infinite}
+.rs-flow-b{animation-delay:-2.5s}
+@keyframes rs-flow{from{stroke-dashoffset:60}to{stroke-dashoffset:-940}}
+.rs-led{animation:rs-led 2.6s ease-in-out infinite}
+@keyframes rs-led{0%,100%{opacity:.25}50%{opacity:1}}
+.rs-cable{animation:rs-cable 3.2s ease-in-out infinite}
+@keyframes rs-cable{0%,100%{opacity:.4}50%{opacity:1}}
+.rs-twinkle{animation:rs-twinkle 4s ease-in-out infinite}
+@keyframes rs-twinkle{0%,100%{opacity:.15}50%{opacity:.85}}
+@media(prefers-reduced-motion:reduce){.rs *{animation:none!important}}
+.reality-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,64px)}
+.reality-col{--tone:#c77a12;min-width:0;text-align:center}
+.reality-blue{--tone:#1a7fd4}
+.reality-violet{--tone:#6d4fe0}
+.reality-col h3{margin:0;font-size:clamp(30px,3vw,42px);color:var(--ink)}
+.reality-col p{margin:0;max-width:30ch;font-size:19px;line-height:1.5;color:#3d474d}
+.reality-effects{list-style:none;margin:22px 0 0;padding:0;display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:nowrap}
+.reality-effects li{display:flex;align-items:center;gap:10px;padding:0 16px;font-size:14px;white-space:nowrap;color:var(--ink);border-left:1px solid var(--line)}
+.reality-effects li:first-child{padding-left:0;border-left:0}
+.reality-effects li:last-child{padding-right:0}
+.reality-effects svg{flex:0 0 auto;width:22px;height:22px;color:var(--tone)}
+@media(max-width:1200px){
+ .reality-effects{flex-wrap:wrap;gap:12px 24px}
+ .reality-effects li{padding:0;border-left:0}
+}
+@media(max-width:700px){
+ .reality-top .lede{white-space:normal;text-wrap:balance}
+}
+@media(max-width:900px){
+ .reality{padding:64px 0 56px}
+ .reality-art{margin:20px auto 20px}
+ .reality-art .rs{height:210px}
+ .reality-cols{grid-template-columns:1fr;gap:40px}
+ .reality-col p{max-width:none}
+ .reality-effects li{gap:8px;font-size:14px}
+}
 
 /* Enterprise transformation animation (inside .reality-photo) */
 .et-stage{pointer-events:auto;user-select:none;cursor:pointer;outline-offset:-2px}
