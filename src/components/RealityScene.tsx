@@ -17,7 +17,7 @@ const CABLES = [
   'M150 231 C170 256 212 264 256 252',
 ];
 const WAVE = 'M330 232 C400 214 450 190 540 196 C620 202 680 246 770 238 C840 232 890 222 920 218';
-const CX = 1000;
+const CX = 600;
 const CY = 135;
 const ORBIT = [0, 72, 144, 216, 288].map((deg) => {
   const a = (deg * Math.PI) / 180;
@@ -52,8 +52,8 @@ export default function RealityScene() {
         <linearGradient id="rs-line" gradientUnits="userSpaceOnUse" x1="330" y1="0" x2="920" y2="0">
           <stop offset="0" stopColor="#f2a14a" />
           <stop offset=".18" stopColor="#f2a14a" />
-          <stop offset=".5" stopColor="#5db3ff" />
-          <stop offset=".88" stopColor="#a58bff" />
+          <stop offset=".5" stopColor="#a58bff" />
+          <stop offset=".88" stopColor="#5db3ff" />
         </linearGradient>
         <radialGradient id="rs-amber">
           <stop offset="0" stopColor="#f2a14a" stopOpacity=".32" />
@@ -89,7 +89,7 @@ export default function RealityScene() {
 
       {/* ambient light for each part of the story */}
       <ellipse cx="230" cy="238" rx="190" ry="14" fill="url(#rs-amber)" />
-      <ellipse cx="640" cy="150" rx="190" ry="120" fill="url(#rs-blue)" />
+      <ellipse cx="1000" cy="150" rx="190" ry="120" fill="url(#rs-blue)" />
       <circle className="rs-pulse" cx={CX} cy={CY} r="120" fill="url(#rs-violet)" />
 
       {STARS.map(([x, y], i) => (
@@ -115,10 +115,10 @@ export default function RealityScene() {
       <path d={WAVE} fill="none" stroke="url(#rs-line)" strokeWidth={3} strokeLinecap="round" opacity=".55" />
       <path className="rs-flow" d={WAVE} pathLength={1000} fill="none" stroke="url(#rs-line)" strokeWidth={4.5} strokeLinecap="round" strokeDasharray="60 940" filter="url(#rs-glow)" />
       <path className="rs-flow rs-flow-b" d={WAVE} pathLength={1000} fill="none" stroke="url(#rs-line)" strokeWidth={4.5} strokeLinecap="round" strokeDasharray="60 940" filter="url(#rs-glow)" />
-      <circle className="rs-pulse rs-dot" cx="920" cy="218" r="5" fill="#8b6cf0" />
+      <circle className="rs-pulse rs-dot" cx="920" cy="218" r="5" fill="#3b8fe0" />
 
       {/* 02 products: floating glass windows */}
-      <g transform="translate(-60 0)">
+      <g transform="translate(340 0)">
         <Win x={500} y={104} w={92} h={72} cls="rs-f2" />
         <Win x={585} y={62} w={150} h={104} cls="rs-f1" />
         <Win x={724} y={84} w={96} h={64} cls="rs-f3" chart />

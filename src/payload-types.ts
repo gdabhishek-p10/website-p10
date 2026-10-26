@@ -332,12 +332,18 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Homepage {
   id: number;
   hero: {
-    headlineBefore: string;
     /**
-     * Shown in the ochre accent colour.
+     * Optional. Before + Accent + After read as one headline; fill in any of the three. The word "AI" is highlighted automatically.
      */
-    headlineAccent: string;
-    headlineAfter: string;
+    headlineBefore?: string | null;
+    /**
+     * Optional.
+     */
+    headlineAccent?: string | null;
+    /**
+     * Optional.
+     */
+    headlineAfter?: string | null;
     lede: string;
     /**
      * Example prompts that type themselves out in the hero chat box.

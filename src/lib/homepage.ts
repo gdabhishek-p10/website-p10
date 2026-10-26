@@ -53,9 +53,9 @@ export async function getHomeData(draft = false) {
       tagline: settings.footer?.tagline ?? '',
     },
     hero: {
-      before: home.hero.headlineBefore,
-      accent: home.hero.headlineAccent,
-      after: home.hero.headlineAfter,
+      before: home.hero.headlineBefore ?? '',
+      accent: home.hero.headlineAccent ?? '',
+      after: home.hero.headlineAfter ?? '',
       lede: noStop(home.hero.lede),
       prompts: texts(home.hero.prompts),
     },

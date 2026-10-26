@@ -39,14 +39,17 @@ export const Homepage: GlobalConfig = {
             {
               type: 'row',
               fields: [
-                { name: 'headlineBefore', type: 'text', required: true, admin: { width: '33%' } },
+                {
+                  name: 'headlineBefore',
+                  type: 'text',
+                  admin: { width: '33%', description: 'Optional. Before + Accent + After read as one headline; fill in any of the three. The word "AI" is highlighted automatically.' },
+                },
                 {
                   name: 'headlineAccent',
                   type: 'text',
-                  required: true,
-                  admin: { width: '33%', description: 'Shown in the ochre accent colour.' },
+                  admin: { width: '33%', description: 'Optional.' },
                 },
-                { name: 'headlineAfter', type: 'text', required: true, admin: { width: '33%' } },
+                { name: 'headlineAfter', type: 'text', admin: { width: '33%', description: 'Optional.' } },
               ],
             },
             lede(true),

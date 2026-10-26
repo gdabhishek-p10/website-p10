@@ -2,6 +2,11 @@
 import { useEffect, useRef, useState } from 'react';
 import type { HomeData } from '@/lib/homepage';
 
+// Only the word "AI" carries the accent colour in the headline, wherever it appears (before, accent or after).
+function withAi(text: string) {
+  return text.split(/\b(AI)\b/).map((part, i) => (part === 'AI' ? <span key={i} className="hero-ai">{part}</span> : part));
+}
+
 export default function Hero({ hero, onAsk }: { hero: HomeData['hero']; onAsk: (q: string) => void }) {
   const [text, setText] = useState('');
   const [value, setValue] = useState('');
@@ -9,6 +14,10 @@ export default function Hero({ hero, onAsk }: { hero: HomeData['hero']; onAsk: (
   const stateRef = useRef({ prompt: 0, char: 0 });
   const inputRef = useRef<HTMLInputElement>(null);
   const { prompts } = hero;
+  // each part of the headline is optional; join whichever are filled in
+  const before = hero.before.trim();
+  const accent = hero.accent.trim();
+  const after = hero.after.trim();
 
   useEffect(() => {
     if (prompts.length === 0) return;
@@ -43,9 +52,11 @@ export default function Hero({ hero, onAsk }: { hero: HomeData['hero']; onAsk: (
       <div className="container hero-grid">
         <div>
           <h1>
-            {hero.before}
-            <br />
-            <span>{hero.accent}</span> {hero.after}
+            {withAi(before)}
+            {before && accent ? ' ' : ''}
+            {withAi(accent)}
+            {after && (before || accent) && !/^[.,!?;:]/.test(after) ? ' ' : ''}
+            {withAi(after)}
           </h1>
           <p className="lede">{hero.lede}</p>
           <form
