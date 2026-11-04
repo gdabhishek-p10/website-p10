@@ -9,6 +9,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Homepage } from './globals/Homepage'
 import { SiteSettings } from './globals/SiteSettings'
+import { Services } from './globals/Services'
 import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
@@ -31,7 +32,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
-  globals: [Homepage, SiteSettings],
+  globals: [Homepage, SiteSettings, Services],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

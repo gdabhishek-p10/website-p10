@@ -50,9 +50,6 @@ export default function AILabs({
                   <button className="play-btn" aria-label={`Play video: ${d.name}`} onClick={() => onPlay(d.video, d.poster)}>
                     <span className="play-icon" />
                   </button>
-                  <div className="lab-visual-content">
-                    <div className="lab-visual-title">{d.tabLabel}</div>
-                  </div>
                 </div>
                 <div className="lab-info">
                   <div>

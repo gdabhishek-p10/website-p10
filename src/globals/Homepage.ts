@@ -186,6 +186,28 @@ export const Homepage: GlobalConfig = {
                 { name: 'name', type: 'text', required: true },
                 { name: 'head', type: 'text', required: true },
                 { name: 'copy', type: 'textarea', required: true },
+                {
+                  name: 'impactLabel',
+                  type: 'text',
+                  admin: { description: 'Optional. Small label above the impact box, for example Potential business impact.' },
+                },
+                { name: 'impactHeadline', type: 'text', admin: { description: 'Optional. The one-line result shown in the impact box.' } },
+                {
+                  name: 'metrics',
+                  type: 'array',
+                  maxRows: 3,
+                  admin: { description: 'Optional. Up to three short results, each with an icon.' },
+                  fields: [
+                    {
+                      name: 'icon',
+                      type: 'select',
+                      required: true,
+                      defaultValue: 'chart',
+                      options: ['gear', 'wrench', 'chart', 'document', 'people', 'heart', 'clock', 'search', 'shield', 'bolt'],
+                    },
+                    { name: 'label', type: 'text', required: true },
+                  ],
+                },
                 chips(),
                 {
                   name: 'url',

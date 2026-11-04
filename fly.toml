@@ -1,0 +1,35 @@
+# Fly.io config for the People10 homepage (Payload CMS + Next.js).
+# Content lives on the volume mounted at /data: the SQLite database and uploaded media.
+app = 'p10-design-v2'
+primary_region = 'sin'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[env]
+  DATABASE_URL = 'file:/data/p10.db'
+  MEDIA_DIR = '/data/media'
+  PORT = '3000'
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = 'off'
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    grace_period = '90s'
+    interval = '30s'
+    method = 'GET'
+    path = '/admin/login'
+    timeout = '10s'
+
+[mounts]
+  source = 'p10_data'
+  destination = '/data'
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1

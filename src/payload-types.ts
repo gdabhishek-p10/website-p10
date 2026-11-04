@@ -90,10 +90,12 @@ export interface Config {
   globals: {
     homepage: Homepage;
     'site-settings': SiteSetting;
+    services: Service;
   };
   globalsSelect: {
     homepage: HomepageSelect<false> | HomepageSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
   };
   locale: null;
   widgets: {
@@ -440,6 +442,34 @@ export interface Homepage {
           name: string;
           head: string;
           copy: string;
+          /**
+           * Optional. Small label above the impact box, for example Potential business impact.
+           */
+          impactLabel?: string | null;
+          /**
+           * Optional. The one-line result shown in the impact box.
+           */
+          impactHeadline?: string | null;
+          /**
+           * Optional. Up to three short results, each with an icon.
+           */
+          metrics?:
+            | {
+                icon:
+                  | 'gear'
+                  | 'wrench'
+                  | 'chart'
+                  | 'document'
+                  | 'people'
+                  | 'heart'
+                  | 'clock'
+                  | 'search'
+                  | 'shield'
+                  | 'bolt';
+                label: string;
+                id?: string | null;
+              }[]
+            | null;
           chips?:
             | {
                 text: string;
@@ -507,6 +537,59 @@ export interface SiteSetting {
     tagline?: string | null;
   };
   _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  /**
+   * Small gold label above the page heading.
+   */
+  tag?: string | null;
+  /**
+   * The last word is shown in the gold accent.
+   */
+  heading: string;
+  lede?: string | null;
+  /**
+   * The sections of the page, in order. Each one gets a tab at the top.
+   */
+  groups?:
+    | {
+        /**
+         * Short id used in the link, for example ai
+         */
+        key: string;
+        /**
+         * Label on the tab and above the section heading.
+         */
+        tag: string;
+        title: string;
+        tagline?: string | null;
+        services?:
+          | {
+              name: string;
+              /**
+               * Used in the link to this service, for example cloud-engineering
+               */
+              slug: string;
+              description: string;
+              /**
+               * Optional one-liner on how AI is used.
+               */
+              aiEdge?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  closingHeading?: string | null;
+  closingText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -612,6 +695,15 @@ export interface HomepageSelect<T extends boolean = true> {
               name?: T;
               head?: T;
               copy?: T;
+              impactLabel?: T;
+              impactHeadline?: T;
+              metrics?:
+                | T
+                | {
+                    icon?: T;
+                    label?: T;
+                    id?: T;
+                  };
               chips?:
                 | T
                 | {
@@ -681,6 +773,38 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         tagline?: T;
       };
   _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  tag?: T;
+  heading?: T;
+  lede?: T;
+  groups?:
+    | T
+    | {
+        key?: T;
+        tag?: T;
+        title?: T;
+        tagline?: T;
+        services?:
+          | T
+          | {
+              name?: T;
+              slug?: T;
+              description?: T;
+              aiEdge?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  closingHeading?: T;
+  closingText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -151,7 +151,7 @@ async function main() {
         ],
       },
       aiLabs: {
-        heading: 'AI Labs',
+        heading: 'AI labs',
         lede: 'Working experiments that turn emerging AI capabilities into practical enterprise applications',
         entries: [
           {
@@ -207,9 +207,9 @@ async function main() {
       _status: 'published',
       header: {
         navLinks: [
-          { label: 'Services', href: '#capabilities' },
+          { label: 'Services', href: '/services' },
           { label: 'Industries', href: '#industries' },
-          { label: 'Success Stories', href: '#work' },
+          { label: 'Success stories', href: '#work' },
           { label: 'About', href: '#about' },
         ],
         ctaLabel: 'Talk to us',
@@ -220,13 +220,13 @@ async function main() {
           {
             title: 'Explore',
             links: [
-              { label: 'Capabilities', href: '#capabilities' },
+              { label: 'Services', href: '/services' },
               { label: 'Work', href: '#work' },
-              { label: 'AI Labs', href: '#labs' },
+              { label: 'AI labs', href: '#labs' },
             ],
           },
           {
-            title: 'Company',
+            title: 'About',
             links: [
               { label: 'Industries', href: '#industries' },
               { label: 'About', href: '#about' },

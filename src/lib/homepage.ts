@@ -2,6 +2,10 @@ import config from '@payload-config'
 import { getPayload } from 'payload'
 
 import type { Media } from '@/payload-types'
+import { industriesMenuFrom, links, type Link } from './links'
+import { getServicesMenu } from './services'
+
+export type { Link }
 
 const PILLAR_ORDER = ['ai', 'build', 'modernize']
 
@@ -17,28 +21,19 @@ export interface Img {
   height: number | null
 }
 
-export interface Link {
-  label: string
-  href: string
-  external: boolean
-}
-
 function img(m: MediaRef): Img | null {
   if (!m || typeof m === 'number' || !m.url) return null
   return { url: m.url, alt: m.alt, width: m.width ?? null, height: m.height ?? null }
-}
-
-function links(list: { label: string; href: string; external?: boolean | null }[] | null | undefined): Link[] {
-  return (list ?? []).map((l) => ({ label: l.label, href: l.href, external: Boolean(l.external) }))
 }
 
 const texts = (list: { text: string }[] | null | undefined) => (list ?? []).map((c) => c.text)
 
 export async function getHomeData(draft = false) {
   const payload = await getPayload({ config })
-  const [home, settings] = await Promise.all([
+  const [home, settings, servicesMenu] = await Promise.all([
     payload.findGlobal({ slug: 'homepage', depth: 1, draft }),
     payload.findGlobal({ slug: 'site-settings', depth: 0, draft }),
+    getServicesMenu(),
   ])
 
   return {
@@ -46,6 +41,10 @@ export async function getHomeData(draft = false) {
       navLinks: links(settings.header?.navLinks),
       ctaLabel: settings.header?.ctaLabel ?? 'Talk to us',
       ctaHref: settings.header?.ctaHref ?? '#contact',
+      servicesMenu,
+      industriesMenu: industriesMenuFrom(texts(home.industries.items?.map((i) => ({ text: i.name })))),
+      // the links of the footer column called About (or Company): they also form the dropdown under About in the top menu
+      aboutMenu: links((settings.footer?.columns ?? []).find((c) => /^(about|company)$/i.test(c.title.trim()))?.links),
     },
     footer: {
       columns: (settings.footer?.columns ?? []).map((c) => ({ title: c.title, links: links(c.links) })),
@@ -124,6 +123,9 @@ export async function getHomeData(draft = false) {
             name: e.name,
             head: e.head,
             copy: noStop(e.copy),
+            impactLabel: e.impactLabel ?? '',
+            impactHeadline: e.impactHeadline ?? '',
+            metrics: (e.metrics ?? []).map((m) => ({ icon: m.icon, label: m.label })),
             chips: texts(e.chips),
             url: e.url ?? '',
             video: video.url,
