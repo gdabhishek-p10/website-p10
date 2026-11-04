@@ -199,21 +199,21 @@ const COLUMNS = [
   {
     art: ARTWORK.legacy,
     tag: 'Legacy',
-    photo: { src: '/ai-gap/legacy-clay.webp', theme: 'light', alt: 'A stack of aging server cabinets bound in chains and tangled cables with a warning light, showing costly legacy systems' },
+    photo: { src: '/ai-gap/legacy-light.webp', theme: 'light', alt: 'A legacy infrastructure dashboard raising system errors, with a falling chart and locked chains' },
     title: 'Aging systems increase costs and slow business change',
     text: 'Maintaining outdated systems drains budgets and delays the changes needed to stay competitive.',
   },
   {
     art: ARTWORK.risks,
     tag: 'Risk',
-    photo: { src: '/ai-gap/risk-clay.webp', theme: 'light', alt: 'A radar dish scanning for risk while a storm cloud looms and an alert light flashes' },
+    photo: { src: '/ai-gap/risk.webp', theme: 'light', alt: 'A dashboard with real-time risk maps, volatile market changes and a prediction forecast' },
     title: 'Your business is reacting, not predicting',
     text: 'Emerging risks and customer needs go unnoticed until costs rise and opportunities pass.',
   },
   {
     art: ARTWORK.delay,
     tag: 'Delivery',
-    photo: { src: '/ai-gap/delay-clay.webp', theme: 'light', alt: 'A jammed conveyor belt of boxes beside an hourglass, with a clear fast lane running past' },
+    photo: { src: '/ai-gap/delay-light.webp', theme: 'light', alt: 'A dashboard showing slow progress, a delayed pipeline and an agile competitor pulling ahead' },
     title: 'Product releases take too long to deliver value',
     text: 'Slow delivery postpones revenue and keeps customers waiting while competitors move ahead.',
   },
@@ -235,7 +235,6 @@ export default function Reality({ problem }: { problem: HomeData['problem'] }) {
         <Reveal className="reality-cols" stagger>
           {COLUMNS.map((c) => (
             <article key={c.title} className={`reality-col${USE_PHOTOS ? ` reality-${c.photo.theme}` : ''}`}>
-              <span className="reality-tag">{c.tag}</span>
               <h3>{c.title}</h3>
               <p>{c.text}</p>
               {USE_PHOTOS ? (
