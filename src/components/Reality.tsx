@@ -190,7 +190,7 @@ const ARTWORK = {
   ),
 } as const;
 
-// true: photo-style product screens in the cards (dark, light, dark, like the case-study cards).
+// true: coordinated ivory, charcoal and gold editorial artwork in the cards.
 // false: the drawn illustrations instead.
 const USE_PHOTOS = true;
 
@@ -199,21 +199,21 @@ const COLUMNS = [
   {
     art: ARTWORK.legacy,
     tag: 'Legacy',
-    photo: { src: '/ai-gap/legacy-light.webp', theme: 'light', alt: 'A legacy infrastructure dashboard raising system errors, with a falling chart and locked chains' },
+    photo: { src: '/ai-gap/legacy-software-v4.webp', theme: 'light', alt: 'Overlapping legacy application windows with dense records, account fields and an update-required warning' },
     title: 'Aging systems increase costs and slow business change',
     text: 'Maintaining outdated systems drains budgets and delays the changes needed to stay competitive.',
   },
   {
     art: ARTWORK.risks,
     tag: 'Risk',
-    photo: { src: '/ai-gap/risk.webp', theme: 'light', alt: 'A dashboard with real-time risk maps, volatile market changes and a prediction forecast' },
+    photo: { src: '/ai-gap/risk-software-v4.webp', theme: 'light', alt: 'Late operational alerts obscure a declining business trend and its forecast' },
     title: 'Your business is reacting, not predicting',
     text: 'Emerging risks and customer needs go unnoticed until costs rise and opportunities pass.',
   },
   {
     art: ARTWORK.delay,
     tag: 'Delivery',
-    photo: { src: '/ai-gap/delay-light.webp', theme: 'light', alt: 'A dashboard showing slow progress, a delayed pipeline and an agile competitor pulling ahead' },
+    photo: { src: '/ai-gap/delivery-software-v4.webp', theme: 'light', alt: 'A software release pipeline blocked at testing with pull requests waiting behind it' },
     title: 'Product releases take too long to deliver value',
     text: 'Slow delivery postpones revenue and keeps customers waiting while competitors move ahead.',
   },
@@ -241,7 +241,7 @@ export default function Reality({ problem }: { problem: HomeData['problem'] }) {
                 <div className="reality-photo">
                   {/* static files from /public; next/image is limited to the media paths in next.config */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={c.photo.src} alt={c.photo.alt} width={1400} height={1045} loading="lazy" />
+                  <img src={c.photo.src} alt={c.photo.alt} width={1200} height={800} loading="lazy" />
                 </div>
               ) : (
                 <div className="reality-fig">{c.art}</div>

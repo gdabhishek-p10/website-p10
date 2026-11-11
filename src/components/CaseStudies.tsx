@@ -4,6 +4,25 @@ import Image from 'next/image';
 import Reveal from './Reveal';
 import type { HomeData } from '@/lib/homepage';
 
+// Match the existing CMS media filenames so reordered and future stories keep their own artwork.
+const STORY_ART: Record<string, { src: string; alt: string; tone: string }> = {
+  'aviation-mx-records-card.webp': {
+    src: '/success-stories/aviation-cutout-v5.webp',
+    tone: 'mint',
+    alt: 'A white aircraft with inspection records and a verification seal on mint green',
+  },
+  'transport-exception-copilot-fade.webp': {
+    src: '/success-stories/logistics-cutout-v5.webp',
+    tone: 'blue',
+    alt: 'A shipment exception workspace identifying a route disruption and a recovery plan',
+  },
+  'underwriting-property-card.webp': {
+    src: '/success-stories/insurance-cutout-v5.webp',
+    tone: 'lilac',
+    alt: 'Application forms, property schedules and loss histories processed into an organized underwriting dossier',
+  },
+};
+
 export default function CaseStudies({
   caseStudies,
   onPlay,
@@ -37,8 +56,11 @@ export default function CaseStudies({
         </Reveal>
         <div className="work-carousel">
           <div className="work-track" ref={trackRef} onScroll={updateEdges}>
-            {caseStudies.items.map((c) => (
-              <Reveal as="article" className={`case case-${c.theme}`} key={c.title}>
+            {caseStudies.items.map((c) => {
+              const artwork = STORY_ART[c.image.url.split('/').pop()?.split('?')[0] ?? ''];
+              const poster = artwork?.src ?? c.image.url;
+              return (
+              <Reveal as="article" className={`case case-${artwork ? `light case-artwork case-artwork-${artwork.tone}` : c.theme}`} key={c.title}>
                 <div className="case-body">
                   <span className="case-tag">{c.tag}</span>
                   <h3>{c.title}</h3>
@@ -50,8 +72,9 @@ export default function CaseStudies({
                 <div className="case-media">
                   <Image
                     className="poc-poster"
-                    src={c.image.url}
-                    alt={c.image.alt}
+                    src={poster}
+                    alt={artwork?.alt ?? c.image.alt}
+                    unoptimized={Boolean(artwork)}
                     fill
                     sizes="(max-width: 900px) 85vw, 45vw"
                   />
@@ -59,14 +82,15 @@ export default function CaseStudies({
                     <button
                       className="play-btn"
                       aria-label={`Play video: ${c.title}`}
-                      onClick={() => onPlay(c.video!, c.image.url)}
+                      onClick={() => onPlay(c.video!, poster)}
                     >
                       <span className="play-icon" />
                     </button>
                   )}
                 </div>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
           <button
             className="work-arrow work-arrow-prev"

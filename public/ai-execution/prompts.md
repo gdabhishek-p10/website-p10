@@ -1,0 +1,15 @@
+# AI execution imagery
+
+Generated using the built-in image generation tool. Architectural editorial imagery for the AI, Build and Modernize capabilities timeline under "From human effort to AI powered execution".
+
+## Intent
+
+Use case: photorealistic-natural. Premium architectural editorial photograph for an enterprise software and AI transformation website. Landscape 3:2 composition, sophisticated photographic metaphor rather than software screenshot. A real white stone architectural plaza photographed from above, precise parallel paths converge into one clearly defined route toward a simple ochre-gold doorway; one tiny distant person provides scale. Strong geometric composition, fine material texture, natural shadows, quiet clarity. Metaphor for turning human intent into clear specifications. Palette white, warm stone, restrained powder blue and muted ochre gold. Authentic architecture, believable perspective, calm natural daylight, polished professional photography. No CGI sculpture, toy miniature, floating objects, neon, text, logos, watermark, device screens or stock office scene. Strong graphic framing, full image edge to edge, realistic texture.
+
+## Build
+
+Use case: photorealistic-natural. Premium architectural editorial photograph for an enterprise software and AI transformation website. Landscape 3:2 composition, sophisticated photographic metaphor rather than software screenshot. A real contemporary building facade photographed from a low diagonal angle, elegant repeating white structural frames interlock around pale-blue glass, one restrained ochre-gold panel creates a focal point. Beautiful geometry and modular repetition, real construction detail and subtle natural imperfections. Metaphor for coordinated AI building and testing. Palette white, warm stone, restrained powder blue and muted ochre gold. Authentic architecture, believable perspective, calm natural daylight, polished professional photography. No CGI sculpture, toy miniature, floating objects, neon, text, logos, watermark, device screens or stock office scene. Strong graphic framing, full image edge to edge, realistic texture.
+
+## Release
+
+Use case: photorealistic-natural. Premium architectural editorial photograph for an enterprise software and AI transformation website. Landscape 3:2 composition, sophisticated photographic metaphor rather than software screenshot. A real elegant architectural stairway with ivory steps and brushed gold handrail opening toward an airy pale-blue sky, photographed with a clear ascending perspective. Refined real materials, soft daylight and gentle shadows. Metaphor for verified progress and confident delivery. Palette white, warm stone, restrained powder blue and muted ochre gold. Authentic architecture, believable perspective, calm natural daylight, polished professional photography. No CGI sculpture, toy miniature, floating objects, neon, text, logos, watermark, device screens or stock office scene. Strong graphic framing, full image edge to edge, realistic texture.

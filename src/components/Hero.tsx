@@ -8,44 +8,69 @@ function withAi(text: string) {
 }
 
 export default function Hero({ hero, onAsk }: { hero: HomeData['hero']; onAsk: (q: string) => void }) {
-  const [text, setText] = useState('');
   const [value, setValue] = useState('');
-  const [fading, setFading] = useState(false);
-  const stateRef = useRef({ prompt: 0, char: 0 });
-  const inputRef = useRef<HTMLInputElement>(null);
-  const { prompts } = hero;
+  const [placeholder, setPlaceholder] = useState('What can we solve for you?');
+  const [focused, setFocused] = useState(false);
+  const [multiline, setMultiline] = useState(false);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const prompts = ['What can we solve for you?', ...hero.prompts.filter(Boolean)];
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let index = 0;
+    let count = prompts[0].length;
+    let deleting = true;
+    const tick = () => {
+      if (deleting) {
+        count--;
+        setPlaceholder(prompts[index].slice(0, Math.max(0, count)));
+        if (count <= 0) {
+          index = (index + 1) % prompts.length;
+          deleting = false;
+          timer = setTimeout(tick, 350);
+        } else timer = setTimeout(tick, 35);
+      } else {
+        count++;
+        setPlaceholder(prompts[index].slice(0, count));
+        if (count >= prompts[index].length) {
+          deleting = true;
+          timer = setTimeout(tick, 2600);
+        } else timer = setTimeout(tick, 65);
+      }
+    };
+    const sync = () => {
+      clearTimeout(timer);
+      index = 0;
+      count = prompts[0].length;
+      deleting = true;
+      setPlaceholder(prompts[0]);
+      if (!preference.matches && !value && !focused) timer = setTimeout(tick, 3000);
+    };
+    sync();
+    preference.addEventListener('change', sync);
+    return () => {
+      clearTimeout(timer);
+      preference.removeEventListener('change', sync);
+    };
+  }, [hero.prompts, value, focused]);
+
+  useEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+    const resize = () => {
+      input.style.height = '28px';
+      const height = Math.min(input.scrollHeight, window.innerWidth < 560 ? 84 : 56);
+      input.style.height = `${Math.max(28, height)}px`;
+      setMultiline(height > 35);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    return () => window.removeEventListener('resize', resize);
+  }, [value]);
   // each part of the headline is optional; join whichever are filled in
   const before = hero.before.trim();
   const accent = hero.accent.trim();
   const after = hero.after.trim();
-
-  useEffect(() => {
-    if (prompts.length === 0) return;
-    let timer: ReturnType<typeof setTimeout>;
-    const type = () => {
-      const s = stateRef.current;
-      if (s.char <= prompts[s.prompt].length) {
-        setText(prompts[s.prompt].slice(0, s.char));
-        s.char++;
-        timer = setTimeout(type, 45);
-      } else {
-        timer = setTimeout(erase, 1800);
-      }
-    };
-    const erase = () => {
-      setFading(true);
-      timer = setTimeout(() => {
-        setText('');
-        setFading(false);
-        const s = stateRef.current;
-        s.char = 0;
-        s.prompt = (s.prompt + 1) % prompts.length;
-        timer = setTimeout(type, 300);
-      }, 350);
-    };
-    type();
-    return () => clearTimeout(timer);
-  }, [prompts]);
 
   return (
     <section className="hero">
@@ -60,58 +85,49 @@ export default function Hero({ hero, onAsk }: { hero: HomeData['hero']; onAsk: (
           </h1>
           <p className="lede">{hero.lede}</p>
           <form
-            className="hero-ask"
-            onSubmit={(e) => {
-              e.preventDefault();
+            className={`hero-chat-launcher${multiline ? ' is-multiline' : ''}${focused ? ' is-focused' : ''}`}
+            role="search"
+            aria-label="Ask People10 AI"
+            onSubmit={(event) => {
+              event.preventDefault();
               if (!value.trim()) return;
               onAsk(value.trim());
               setValue('');
             }}
           >
-            <div className="hero-ask-box" onClick={() => inputRef.current?.focus()}>
-              <span className="hero-ask-icon" aria-hidden="true">✦</span>
-              <input
+            <svg className="hero-launcher-spark" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+              <path d="M13 2c1.5 7 4 9.5 11 11-7 1.5-9.5 4-11 11C11.5 17 9 14.5 2 13 9 11.5 11.5 9 13 2Z" />
+              <path d="M25 21c.7 3.3 1.7 4.3 5 5-3.3.7-4.3 1.7-5 5-.7-3.3-1.7-4.3-5-5 3.3-.7 4.3-1.7 5-5Z" />
+            </svg>
+            <div className="hero-launcher-field">
+              <textarea
                 ref={inputRef}
-                className="hero-ask-input"
+                rows={1}
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
-                aria-label="Ask People10 AI"
+                onChange={(event) => setValue(event.target.value)}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
+                    event.preventDefault();
+                    event.currentTarget.form?.requestSubmit();
+                  }
+                }}
+                aria-label="What can we solve for you?"
                 autoComplete="off"
               />
-              {value === '' && (
-                <span className="hero-chat-ghost hero-ask-ghost" aria-hidden="true">
-                  <span className={['hero-chat-text', fading ? 'fade' : ''].join(' ').trim()}>{text}</span>
-                  <span className="hero-chat-caret" />
+              {!value && (
+                <span className="hero-launcher-placeholder" aria-hidden="true">
+                  <span>{placeholder}<i className="hero-launcher-caret" /></span>
                 </span>
               )}
-              <button className="hero-ask-send" type="submit" aria-label="Ask" disabled={!value.trim()}>
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
             </div>
-            {prompts.length > 0 && (
-              <div className="hero-ask-chips" role="group" aria-label="Suggested questions">
-                {prompts.map((q) => {
-                  const fill = q.replace(/…$/, '');
-                  return (
-                    <button
-                      key={q}
-                      type="button"
-                      title={fill}
-                      className={`hero-ask-chip${value === fill ? ' is-picked' : ''}`}
-                      aria-pressed={value === fill}
-                      onClick={() => {
-                        setValue(fill);
-                        inputRef.current?.focus();
-                      }}
-                    >
-                      {fill}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
+            <button className="hero-launcher-send" type="submit" aria-label="Send question" disabled={!value.trim()}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="m21 3-6.5 18-4-7.5L3 9.5 21 3Z" />
+                <path d="m10.5 13.5 6-6" />
+              </svg>
+            </button>
           </form>
         </div>
       </div>

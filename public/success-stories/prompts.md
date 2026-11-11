@@ -1,0 +1,15 @@
+# Success-story artwork
+
+Generated with the built-in image generation tool.
+
+## Aviation
+
+Use case: stylized-concept. Premium editorial 3D artwork for an enterprise AI website success-story card, portrait 4:5 aspect ratio. Warm ivory white seamless background, matte ceramic ivory objects, charcoal graphite, brushed muted ochre gold #b8860b and fine cyan #0a8fbd accents. Elegant tactile architectural miniature, crisp soft studio lighting, refined physical materials. Entire top 48 percent empty white negative space for HTML headline overlay. Scene contained in bottom half with generous margins, readable at small size. No text, numbers, letters, logos, watermark, people, robots, or dashboards. Subject: aviation audit readiness. Small detailed ivory passenger aircraft miniature behind a neatly organized stack of ivory inspection documents on a charcoal base, three gold verification tokens with simple embossed check marks aligned alongside the documents, a fine cyan line links the aircraft to completed checks. Convey orderly verified maintenance records and faster audit preparation.
+
+## Logistics
+
+Use case: stylized-concept. Premium editorial 3D artwork for an enterprise AI website success-story card, portrait 4:5 aspect ratio. Warm ivory white seamless background, matte ceramic ivory objects, charcoal graphite, brushed muted ochre gold #b8860b and fine cyan #0a8fbd accents. Elegant tactile architectural miniature, crisp soft studio lighting, refined physical materials. Entire top 48 percent empty white negative space for HTML headline overlay. Scene contained in bottom half with generous margins, readable at small size. No text, numbers, letters, logos, watermark, people, robots, or dashboards. Subject: logistics exception resolution. Three ivory miniature shipping containers along a cyan route on a small ivory platform, one container with a gold highlighted corner at a route junction, a charcoal scanning arch identifies it and the cyan route smoothly reconnects around a small obstruction. One elegant gold recovery-path segment. Clear sense of shipping flow restored, not a maze.
+
+## Insurance
+
+Use case: stylized-concept. Premium editorial 3D artwork for an enterprise AI website success-story card, portrait 4:5 aspect ratio. Warm ivory white seamless background, matte ceramic ivory objects, charcoal graphite, brushed muted ochre gold #b8860b and fine cyan #0a8fbd accents. Elegant tactile architectural miniature, crisp soft studio lighting, refined physical materials. Entire top 48 percent empty white negative space for HTML headline overlay. Scene contained in bottom half with generous margins, readable at small size. No text, numbers, letters, logos, watermark, people, robots, or dashboards. Subject: insurance submission intake. Three distinct neat ivory paper bundles with abstract embossed lines feed into a charcoal processing tray; on the other side a single organized gold-edged dossier stands upright, joined by three fine cyan channels. A small gold shield emblem without lettering beside the completed dossier. Convey many complex forms consolidated into one underwriting-ready submission.

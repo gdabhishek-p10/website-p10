@@ -1,124 +1,93 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useReveal } from '../hooks/useReveal';
-import { FlowDiagram, HubDiagram, QuadDiagram } from './PropDiagrams';
+import { useEffect, useRef } from 'react';
+import Reveal from './Reveal';
 import type { HomeData } from '@/lib/homepage';
 
-type Pillar = HomeData['pillars']['items'][number];
-
-const DIAGRAMS = {
-  modernize: FlowDiagram,
-  build: QuadDiagram,
-  ai: HubDiagram,
+const IMAGES = {
+  ai: {
+    src: '/ai-execution/ai-orchestration-v2.webp',
+    alt: 'Connected architectural walkways linking a contemporary atrium, representing coordinated AI execution',
+  },
+  build: {
+    src: '/ai-execution/product-build-v2.webp',
+    alt: 'Interlocking contemporary building volumes in stone, blue glass and gold, representing product creation',
+  },
+  modernize: {
+    src: '/ai-execution/modernization-v2.webp',
+    alt: 'Historic stone architecture joined to a modern glass extension, representing modernization without starting over',
+  },
 } as const;
-
-const ICON_PROPS = { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true } as const;
-const TAB_ICONS = {
-  ai: (
-    <svg {...ICON_PROPS}>
-      <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />
-      <path d="M19 16l.7 1.8L21.5 18.5l-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z" />
-    </svg>
-  ),
-  build: (
-    <svg {...ICON_PROPS}>
-      <path d="M12 3l8 4.5-8 4.5-8-4.5z" />
-      <path d="M4 12l8 4.5 8-4.5" />
-      <path d="M4 16.5L12 21l8-4.5" />
-    </svg>
-  ),
-  modernize: (
-    <svg {...ICON_PROPS}>
-      <path d="M20 11a8 8 0 0 0-14.3-4.6L4 8" />
-      <path d="M4 3.5V8h4.5" />
-      <path d="M4 13a8 8 0 0 0 14.3 4.6L20 16" />
-      <path d="M20 20.5V16h-4.5" />
-    </svg>
-  ),
-} as const;
-
-const DWELL_MS = 4500; // how long each tab stays up before the next one takes over
 
 export default function PropositionStack({ pillars }: { pillars: HomeData['pillars'] }) {
-  const headRef = useReveal<HTMLDivElement>();
-  const tabsRef = useReveal<HTMLDivElement>();
-  const [active, setActive] = useState(0);
-  const [onScreen, setOnScreen] = useState(false);
-  const items = pillars.items;
-  const [reduced, setReduced] = useState(false);
-  const auto = !reduced && items.length > 1;
+  const timelineRef = useRef<HTMLOListElement>(null);
 
   useEffect(() => {
-    setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  }, []);
-
-  // only run the timer while the tabs are on screen
-  useEffect(() => {
-    const el = tabsRef.current;
-    if (!el || !('IntersectionObserver' in window)) return;
-    const io = new IntersectionObserver(([e]) => setOnScreen(e.isIntersecting), { threshold: 0.35 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [tabsRef]);
-
-  const current = items[active] ?? items[0];
-  if (!current) return null;
-  const Diagram = DIAGRAMS[current.key];
+    const timeline = timelineRef.current;
+    if (!timeline) return;
+    const rows = Array.from(timeline.querySelectorAll<HTMLElement>('.execution-stage'));
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const midpoint = window.innerHeight * 0.5;
+      for (const row of rows) {
+        const rect = row.getBoundingClientRect();
+        const progress = preference.matches ? 1 : Math.max(0, Math.min(1, (midpoint - rect.top) / Math.max(1, rect.height)));
+        row.style.setProperty('--execution-progress', String(progress));
+        row.style.setProperty('--execution-marker', `${Math.min(progress, 0.92) * 100}%`);
+        row.classList.toggle('is-active', progress > 0.05);
+        if (preference.matches || rect.top < window.innerHeight - 80) row.classList.add('is-visible');
+      }
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    timeline.dataset.motion = 'ready';
+    update();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    preference.addEventListener('change', schedule);
+    const observer = new ResizeObserver(schedule);
+    observer.observe(timeline);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      preference.removeEventListener('change', schedule);
+      observer.disconnect();
+      delete timeline.dataset.motion;
+    };
+  }, [pillars.items]);
 
   return (
     <section className="proposition" id="capabilities">
       <div className="container">
-        <div ref={headRef} className="section-head reveal">
+        <Reveal className="section-head">
           <h2>{pillars.heading}</h2>
           {pillars.lede && <p className="lede">{pillars.lede}</p>}
-        </div>
-        <div ref={tabsRef} className="ptabs reveal" data-paused={auto && onScreen ? undefined : ''}>
-          <div className="ptabs-list" role="tablist" aria-orientation="vertical">
-            {items.map((p, i) => (
-              <button
-                key={p.key}
-                type="button"
-                role="tab"
-                id={`ptab-${p.key}`}
-                aria-selected={i === active}
-                aria-controls={`ppanel-${p.key}`}
-                className={`ptab${i === active ? ' is-active' : ''}`}
-                onClick={() => setActive(i)}
-              >
-                <span className="ptab-icon">{TAB_ICONS[p.key]}</span>
-                <span className="ptab-label">{p.title}</span>
-                {i === active && auto && (
-                  <span
-                    key={active}
-                    className="ptab-bar"
-                    style={{ animationDuration: `${DWELL_MS}ms` }}
-                    onAnimationEnd={() => setActive((a) => (a + 1) % items.length)}
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-          <div className="ppanel" role="tabpanel" id={`ppanel-${current.key}`} aria-labelledby={`ptab-${current.key}`}>
-            <div key={current.key} className="ppanel-body">
-              <div className="ppanel-text">
-                <h3>{current.title}</h3>
-                <p>{current.body}</p>
-                {current.chips.length > 0 && (
-                  <div className="chips">
-                    {current.chips.map((c) => (
-                      <span className="chip" key={c}>
-                        {c}
-                      </span>
-                    ))}
-                  </div>
+        </Reveal>
+        <ol className="execution-timeline" ref={timelineRef}>
+          {pillars.items.map((pillar, index) => (
+            <li key={pillar.key} className="execution-stage">
+              <div className="execution-copy">
+                <span className="execution-number">#{index + 1}</span>
+                <h3>{pillar.title}</h3>
+                <p>{pillar.body}</p>
+                {pillar.chips.length > 0 && (
+                  <ul className="execution-steps" aria-label="Capabilities">
+                    {pillar.chips.map((chip) => <li key={chip}>{chip}</li>)}
+                  </ul>
                 )}
               </div>
-              <div className="prop-visual-wrap">
-                <Diagram />
+              <span className="execution-node" aria-hidden="true" />
+              <div className="execution-image">
+                {/* Pre-optimized static artwork; image optimization is restricted to CMS media. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={IMAGES[pillar.key].src} alt={IMAGES[pillar.key].alt} width={1200} height={800} loading="lazy" />
               </div>
-            </div>
-          </div>
-        </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
