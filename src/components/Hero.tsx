@@ -85,7 +85,6 @@ export default function Hero({ hero, onAsk }: { hero: HomeData['hero']; onAsk: (
           </h1>
           <p className="lede">{hero.lede}</p>
           <div className="hero-ask">
-          <p className="hero-ask-label">Ask Pi</p>
           <form
             className={`hero-chat-launcher${multiline ? ' is-multiline' : ''}${focused ? ' is-focused' : ''}`}
             role="search"
