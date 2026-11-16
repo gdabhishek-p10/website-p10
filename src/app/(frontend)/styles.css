@@ -134,9 +134,7 @@ header.header-hidden{transform:translateY(-100%)}
 .reality-photo{padding-top:8px}
 .reality-photo img{aspect-ratio:16/10;object-position:center bottom}
 /* Product cutouts share the success-story pastel card treatment. */
-.reality-col.reality-light{position:relative;isolation:isolate;min-height:480px;aspect-ratio:auto;border:0;border-radius:var(--r-card);background:#cce4d8;box-shadow:0 6px 20px rgba(7,16,24,.06)}
-.reality-col.reality-light:nth-child(2){background:#c9e1ed}
-.reality-col.reality-light:nth-child(3){background:#e1d5ea}
+.reality-col.reality-light{position:relative;isolation:isolate;min-height:480px;aspect-ratio:auto;border:0;border-radius:var(--r-card);background:linear-gradient(155deg,#fdf7e6 0%,#f6e6b8 100%);box-shadow:0 6px 20px rgba(7,16,24,.06)}
 .reality-col.reality-light h3,.reality-col.reality-light p{position:relative;z-index:1}
 .reality-col.reality-light h3{font-size:var(--fs-h3);max-width:24ch}
 .reality-col.reality-light p{font-size:var(--fs-h5);line-height:1.45;max-width:36ch}
