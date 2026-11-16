@@ -113,7 +113,7 @@ export default function Platform({ icons, labels, notes, ariaLabels, appear, act
                 <text x={ix} y={iy + (showNotes ? 6 : 32)} textAnchor="middle" className="p3-label" fill={act[i] > 0.5 ? '#7a5200' : '#1b1b1b'}>{labels[i]}</text>
                 {showNotes && (
                   <text textAnchor="middle" className="p3-note" fill={act[i] > 0.5 ? '#7a5200' : '#4a4333'}>
-                    {wrap(notes[i]).map((ln, k) => <tspan key={k} x={ix} y={iy + 28 + k * 21}>{ln}</tspan>)}
+                    {wrap(notes[i]).map((ln, k) => <tspan key={k} x={ix} y={iy + 26 + k * 18}>{ln}</tspan>)}
                   </text>
                 )}
               </g>
