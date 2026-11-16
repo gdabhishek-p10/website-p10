@@ -30,12 +30,12 @@ const ICONS: Record<string, ReactNode> = {
   observe: (<><rect x="4" y="12" width="4" height="8" rx="1" /><rect x="10" y="4" width="4" height="16" rx="1" /><rect x="16" y="9" width="4" height="11" rx="1" /></>),
 };
 const STAGES = [
-  { key: 'intent', label: 'Intent', hint: 'You describe the feature', head: "Define the 'why'", body: 'Turn business goals into clear, actionable outcomes with AI' },
-  { key: 'spec', label: 'Specification', hint: 'AI drafts the spec', head: 'Turn intent into design', body: 'AI-assisted requirements, architecture and planning' },
-  { key: 'build', label: 'Build', hint: 'AI writes the code', head: 'Build faster', body: 'AI-native development, with intelligent copilots and reusable components' },
-  { key: 'qa', label: 'QA', hint: 'AI tests and fixes itself', head: 'Assure at speed', body: 'AI-powered testing, security and quality checks' },
-  { key: 'deploy', label: 'Deploy', hint: 'AI ships to production', head: 'Release with confidence', body: 'Automated deployments and AI-assisted change management' },
-  { key: 'observe', label: 'Observe', hint: 'AI watches and learns', head: 'Learn and improve', body: 'Real-time insights, anomaly detection and continuous optimisation' },
+  { key: 'intent', label: 'Intent', note: 'Define the goal', hint: 'You describe the feature', head: "Define the 'why'", body: 'Turn business goals into clear, actionable outcomes with AI' },
+  { key: 'spec', label: 'Specification', note: 'Requirements and design', hint: 'AI drafts the spec', head: 'Turn intent into design', body: 'AI-assisted requirements, architecture and planning' },
+  { key: 'build', label: 'Build', note: 'AI and engineers build', hint: 'AI writes the code', head: 'Build faster', body: 'AI-native development, with intelligent copilots and reusable components' },
+  { key: 'qa', label: 'QA', note: 'Tested early', hint: 'AI tests and fixes itself', head: 'Assure at speed', body: 'AI-powered testing, security and quality checks' },
+  { key: 'deploy', label: 'Deploy', note: 'Safe releases', hint: 'AI ships to production', head: 'Release with confidence', body: 'Automated deployments and AI-assisted change management' },
+  { key: 'observe', label: 'Observe', note: 'Track results', hint: 'AI watches and learns', head: 'Learn and improve', body: 'Real-time insights, anomaly detection and continuous optimisation' },
 ];
 const N = STAGES.length; // = SEGS
 const DUR = [11.0, 7.4, 7.4, 10.8, 8.0, 10.4]; // seconds per stage — QA runs longest (tests, the AI self-fix, then review)
@@ -160,7 +160,7 @@ export default function EngineeringRing() {
         onClick={() => { if (eng.current.mode === 'auto') go('paused'); }}>
         <div className="er-layer" style={{ opacity: platOp, pointerEvents: platLive ? 'auto' : 'none' }}>
           <Platform
-            icons={STAGES.map((st) => ICONS[st.key])} labels={STAGES.map((st) => st.label.toUpperCase())}
+            icons={STAGES.map((st) => ICONS[st.key])} labels={STAGES.map((st) => st.label.toUpperCase())} notes={STAGES.map((st) => st.note)} showNotes={scale >= 0.62}
             ariaLabels={STAGES.map((st) => `${st.label}: ${st.hint}`)}
             appear={appear} act={act} tint={tint}
             cubeAppear={ease(prog(intro, 0, 0.7))} pulse={finale ? 0.5 + 0.5 * Math.sin(t * 3) : 0.35 + 0.25 * Math.sin(t * 2.2)}

@@ -32,16 +32,24 @@ export function calloutGeom(i: number) {
 // Paint order, back to front.
 const ORDER = [0, 1, 5, 2, 4, 3];
 
+// Split a short description into two balanced lines.
+const wrap = (t: string) => {
+  if (t.length <= 16) return [t];
+  const w = t.split(' '); let best = 1, diff = 1e9;
+  for (let k = 1; k < w.length; k++) { const d = Math.abs(w.slice(0, k).join(' ').length - w.slice(k).join(' ').length); if (d < diff) { diff = d; best = k; } }
+  return [w.slice(0, best).join(' '), w.slice(best).join(' ')];
+};
+
 type Props = {
-  icons: ReactNode[]; labels: string[]; ariaLabels: string[];
+  icons: ReactNode[]; labels: string[]; notes: string[]; ariaLabels: string[];
   appear: number[]; act: number[]; tint: number[];
   cubeAppear: number; pulse: number;
   signal: { p: number; i: number; op: number } | null;
   leader: { i: number; op: number } | null;
-  live: boolean; onOpen: (i: number) => void;
+  live: boolean; showNotes: boolean; onOpen: (i: number) => void;
 };
 
-export default function Platform({ icons, labels, ariaLabels, appear, act, tint, cubeAppear, pulse, signal, leader, live, onOpen }: Props) {
+export default function Platform({ icons, labels, notes, ariaLabels, appear, act, tint, cubeAppear, pulse, signal, leader, live, showNotes, onOpen }: Props) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
 
   // signal path from the cube to the active segment
@@ -101,8 +109,13 @@ export default function Platform({ icons, labels, ariaLabels, appear, act, tint,
                 <path className="p3-top" d={top} fill={`url(#${uid}top)`} stroke="#ece2cc" strokeWidth="1" strokeLinejoin="round" />
                 <path d={top} fill={`url(#${uid}gold)`} opacity={Math.min(1, tint[i] * 0.22 + act[i] * 0.6)} strokeLinejoin="round" />
                 <path d={top} fill="none" stroke="#e5ab3a" strokeWidth="2" opacity={act[i]} strokeLinejoin="round" />
-                <svg x={ix - 29} y={iy - 47} width="58" height="58" viewBox="0 0 24 24" fill="none" stroke={act[i] > 0.5 ? '#9a6a00' : '#111'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{icons[i]}</svg>
-                <text x={ix} y={iy + 32} textAnchor="middle" className="p3-label" fill={act[i] > 0.5 ? '#7a5200' : '#1b1b1b'}>{labels[i]}</text>
+                <svg x={ix - (showNotes ? 20 : 29)} y={iy - (showNotes ? 56 : 47)} width={showNotes ? 40 : 58} height={showNotes ? 40 : 58} viewBox="0 0 24 24" fill="none" stroke={act[i] > 0.5 ? '#9a6a00' : '#111'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{icons[i]}</svg>
+                <text x={ix} y={iy + (showNotes ? 6 : 32)} textAnchor="middle" className="p3-label" fill={act[i] > 0.5 ? '#7a5200' : '#1b1b1b'}>{labels[i]}</text>
+                {showNotes && (
+                  <text textAnchor="middle" className="p3-note" fill={act[i] > 0.5 ? '#7a5200' : '#4a4333'}>
+                    {wrap(notes[i]).map((ln, k) => <tspan key={k} x={ix} y={iy + 28 + k * 21}>{ln}</tspan>)}
+                  </text>
+                )}
               </g>
             </g>
           </g>
