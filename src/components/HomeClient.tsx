@@ -41,7 +41,7 @@ export default function HomeClient({ data }: { data: HomeData }) {
   return (
     <>
       <Header header={data.header} />
-      <main>
+      <main id="main">
         <Hero hero={data.hero} onAsk={(q) => setChat((c) => ({ open: true, seed: q, nonce: c.nonce + 1 }))} />
         <CredLogos logos={data.logos} />
         <Reality problem={data.problem} />

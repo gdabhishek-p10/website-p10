@@ -16,7 +16,7 @@ export default async function ServicesPage() {
   return (
     <>
       <Header header={chrome.header} homeHref="/" />
-      <main>
+      <main id="main">
         <ServicesView data={data} ctaLabel={chrome.header.ctaLabel} ctaHref={chrome.header.ctaHref} />
       </main>
       <Footer footer={chrome.footer} />

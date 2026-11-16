@@ -1,50 +1,34 @@
 # Homepage Typography
 
 ## Font family
+- **Primary:** Inter, self-hosted through `next/font/google` as a variable font (`layout.tsx`, `--font-inter`), with a system sans fallback. Weights 600, 650, 700, 750 and 800 are used.
+- **Monospace** (code mockups): `ui-monospace, SFMono-Regular, Menlo, monospace`
 
-- **Primary:** `Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif` (`styles.css:11`)
-- **Monospace** (code / terminal mockups): `ui-monospace, SFMono-Regular, Menlo, monospace`
-- **Note:** Inter is not actually loaded. `layout.tsx` has no `next/font` import, `@font-face` or Google Fonts link, so visitors only see Inter if it is installed locally; otherwise the system sans fallback is used. Consider loading it via `next/font/google` (use the variable version, since weights 650/750/800 are used). Check `node_modules/next/dist/docs/` first, as this Next.js version has breaking changes.
+## Type scale (`styles.css` `:root`)
+| Token | Size | Used for |
+|---|---|---|
+| `--fs-h1` | `clamp(36px, 5.6vw, 64px)` | `h1` (line-height 1.08, tracking -0.065em, 700) |
+| `--fs-h2` | `clamp(30px, 4vw, 50px)` | `h2` (1.08, -0.045em, 700) |
+| `--fs-h3` | `clamp(22px, 2.2vw, 28px)` | `h3`, card and pillar titles (1.18, -0.03em, 700) |
+| `--fs-h4` | `clamp(18px, 1.8vw, 22px)` | `h4`, `.lede` (1.2 / 1.45) |
+| `--fs-h5` | `clamp(16px, 1.25vw, 18px)` | body text, `p`, nav links (1.5) |
+| `--fs-h6` | 14px | buttons, labels, eyebrows, footer small print |
 
-## Base
+`--ts` is `1`; mockup sizes are written as `calc(Npx * var(--ts))`. No text is below 11px.
 
-| Property | Value |
-|---|---|
-| Body size | 17px |
-| Smoothing | `-webkit-font-smoothing: antialiased` |
-| Text color | `#20282d` (`--text`) |
-| Heading color | `#071018` (`--ink`) |
-| Muted color | `#000000` (`--muted`) |
-| Accent (ochre) | `#b8860b` |
+## Colour
+| Token | Value | Use |
+|---|---|---|
+| `--ink` | `#071018` | headings (`h1`-`h4`) |
+| `--text` | `#20282d` | body text |
+| `--muted` | `#52656f` | secondary text (6.1:1 on white) |
+| `--ochre` | `#b8860b` | accent. Gradient text runs `#a87806` to `#b8860b` (min 3.25:1, large text only). White text on gold uses `#8a5c00`. |
 
-## Headings
+## Shape
+`--r-card` 12px (cards, panels, bubbles), `--r-md` 8px (inner tiles, inputs), `--r-sm` 4px (small bars, badges, icon tiles). Pills stay `999px`, circles `50%`, 2px for hairline bars.
 
-| Element | Size | Line-height | Letter-spacing | Weight |
-|---|---|---|---|---|
-| `h1` | `clamp(51px, 8.2vw, 84px)` (mobile: `clamp(32px, 10vw, 51px)`) | 1.08 | -0.065em | 700 |
-| `h2` | `clamp(37px, 4.2vw, 56px)` (mobile: `clamp(26px, 7vw, 37px)`) | 1.08 | -0.045em | 700 |
-| `h3` | `clamp(28px, 6vw, 40px)` | 1.18 | -0.03em | 700 |
-| `h4` | `clamp(24px, 5vw, 32px)` | 1.2 | -0.02em | 700 |
+## Accessibility baseline
+Skip link to `#main`, global `:focus-visible` ring (3px ochre), `:active` pressed state on buttons and links, 48px hit areas on the menu button, nav dropdown toggles and carousel arrows.
 
-## Other recurring styles
-
-| Selector | Size | Weight | Notes |
-|---|---|---|---|
-| `.lede` | 22px | – | line-height 1.45 |
-| `.btn` | 16px | 750 | nav button: 14px / 600 |
-| `.navlinks` | 15px | 500 | |
-| `.eyebrow` | 12px | 800 | uppercase, letter-spacing 0.13em, ochre |
-| `.case-tag` | 12px | 800 | uppercase, letter-spacing 0.13em, ochre |
-| `.case h3` | 24px | 700 | line-height 1.25 |
-| `.case-desc` | 14.5px | – | line-height 1.5 |
-| `.lab-info h3` | 22px | 700 | line-height 1.25 |
-| `.lab-info p` | 15.5px | – | line-height 1.55 |
-| `.chip` | 14px | 700 | |
-| `.industry-name` | 16.5px | 650 | letter-spacing -0.01em |
-| `.footer-col strong` | 12px | 800 | uppercase, letter-spacing 0.1em |
-| `.footer-col a` | 13px | – | color `#3d474d` |
-| `.footer-bottom` | 13px | – | |
-
-## Animated mockups
-
-Classes `.et-*`, `.sd-*`, `.er-*`, `.ew-*`, `.ecyc-*` use sizes from 8px up to 76px (`.er-hub-name`). Weights are mostly 650–800, with tight negative letter-spacing on large text and wide positive spacing (0.09–0.14em) on uppercase micro-labels.
+## Still to do (4.2, full Material 3 migration)
+Colour roles, 15-role type scale, three weights, shape/elevation/motion tokens, state layers, 600/840/1200px breakpoints.
