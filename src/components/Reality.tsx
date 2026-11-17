@@ -192,14 +192,13 @@ const ARTWORK = {
 
 // true: coordinated ivory, charcoal and gold editorial artwork in the cards.
 // false: the drawn illustrations instead.
-const USE_PHOTOS = true;
-
 // Column copy, left to right (follows the approved design reference).
 const COLUMNS = [
   {
     art: ARTWORK.legacy,
-    tag: 'Legacy',
-    icon: 'layers',
+    tag: 'Cost',
+    role: 'CFO',
+    icon: 'cost',
     href: '#pillar-modernize',
     photo: { src: '/ai-gap/legacy-cutout-v7.webp', theme: 'light', alt: 'Legacy application layers with a disconnected integration, maintenance costs and a warning' },
     title: 'Aging systems increase costs and slow business change',
@@ -208,7 +207,8 @@ const COLUMNS = [
   {
     art: ARTWORK.risks,
     tag: 'Risk',
-    icon: 'alert',
+    role: 'CEO',
+    icon: 'risk',
     href: '#pillar-ai',
     photo: { src: '/ai-gap/risk-cutout-v7.webp', theme: 'light', alt: 'A declining analytics application with late alerts obscuring the forecast' },
     title: 'Your business is reacting, not predicting',
@@ -216,8 +216,9 @@ const COLUMNS = [
   },
   {
     art: ARTWORK.delay,
-    tag: 'Delivery',
-    icon: 'clock',
+    tag: 'Speed',
+    role: 'COO',
+    icon: 'speed',
     href: '#pillar-build',
     photo: { src: '/ai-gap/delivery-cutout-v7.webp', theme: 'light', alt: 'A paused software release beside a stopwatch and waiting release schedules' },
     title: 'Product releases take too long to deliver value',
@@ -226,9 +227,9 @@ const COLUMNS = [
 ] as const;
 
 const TAG_ICONS = {
-  layers: <path d="M12 3 3 8l9 5 9-5-9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" />,
-  alert: <path d="M12 4 2.5 20h19L12 4Zm0 6v5m0 3v.01" />,
-  clock: <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-14v5l3 2" />,
+  cost: <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />,
+  risk: <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Zm-3.5 9 2.5 2.5 4.5-5" />,
+  speed: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />,
 } as const;
 
 export default function Reality({ problem }: { problem: HomeData['problem'] }) {
@@ -244,29 +245,30 @@ export default function Reality({ problem }: { problem: HomeData['problem'] }) {
           </h2>
           {problem.lede && <p className="lede">{problem.lede}</p>}
         </Reveal>
-        <Reveal className="reality-cols" stagger>
+        <Reveal className="score-list" stagger>
           {COLUMNS.map((c) => (
-            <article key={c.title} className={`reality-col${USE_PHOTOS ? ` reality-${c.photo.theme}` : ''}`}>
-              <span className="reality-tag">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  {TAG_ICONS[c.icon]}
-                </svg>
-                {c.tag}
-              </span>
-              <h3>{c.title}</h3>
-              <p>{c.text}</p>
-              <a className="link reality-help" href={c.href}>
-                How we help <span aria-hidden="true">→</span>
-              </a>
-              {USE_PHOTOS ? (
-                <div className="reality-photo">
-                  {/* static files from /public; next/image is limited to the media paths in next.config */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={c.photo.src} alt={c.photo.alt} width={1200} height={800} loading="lazy" />
-                </div>
-              ) : (
-                <div className="reality-fig">{c.art}</div>
-              )}
+            <article key={c.title} className="score-row">
+              <div className="score-tag">
+                <span className="reality-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    {TAG_ICONS[c.icon]}
+                  </svg>
+                  {c.tag}
+                </span>
+                <span className="score-role">{c.role}</span>
+              </div>
+              <div className="score-copy">
+                <h3>{c.title}</h3>
+                <p>{c.text}</p>
+                <a className="link reality-help" href={c.href}>
+                  How we help <span aria-hidden="true">→</span>
+                </a>
+              </div>
+              <div className="score-art">
+                {/* static files from /public; next/image is limited to the media paths in next.config */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.photo.src} alt={c.photo.alt} width={1200} height={800} loading="lazy" />
+              </div>
             </article>
           ))}
         </Reveal>

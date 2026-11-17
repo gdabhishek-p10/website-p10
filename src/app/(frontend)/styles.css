@@ -1223,24 +1223,26 @@ footer{background:var(--md-sys-color-surface);padding:55px 0 25px;border-top:1px
 .footer-col a{margin:0;padding:14px 0}
 @media(min-width:600px) and (max-width:1199px){.industry-grid{grid-template-columns:repeat(2,1fr)}}
 
-/* Problem cards (4.3): tags with icons, "How we help" links, aligned rows, larger art, hover */
-.reality-tag{display:inline-flex;align-items:center;gap:8px;position:relative;z-index:1;margin-bottom:14px}
+/* Executive scorecard (4.3): one row per concern - tag, headline + copy + link, illustration */
+.score-list{display:grid;gap:14px;margin-top:clamp(24px,2.6vw,40px)}
+.score-row{display:grid;grid-template-columns:170px minmax(0,1fr) minmax(200px,300px);gap:clamp(20px,3vw,40px);align-items:center;padding:clamp(18px,2vw,26px) clamp(20px,2.6vw,36px);background:linear-gradient(155deg,var(--md-sys-color-surface-container-low) 0%,var(--md-sys-color-surface-container) 100%);border:1px solid var(--md-sys-color-outline-variant);border-radius:var(--md-sys-shape-corner-medium);transition:box-shadow var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard),border-color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard)}
+.score-row:hover{box-shadow:var(--md-sys-elevation-3);border-color:var(--md-sys-color-primary)}
+.score-tag{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.reality-tag{display:inline-flex;align-items:center;gap:8px;margin:0}
 .reality-tag svg{width:20px;height:20px;flex:none}
-.reality-col.reality-light p{margin-bottom:18px}
-.reality-help{position:relative;z-index:1;justify-self:start;align-self:start;width:fit-content;color:var(--md-sys-color-on-surface);margin-bottom:6px}
+.score-role{font-size:var(--fs-h6);color:var(--md-sys-color-on-surface-variant);padding-left:28px}
+.score-copy h3{margin:0 0 10px;font-size:var(--fs-h3);line-height:1.22;letter-spacing:-.02em;max-width:26ch;text-wrap:balance}
+.score-copy p{margin:0 0 14px;max-width:52ch;font-size:var(--fs-h5);line-height:1.55;color:var(--md-sys-color-on-surface-variant);text-wrap:pretty}
+.reality-help{width:fit-content;color:var(--md-sys-color-on-surface)}
 .reality-help:hover{color:var(--md-sys-color-primary)}
-.reality-col.reality-light{transition:box-shadow var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard)}
-.reality-col.reality-light:hover{box-shadow:var(--md-sys-elevation-3)}
-.reality-light .reality-photo{padding:12px 0 0;margin:auto calc(var(--pad)*-1) 0}
-.reality-light .reality-photo img{height:300px;transform:rotate(-2deg) translateY(10px);transition:transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard)}
-.reality-col.reality-light:nth-child(2) .reality-photo img{transform:rotate(2deg) translateY(10px)}
-.reality-col.reality-light:hover .reality-photo img{transform:rotate(-2deg) translateY(4px) scale(1.03)}
-.reality-col.reality-light:nth-child(2):hover .reality-photo img{transform:rotate(2deg) translateY(4px) scale(1.03)}
-@media(min-width:840px){
- .reality-cols{row-gap:0}
- /* rows line up across the three cards: tag, title, text, link, art */
- .reality-col.reality-light{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0;align-content:start}
- .reality-col.reality-light h3{align-self:start}
- .reality-col.reality-light .reality-photo{align-self:end}
+.score-art{display:flex;justify-content:center}
+.score-art img{display:block;width:100%;max-width:300px;height:auto;aspect-ratio:3/2;object-fit:contain;transition:transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard)}
+.score-row:hover .score-art img{transform:scale(1.04)}
+@media(max-width:839px){
+ .score-row{grid-template-columns:1fr;gap:14px;padding:20px}
+ .score-tag{flex-direction:row;align-items:center;gap:10px}
+ .score-role{padding-left:0}
+ .score-art{justify-content:flex-start}
+ .score-art img{max-width:260px}
 }
-@media(prefers-reduced-motion:reduce){.reality-light .reality-photo img,.reality-col.reality-light{transition:none}.reality-col.reality-light:hover .reality-photo img{transform:rotate(-2deg) translateY(10px)}.reality-col.reality-light:nth-child(2):hover .reality-photo img{transform:rotate(2deg) translateY(10px)}}
+@media(prefers-reduced-motion:reduce){.score-row,.score-art img{transition:none}.score-row:hover .score-art img{transform:none}}
