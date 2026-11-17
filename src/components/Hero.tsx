@@ -59,7 +59,7 @@ export default function Hero({ hero, onAsk }: { hero: HomeData['hero']; onAsk: (
     if (!input) return;
     const resize = () => {
       input.style.height = '28px';
-      const height = Math.min(input.scrollHeight, window.innerWidth < 560 ? 84 : 56);
+      const height = Math.min(input.scrollHeight, window.innerWidth < 600 ? 84 : 56);
       input.style.height = `${Math.max(28, height)}px`;
       setMultiline(height > 35);
     };

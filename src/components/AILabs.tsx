@@ -45,7 +45,7 @@ export default function AILabs({
                     src={d.poster}
                     alt={`${d.name} preview`}
                     fill
-                    sizes="(max-width: 900px) 80vw, 40vw"
+                    sizes="(max-width: 839px) 80vw, 40vw"
                   />
                   <button className="play-btn" aria-label={`Play video: ${d.name}`} onClick={() => onPlay(d.video, d.poster)}>
                     <span className="play-icon" />

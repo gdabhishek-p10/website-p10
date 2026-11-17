@@ -76,7 +76,7 @@ export default function CaseStudies({
                     alt={artwork?.alt ?? c.image.alt}
                     unoptimized={Boolean(artwork)}
                     fill
-                    sizes="(max-width: 900px) 85vw, 45vw"
+                    sizes="(max-width: 839px) 85vw, 45vw"
                   />
                   {c.video && (
                     <button
