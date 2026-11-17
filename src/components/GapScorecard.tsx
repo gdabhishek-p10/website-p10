@@ -1,10 +1,37 @@
 import Reveal from './Reveal';
 
-// Trial layout from the design reference. The copy is written here for now; move it into the CMS if this layout is adopted.
+// Trial layout. The copy is written here for now; move it into the CMS if this layout is adopted.
 const ROWS = [
-  { n: '01', tag: 'Cost', title: 'Legacy complexity', text: 'Aging systems increase costs and slow business change.', icon: 'cost' },
-  { n: '02', tag: 'Risk', title: 'Reactive decisions', text: 'Your business is reacting, not predicting.', icon: 'risk' },
-  { n: '03', tag: 'Speed', title: 'Delayed innovation', text: 'Product releases take too long to deliver value.', icon: 'speed' },
+  {
+    n: '01',
+    tag: 'Cost',
+    title: 'Legacy complexity',
+    text: 'Aging systems increase costs and slow business change.',
+    effect: 'Higher costs.',
+    icon: 'cost',
+    art: '/ai-gap/legacy-cutout-v7.webp',
+    alt: 'Legacy application layers with a disconnected integration, maintenance costs and a warning',
+  },
+  {
+    n: '02',
+    tag: 'Risk',
+    title: 'Reactive decisions',
+    text: 'Your business is reacting, not predicting.',
+    effect: 'Slower decisions.',
+    icon: 'risk',
+    art: '/ai-gap/risk-cutout-v7.webp',
+    alt: 'A declining analytics application with late alerts obscuring the forecast',
+  },
+  {
+    n: '03',
+    tag: 'Speed',
+    title: 'Delayed innovation',
+    text: 'Product releases take too long to deliver value.',
+    effect: 'Lost opportunities.',
+    icon: 'speed',
+    art: '/ai-gap/delivery-cutout-v7.webp',
+    alt: 'A paused software release beside a stopwatch and waiting release schedules',
+  },
 ] as const;
 
 const ICONS = {
@@ -33,27 +60,33 @@ export default function GapScorecard() {
             Waiting on AI means carrying higher operating costs while revenue drifts to businesses that serve customers faster.
           </p>
         </Reveal>
-        <Reveal className="gap-wrap" stagger>
-          <ol className="gap-list">
-            {ROWS.map((r) => (
-              <li key={r.n} className="gap-row">
+        <Reveal className="gap-grid" stagger>
+          {ROWS.map((r) => (
+            <article key={r.n} className="gap-card">
+              <div className="gap-top">
+                <span className="reality-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    {ICONS[r.icon]}
+                  </svg>
+                  {r.tag}
+                </span>
                 <span className="gap-n" aria-hidden="true">{r.n}</span>
-                <div className="gap-copy">
-                  <h3>
-                    {r.tag.toUpperCase()} — {r.title}
-                  </h3>
-                  <p>{r.text}</p>
-                </div>
-                <svg className="gap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  {ICONS[r.icon]}
-                </svg>
-              </li>
-            ))}
-          </ol>
-          <div className="gap-banner">
-            <span>The cost of standing still</span>
-            <p>Higher costs. Slower decisions. Lost opportunities.</p>
-          </div>
+              </div>
+              <div className="gap-art">
+                {/* static files from /public; next/image is limited to the media paths in next.config */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={r.art} alt={r.alt} width={1200} height={800} loading="lazy" />
+              </div>
+              <h3>{r.title}</h3>
+              <p>{r.text}</p>
+            </article>
+          ))}
+          <p className="gap-eyebrow">The cost of standing still</p>
+          {ROWS.map((r) => (
+            <p key={r.effect} className="gap-effect">
+              {r.effect}
+            </p>
+          ))}
         </Reveal>
       </div>
     </section>
