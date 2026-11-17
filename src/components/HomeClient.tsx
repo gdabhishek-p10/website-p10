@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Header from './Header';
 import Hero from './Hero';
 import CredLogos from './CredLogos';
-import Reality from './Reality';
+import GapScorecard from './GapScorecard';
 import PropositionStack from './PropositionStack';
 import EngineeringAI from './EngineeringAI';
 import CaseStudies from './CaseStudies';
@@ -44,7 +44,7 @@ export default function HomeClient({ data }: { data: HomeData }) {
       <main id="main">
         <Hero hero={data.hero} onAsk={(q) => setChat((c) => ({ open: true, seed: q, nonce: c.nonce + 1 }))} />
         <CredLogos logos={data.logos} />
-        <Reality problem={data.problem} />
+        <GapScorecard />
         <PropositionStack pillars={data.pillars} />
         <CaseStudies caseStudies={data.caseStudies} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
         <EngineeringAI engineering={data.engineering} />
