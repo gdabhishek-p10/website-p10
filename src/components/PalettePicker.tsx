@@ -37,6 +37,10 @@ function applyColors(preset: ColorPreset) {
   root.setProperty('--text', preset.text);
   root.setProperty('--muted', preset.muted);
   root.setProperty('--paper', preset.paper);
+  // the site accent, tints and the main button follow the chosen colour
+  root.setProperty('--ochre', preset.blue);
+  root.setProperty('--cta', preset.cta ?? `color-mix(in srgb, ${preset.blue} 60%, #000)`);
+  root.setProperty('--cta-hover', preset.ctaHover ?? `color-mix(in srgb, ${preset.blue} 48%, #000)`);
 }
 
 export default function PalettePicker({
