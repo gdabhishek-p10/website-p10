@@ -54,7 +54,7 @@ small,label{font-size:var(--fs-h6)}
 .link{font-size:var(--fs-h6);font-weight:700;display:inline-flex;gap:8px;align-items:center}.link:hover{color:var(--md-sys-color-primary)}
 
 /* Header */
-header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid transparent;transition:transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard),border-color var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard)}
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid transparent;transition:transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard),border-color var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard)}
 header.header-hidden{transform:translateY(-100%)}
 header.scrolled{border-bottom-color:rgba(0,0,0,.1)}
 .nav{height:56px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:28px;background:none;border:0;border-radius:0;padding:0;box-shadow:none;transition:var(--md-sys-motion-duration-short4)}
@@ -1090,7 +1090,7 @@ footer{background:var(--md-sys-color-surface);padding:55px 0 25px;border-top:1px
 .svc-hero h1{margin:0 auto 16px;max-width:15em;font-size:var(--fs-h1);line-height:1.06;letter-spacing:-.045em;text-wrap:balance}
 .svc-accent{background:linear-gradient(90deg,var(--ochre-dark),var(--md-sys-color-primary));-webkit-background-clip:text;background-clip:text;color:transparent}
 .svc-hero .lede,.svc-head .lede{max-width:46em;margin:0 auto;text-wrap:balance}
-.svc-switch{position:sticky;top:0;z-index:40;margin-top:30px;padding:10px 0;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--md-sys-color-outline-variant);transition:top var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard)}
+.svc-switch{position:sticky;top:0;z-index:40;margin-top:30px;padding:10px 0;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--md-sys-color-outline-variant);transition:top var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard)}
 .svc-switch.is-low{top:57px}
 .svc-pills{display:flex;justify-content:center;gap:10px;overflow-x:auto;scrollbar-width:none;padding:0 var(--gutter)}
 .svc-pills::-webkit-scrollbar{display:none}
