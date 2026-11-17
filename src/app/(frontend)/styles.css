@@ -1201,3 +1201,22 @@ footer{background:var(--md-sys-color-surface);padding:55px 0 25px;border-top:1px
 .industry{--ind-a:var(--md-sys-color-surface-container);--ind-b:var(--md-sys-color-surface-container-high);border:0;background:linear-gradient(155deg,var(--ind-a) 0%,var(--ind-b) 100%);box-shadow:var(--md-sys-elevation-1)}
 .industry:hover{box-shadow:0 14px 30px -14px rgba(7,16,24,.4);border:0}
 @media(min-width:901px){.industry:nth-child(1) .industry-art,.industry:nth-child(6) .industry-art,.industry:nth-child(7) .industry-art,.industry:nth-child(8) .industry-art{height:112%;right:2%}}
+
+/* Material 3 interaction states and touch targets (4.2) */
+:root{--md-state-hover:8%;--md-state-focus:10%;--md-state-pressed:10%}
+/* state layers: a translucent overlay in the control's content colour, no movement */
+.btn,.hero-launcher-send:not(:disabled){--md-layer:#fff}
+.svc-pill:not(.is-active),.work-arrow{--md-layer:var(--md-sys-color-on-surface)}
+.svc-pill.is-active{--md-layer:var(--md-sys-color-on-primary-container)}
+.btn:hover,.hero-launcher-send:hover:not(:disabled),.svc-pill:hover,.work-arrow:hover{background-image:linear-gradient(color-mix(in srgb,var(--md-layer) var(--md-state-hover),transparent) 0 0)}
+.btn:focus-visible,.hero-launcher-send:focus-visible,.svc-pill:focus-visible,.work-arrow:focus-visible{background-image:linear-gradient(color-mix(in srgb,var(--md-layer) var(--md-state-focus),transparent) 0 0)}
+.btn:active,.hero-launcher-send:active:not(:disabled),.svc-pill:active,.work-arrow:active{background-image:linear-gradient(color-mix(in srgb,var(--md-layer) var(--md-state-pressed),transparent) 0 0);transform:none;opacity:1}
+.btn:hover{background-color:var(--md-sys-color-tertiary);border-color:var(--md-sys-color-tertiary);transform:none}
+.work-arrow:hover{transform:translateY(-50%)}.work-arrow:active{transform:translateY(-50%)}
+.hero-launcher-send:hover:not(:disabled){background-color:var(--md-sys-color-tertiary)}
+.benefit-link:hover{color:var(--md-sys-color-primary)}
+/* 48px hit areas around small controls, without changing how they look */
+.link,.case-link,.lab-link,.benefit-link,.svc-pill,.nav .btn{position:relative}
+.link:after,.case-link:after,.lab-link:after,.benefit-link:after,.svc-pill:after,.nav .btn:after{content:"";position:absolute;inset:-12px -8px}
+.link:after,.case-link:after,.lab-link:after{inset:-16px -8px}.svc-pill:after{inset:-7px 0}.nav .btn:after{inset:-6px 0}
+.footer-col a{margin:0;padding:14px 0}
