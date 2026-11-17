@@ -1222,3 +1222,25 @@ footer{background:var(--md-sys-color-surface);padding:55px 0 25px;border-top:1px
 .link:after,.case-link:after,.lab-link:after{inset:-16px -8px}.svc-pill:after{inset:-7px 0}.nav .btn:after{inset:-6px 0}
 .footer-col a{margin:0;padding:14px 0}
 @media(min-width:600px) and (max-width:1199px){.industry-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* Problem cards (4.3): tags with icons, "How we help" links, aligned rows, larger art, hover */
+.reality-tag{display:inline-flex;align-items:center;gap:8px;position:relative;z-index:1;margin-bottom:14px}
+.reality-tag svg{width:20px;height:20px;flex:none}
+.reality-col.reality-light p{margin-bottom:18px}
+.reality-help{position:relative;z-index:1;justify-self:start;align-self:start;width:fit-content;color:var(--md-sys-color-on-surface);margin-bottom:6px}
+.reality-help:hover{color:var(--md-sys-color-primary)}
+.reality-col.reality-light{transition:box-shadow var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard)}
+.reality-col.reality-light:hover{box-shadow:var(--md-sys-elevation-3)}
+.reality-light .reality-photo{padding:12px 0 0;margin:auto calc(var(--pad)*-1) 0}
+.reality-light .reality-photo img{height:300px;transform:rotate(-2deg) translateY(10px);transition:transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard)}
+.reality-col.reality-light:nth-child(2) .reality-photo img{transform:rotate(2deg) translateY(10px)}
+.reality-col.reality-light:hover .reality-photo img{transform:rotate(-2deg) translateY(4px) scale(1.03)}
+.reality-col.reality-light:nth-child(2):hover .reality-photo img{transform:rotate(2deg) translateY(4px) scale(1.03)}
+@media(min-width:840px){
+ .reality-cols{row-gap:0}
+ /* rows line up across the three cards: tag, title, text, link, art */
+ .reality-col.reality-light{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0;align-content:start}
+ .reality-col.reality-light h3{align-self:start}
+ .reality-col.reality-light .reality-photo{align-self:end}
+}
+@media(prefers-reduced-motion:reduce){.reality-light .reality-photo img,.reality-col.reality-light{transition:none}.reality-col.reality-light:hover .reality-photo img{transform:rotate(-2deg) translateY(10px)}.reality-col.reality-light:nth-child(2):hover .reality-photo img{transform:rotate(2deg) translateY(10px)}}

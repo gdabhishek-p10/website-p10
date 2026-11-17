@@ -199,6 +199,8 @@ const COLUMNS = [
   {
     art: ARTWORK.legacy,
     tag: 'Legacy',
+    icon: 'layers',
+    href: '#pillar-modernize',
     photo: { src: '/ai-gap/legacy-cutout-v7.webp', theme: 'light', alt: 'Legacy application layers with a disconnected integration, maintenance costs and a warning' },
     title: 'Aging systems increase costs and slow business change',
     text: 'Maintaining outdated systems drains budgets and delays the changes needed to stay competitive.',
@@ -206,6 +208,8 @@ const COLUMNS = [
   {
     art: ARTWORK.risks,
     tag: 'Risk',
+    icon: 'alert',
+    href: '#pillar-ai',
     photo: { src: '/ai-gap/risk-cutout-v7.webp', theme: 'light', alt: 'A declining analytics application with late alerts obscuring the forecast' },
     title: 'Your business is reacting, not predicting',
     text: 'Emerging risks and customer needs go unnoticed until costs rise and opportunities pass.',
@@ -213,11 +217,19 @@ const COLUMNS = [
   {
     art: ARTWORK.delay,
     tag: 'Delivery',
+    icon: 'clock',
+    href: '#pillar-build',
     photo: { src: '/ai-gap/delivery-cutout-v7.webp', theme: 'light', alt: 'A paused software release beside a stopwatch and waiting release schedules' },
     title: 'Product releases take too long to deliver value',
     text: 'Slow delivery postpones revenue and keeps customers waiting while competitors move ahead.',
   },
 ] as const;
+
+const TAG_ICONS = {
+  layers: <path d="M12 3 3 8l9 5 9-5-9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" />,
+  alert: <path d="M12 4 2.5 20h19L12 4Zm0 6v5m0 3v.01" />,
+  clock: <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-14v5l3 2" />,
+} as const;
 
 export default function Reality({ problem }: { problem: HomeData['problem'] }) {
   const words = problem.heading.trim().split(' ');
@@ -235,8 +247,17 @@ export default function Reality({ problem }: { problem: HomeData['problem'] }) {
         <Reveal className="reality-cols" stagger>
           {COLUMNS.map((c) => (
             <article key={c.title} className={`reality-col${USE_PHOTOS ? ` reality-${c.photo.theme}` : ''}`}>
+              <span className="reality-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  {TAG_ICONS[c.icon]}
+                </svg>
+                {c.tag}
+              </span>
               <h3>{c.title}</h3>
               <p>{c.text}</p>
+              <a className="link reality-help" href={c.href}>
+                How we help <span aria-hidden="true">→</span>
+              </a>
               {USE_PHOTOS ? (
                 <div className="reality-photo">
                   {/* static files from /public; next/image is limited to the media paths in next.config */}

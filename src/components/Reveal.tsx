@@ -7,16 +7,18 @@ export default function Reveal({
   className = '',
   children,
   stagger = false,
+  id,
 }: {
   as?: ElementType;
   className?: string;
   children: ReactNode;
   stagger?: boolean;
+  id?: string;
 }) {
   const ref = useReveal<HTMLElement>();
   const cls = [stagger ? 'reveal-stagger' : 'reveal', className].filter(Boolean).join(' ');
   return (
-    <Tag ref={ref} className={cls}>
+    <Tag ref={ref} id={id} className={cls}>
       {children}
     </Tag>
   );

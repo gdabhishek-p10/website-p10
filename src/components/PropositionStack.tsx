@@ -50,7 +50,7 @@ export default function PropositionStack({ pillars }: { pillars: HomeData['pilla
         </Reveal>
         <div className="benefits-list">
           {pillars.items.map((pillar, index) => (
-            <Reveal key={pillar.key} className={`benefit-row benefit-row-${pillar.key}`}>
+            <Reveal key={pillar.key} id={`pillar-${pillar.key}`} className={`benefit-row benefit-row-${pillar.key}`}>
               <div className="benefit-visual">
                 <div className="benefit-photo">
                   {/* Pre-optimized local photographs. */}
