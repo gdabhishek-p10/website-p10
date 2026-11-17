@@ -27,11 +27,13 @@ export default function GapScorecard() {
   return (
     <section className="gap" id="about">
       <div className="container">
-        <Reveal className="gap-card">
+        <Reveal className="section-head">
           <h2>The AI gap is widening.</h2>
-          <p className="gap-lede">
+          <p className="lede">
             Waiting on AI means carrying higher operating costs while revenue drifts to businesses that serve customers faster.
           </p>
+        </Reveal>
+        <Reveal className="gap-wrap" stagger>
           <ol className="gap-list">
             {ROWS.map((r) => (
               <li key={r.n} className="gap-row">
