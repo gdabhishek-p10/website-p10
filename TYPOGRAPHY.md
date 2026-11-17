@@ -30,5 +30,8 @@
 ## Accessibility baseline
 Skip link to `#main`, global `:focus-visible` ring (3px ochre), `:active` pressed state on buttons and links, 48px hit areas on the menu button, nav dropdown toggles and carousel arrows.
 
-## Still to do (4.2, full Material 3 migration)
-Colour roles, 15-role type scale, three weights, shape/elevation/motion tokens, state layers, 600/840/1200px breakpoints.
+## Material 3 tokens (branch 4.2)
+Defined at the top of `styles.css`: colour roles (`--md-sys-color-*`, aliases of the existing variables so the palette picker still works), shape (`--md-sys-shape-corner-*`: 4/8/12/16/28/full), elevation (`--md-sys-elevation-1..5`), motion (`--md-sys-motion-*`) and type roles (`--md-sys-typescale-*-size`, sized from the six-step scale). Buttons, pills, arrows use 8% hover, 10% focus and 10% pressed state layers; small controls have 48px hit areas.
+
+## Not done yet
+15-role type scale for every component, three-weight limit, 600/840/1200px breakpoints, dark theme, M3 component sizes.
