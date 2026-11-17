@@ -87,7 +87,7 @@ function gearPoints(cx: number, cy: number, r: number, n: number) {
 }
 
 const INK = '#2a3038';
-const LABEL = { fontFamily: 'inherit', fontWeight: 800, fill: INK, textAnchor: 'middle' } as const;
+const LABEL = { fontFamily: 'inherit', fontWeight: 700, fill: INK, textAnchor: 'middle' } as const;
 
 // Soft ground shadow and floor line shared by the three scenes.
 function Ground() {
@@ -123,8 +123,8 @@ const ARTWORK = {
         <path d="M138 52L176 76L190 62L236 100" stroke="#0b4a8f" strokeWidth="7" />
         <path d="M216 100H238V78" stroke="#0b4a8f" strokeWidth="7" />
       </g>
-      <text className="ag-coin" x="262" y="62" fontSize="26" fontFamily="inherit" fontWeight="800" fill="#0b4a8f">$</text>
-      <text className="ag-coin ag-coin-b" x="270" y="112" fontSize="22" fontFamily="inherit" fontWeight="800" fill="#0b4a8f">$</text>
+      <text className="ag-coin" x="262" y="62" fontSize="26" fontFamily="inherit" fontWeight="700" fill="#0b4a8f">$</text>
+      <text className="ag-coin ag-coin-b" x="270" y="112" fontSize="22" fontFamily="inherit" fontWeight="700" fill="#0b4a8f">$</text>
     </svg>
   ),
   // reacting, not predicting: a person under an umbrella facing a wave of risk, with a forecast dashboard behind
@@ -142,8 +142,8 @@ const ARTWORK = {
       <circle cx="182" cy="82" r="16" fill="#f6ecd0" stroke={INK} strokeWidth="3" />
       <path d="M182 82V66A16 16 0 0 1 196 90Z" fill="url(#ag-gold)" stroke={INK} strokeWidth="2.5" strokeLinejoin="round" />
       <path d="M182 82L196 90A16 16 0 0 1 168 90Z" fill={INK} />
-      <text x="208" y="72" fontSize="10" textAnchor="start" fontFamily="inherit" fontWeight="800" fill={INK}>FORECAST</text>
-      <text x="208" y="85" fontSize="10" textAnchor="start" fontFamily="inherit" fontWeight="800" fill="#a8731a">INSIGHTS</text>
+      <text x="208" y="72" fontSize="10" textAnchor="start" fontFamily="inherit" fontWeight="700" fill={INK}>FORECAST</text>
+      <text x="208" y="85" fontSize="10" textAnchor="start" fontFamily="inherit" fontWeight="700" fill="#a8731a">INSIGHTS</text>
       <path className="ag-chart" d="M206 112L222 102L236 107L254 94L274 98" stroke="url(#ag-gold)" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
       <path className="ag-arrow" d="M263 92H277V106" stroke="url(#ag-gold)" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M88 84V122" stroke={INK} strokeWidth="4" strokeLinecap="round" />

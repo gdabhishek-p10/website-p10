@@ -1,7 +1,7 @@
 # Homepage Typography
 
 ## Font family
-- **Primary:** Inter, self-hosted through `next/font/google` as a variable font (`layout.tsx`, `--font-inter`), with a system sans fallback. Weights 600, 650, 700, 750 and 800 are used.
+- **Primary:** Inter, self-hosted through `next/font/google` as a variable font (`layout.tsx`, `--font-inter`), with a system sans fallback. Three weights only: 400 (regular), 500 (medium: nav links, buttons, small UI text) and 700 (bold: headings, eyebrows, labels).
 - **Monospace** (code mockups): `ui-monospace, SFMono-Regular, Menlo, monospace`
 
 ## Type scale (`styles.css` `:root`)
@@ -34,7 +34,7 @@ Skip link to `#main`, global `:focus-visible` ring (3px ochre), `:active` presse
 Defined at the top of `styles.css`: colour roles (`--md-sys-color-*`, aliases of the existing variables so the palette picker still works), shape (`--md-sys-shape-corner-*`: 4/8/12/16/28/full), elevation (`--md-sys-elevation-1..5`), motion (`--md-sys-motion-*`) and type roles (`--md-sys-typescale-*-size`, sized from the six-step scale). Buttons, pills, arrows use 8% hover, 10% focus and 10% pressed state layers; small controls have 48px hit areas.
 
 ## Not done yet
-15-role type scale for every component, three-weight limit, dark theme, M3 component sizes.
+15-role type scale for every component, dark theme, M3 component sizes.
 
 ## Breakpoints (M3 window size classes)
 Compact `max-width:599px`, medium `600-839px`, expanded `840-1199px`, large `min-width:1200px`. Mobile menu and stacked pillar rows apply below 840px; the industries bento (spans) and four-column services grid start at 1200px, with two columns from 600px.
