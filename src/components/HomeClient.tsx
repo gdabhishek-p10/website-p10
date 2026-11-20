@@ -6,7 +6,6 @@ import CredLogos from './CredLogos';
 import PropositionStack from './PropositionStack';
 import EngineeringAI from './EngineeringAI';
 import AILabs from './AILabs';
-import Industries from './Industries';
 import Footer from './Footer';
 import VideoModal, { type VideoModalState } from './VideoModal';
 import ChatWidget, { type ChatState } from './ChatWidget';
@@ -45,7 +44,6 @@ export default function HomeClient({ data }: { data: HomeData }) {
         <CredLogos logos={data.logos} />
         <EngineeringAI engineering={data.engineering} />
         <AILabs aiLabs={data.aiLabs} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
-        <Industries industries={data.industries} />
       </main>
       <Footer footer={data.footer} />
       <VideoModal state={modal} onClose={() => setModal((m) => ({ ...m, open: false }))} />
