@@ -110,8 +110,9 @@ export default function ChatWidget({ state, data, onClose }: { state: ChatState;
     return () => document.removeEventListener('keydown', onKey);
   }, [state.open, maximized, onClose]);
 
+  // the docked window leaves the page usable; only the maximized chat locks the page behind it
   useEffect(() => {
-    document.body.style.overflow = state.open ? 'hidden' : '';
+    document.body.style.overflow = state.open && maximized ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
@@ -121,8 +122,8 @@ export default function ChatWidget({ state, data, onClose }: { state: ChatState;
 
   return (
     <div className={['chat', maximized ? 'chat-max' : ''].filter(Boolean).join(' ')}>
-      <div className="chat-backdrop" onClick={() => (maximized ? setMaximized(false) : onClose())} />
-      <div className="chat-panel" role="dialog" aria-label="People10 AI assistant">
+      {maximized && <div className="chat-backdrop" onClick={() => setMaximized(false)} />}
+      <div className="chat-panel" role="dialog" aria-modal={maximized} aria-label="People10 AI assistant">
         <div className="chat-head">
           <span className="chat-head-icon">✦</span>
           <div className="chat-head-title">

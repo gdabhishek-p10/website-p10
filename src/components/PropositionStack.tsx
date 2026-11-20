@@ -70,7 +70,6 @@ export default function PropositionStack({ pillars }: { pillars: HomeData['pilla
       <div className="container">
         <div ref={headRef} className="section-head reveal">
           <h2>{pillars.heading}</h2>
-          {pillars.lede && <p className="lede">{pillars.lede}</p>}
         </div>
         <div ref={tabsRef} className="ptabs reveal" data-paused={auto && onScreen ? undefined : ''}>
           <div className="ptabs-list" role="tablist" aria-orientation="vertical">

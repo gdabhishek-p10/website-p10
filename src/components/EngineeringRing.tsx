@@ -14,13 +14,15 @@ import Platform, { PCX, PCY, PH, PW, calloutGeom, iconPos } from './EnginePlatfo
  * A short AI-driven scene plays inside (chat → plan → the dashboard taking shape → quality check with a fix →
  * launch → live performance), then the window shrinks back into its segment. After Observe the whole platform glows
  * softly and holds; the glow eases off and the loop restarts with the platform still in place.
- * Interactive: it plays on its own; clicking it pauses (the icon in the corner resumes). Paused, a
- * segment opens that stage's window, which plays once and stays open until its ✕ closes it. Under
+ * Interactive: it plays on its own; a segment opens that stage's window, which plays once, and its ✕ closes it
+ * and carries on the tour from the next stage. Under
  * reduced motion an opened stage is shown fully played and static.
  * One story runs throughout: a live shipment dashboard for a logistics portal. The scene is a pure function of a looping clock `t`;
  * only opacity/transform/stroke offsets animate. Reduced motion shows the finished platform.
  */
 const W = PW, H = PH;
+// empty bands at the top and bottom of the virtual stage, trimmed so the animation sits close to its heading and the next section
+const CROP = 85, CROP_BOTTOM = 50;
 const ICONS: Record<string, ReactNode> = {
   intent: (<><path d="M9 18h6M10 21h4" /><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1.1 1.2 1.1 2.2h5c0-1 .5-1.7 1.1-2.2A6 6 0 0 0 12 3Z" /></>),
   spec: STAGE_ICON.spec,
@@ -154,10 +156,9 @@ export default function EngineeringRing() {
   const cg = calloutGeom(si);
 
   return (
-    <div className="er" ref={rootRef} style={{ height: H * scale }} role="group"
-      aria-label="Six stages of AI-driven delivery — intent, specification, build, QA, deploy and observe — following one shipment-dashboard feature for a logistics portal, from request to production. Click to pause, then select a stage to open it.">
-      <div className="er-stage" style={{ width: W, height: H, transform: `scale(${scale})` }}
-        onClick={() => { if (eng.current.mode === 'auto') go('paused'); }}>
+    <div className="er" ref={rootRef} style={{ height: (H - CROP - CROP_BOTTOM) * scale }} role="group"
+      aria-label="Six stages of AI-driven delivery — intent, specification, build, QA, deploy and observe — following one shipment-dashboard feature for a logistics portal, from request to production. Select a stage to open it.">
+      <div className="er-stage" style={{ width: W, height: H, transform: `scale(${scale}) translateY(-${CROP}px)` }}>
         <div className="er-layer" style={{ opacity: platOp, pointerEvents: platLive ? 'auto' : 'none' }}>
           <Platform
             icons={STAGES.map((st) => ICONS[st.key])} labels={STAGES.map((st) => st.label.toUpperCase())}
@@ -182,7 +183,7 @@ export default function EngineeringRing() {
             <span className="ew-right">
               <span className="ew-ai" aria-hidden><AiMark /><b>AI</b></span>
               <button type="button" className="ew-close" aria-label={`Close ${stage.label}`} tabIndex={winLive ? 0 : -1}
-                onClick={(ev) => { ev.stopPropagation(); close(); }}>
+                onClick={(ev) => { ev.stopPropagation(); close(); setTimeout(toggle, 1100); }}>
                 <svg viewBox="0 0 12 12" aria-hidden><path d="M2.5 2.5l7 7M9.5 2.5l-7 7" /></svg>
               </button>
             </span>
@@ -197,12 +198,6 @@ export default function EngineeringRing() {
         </div>
       </div>
 
-      <button type="button" className="er-toggle" aria-label={mode === 'auto' ? 'Pause animation' : 'Play animation'}
-        onClick={(ev) => { ev.stopPropagation(); toggle(); }}>
-        {mode === 'auto'
-          ? <svg viewBox="0 0 12 12" aria-hidden><path d="M3.5 2v8M8.5 2v8" /></svg>
-          : <svg viewBox="0 0 12 12" aria-hidden><path d="M3.5 2l6.5 4-6.5 4z" fill="currentColor" /></svg>}
-      </button>
     </div>
   );
 }

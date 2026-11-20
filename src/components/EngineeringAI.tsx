@@ -8,7 +8,6 @@ export default function EngineeringAI({ engineering }: { engineering: HomeData['
       <div className="container">
         <Reveal className="section-head">
           <h2>{engineering.heading}</h2>
-          {engineering.lede && <p className="lede">{engineering.lede}</p>}
         </Reveal>
         <Reveal className="system-visual">
           <EngineeringRing />
