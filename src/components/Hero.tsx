@@ -58,7 +58,6 @@ export default function Hero({ hero, onAsk }: { hero: HomeData['hero']; onAsk: (
             {after && (before || accent) && !/^[.,!?;:]/.test(after) ? ' ' : ''}
             {withAi(after)}
           </h1>
-          <p className="lede">{hero.lede}</p>
           <form
             className="hero-ask"
             onSubmit={(e) => {

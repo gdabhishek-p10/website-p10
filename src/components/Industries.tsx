@@ -31,7 +31,7 @@ export default function Industries({ industries }: { industries: HomeData['indus
                 <span className="industry-name">
                   {name.split(' ').map((w, i) => (
                     <span key={i} style={w.includes('-') ? { whiteSpace: 'nowrap' } : undefined}>
-                      {i > 0 ? ' ' : ''}
+                      {i > 0 ? (w === '&' ? ' ' : ' ') : ''}
                       {w}
                     </span>
                   ))}

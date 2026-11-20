@@ -3,10 +3,8 @@ import { useState } from 'react';
 import Header from './Header';
 import Hero from './Hero';
 import CredLogos from './CredLogos';
-import Reality from './Reality';
 import PropositionStack from './PropositionStack';
 import EngineeringAI from './EngineeringAI';
-import CaseStudies from './CaseStudies';
 import AILabs from './AILabs';
 import Industries from './Industries';
 import Footer from './Footer';
@@ -43,10 +41,8 @@ export default function HomeClient({ data }: { data: HomeData }) {
       <Header header={data.header} />
       <main>
         <Hero hero={data.hero} onAsk={(q) => setChat((c) => ({ open: true, seed: q, nonce: c.nonce + 1 }))} />
-        <CredLogos logos={data.logos} />
-        <Reality problem={data.problem} />
         <PropositionStack pillars={data.pillars} />
-        <CaseStudies caseStudies={data.caseStudies} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
+        <CredLogos logos={data.logos} />
         <EngineeringAI engineering={data.engineering} />
         <AILabs aiLabs={data.aiLabs} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
         <Industries industries={data.industries} />
