@@ -1,0 +1,666 @@
+{
+ "hero": {
+  "headlineBefore": "",
+  "headlineAccent": "Transform",
+  "headlineAfter": "your business with AI",
+  "lede": "Move beyond limits. Make AI work for you",
+  "prompts": [
+   {
+    "text": "Modernize our legacy ERP…"
+   },
+   {
+    "text": "Build a customer portal…"
+   },
+   {
+    "text": "Deploy an AI support agent…"
+   }
+  ]
+ },
+ "clients": {
+  "logos": [
+   {
+    "logo": {
+     "$media": "logo-01.png",
+     "alt": "Weir-Minerals"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-02.png",
+     "alt": "Wipro"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-03.png",
+     "alt": "Wright"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-04.png",
+     "alt": "XSB"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-05.png",
+     "alt": "Zemoga"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-06.png",
+     "alt": "Affero Lab"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-07.png",
+     "alt": "Allegiant"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-08.png",
+     "alt": "AMD-Telecom"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-09.png",
+     "alt": "American-Portfolios"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-10.png",
+     "alt": "ARC"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-11.png",
+     "alt": "Barclays"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-12.png",
+     "alt": "Batanks"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-13.png",
+     "alt": "Biorasi"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-14.png",
+     "alt": "Byer-California"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-15.png",
+     "alt": "Catalyst"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-16.png",
+     "alt": "Celebrate-Success"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-17.png",
+     "alt": "Cerintell-Telemedicine"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-18.png",
+     "alt": "Chapel-of-the-Flowers"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-19.png",
+     "alt": "Chloe-and-Isabel"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-20.png",
+     "alt": "Cora"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-21.png",
+     "alt": "Diamonds-International"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-22.png",
+     "alt": "Ditto"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-23.png",
+     "alt": "Dynamic-Health-Strategies"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-24.png",
+     "alt": "Easyrx"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-25.png",
+     "alt": "Fidelity-Investments"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-26.png",
+     "alt": "FLSmidth"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-27.png",
+     "alt": "Fund-Raiser-Software"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-28.png",
+     "alt": "GraphLock-App"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-29.png",
+     "alt": "Habib-Bank"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-30.png",
+     "alt": "HP"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-31.png",
+     "alt": "Informo-Investment-Solutions"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-32.png",
+     "alt": "Insight-Education-Group"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-33.png",
+     "alt": "Jenmar-International"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-34.png",
+     "alt": "Latilla"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-35.png",
+     "alt": "MaintHub"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-36.png",
+     "alt": "Media-One"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-37.png",
+     "alt": "Mindtree"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-38.png",
+     "alt": "Monsanto"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-39.png",
+     "alt": "OrbiMed"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-40.png",
+     "alt": "Outsystems"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-41.png",
+     "alt": "Pantha-Corp"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-42.png",
+     "alt": "PH"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-43.png",
+     "alt": "Pineapple-Hospitality"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-44.png",
+     "alt": "PNW-Boces"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-45.png",
+     "alt": "ProctorFree"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-46.png",
+     "alt": "pwc"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-47.png",
+     "alt": "RFIDglobal"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-48.png",
+     "alt": "RFP-Leads"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-49.png",
+     "alt": "Risk-Logic"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-50.png",
+     "alt": "Sigma-ALdricjh"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-51.png",
+     "alt": "Star-Financial"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-52.png",
+     "alt": "Sunseeker-Resort"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-53.png",
+     "alt": "TechnoMak"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-54.png",
+     "alt": "TECOSIM"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-55.png",
+     "alt": "Teesnap"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-56.png",
+     "alt": "Telogis"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-57.png",
+     "alt": "theCut"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-58.png",
+     "alt": "True-Foodies"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-59.png",
+     "alt": "Unidine"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-60.png",
+     "alt": "USuggest"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-61.png",
+     "alt": "Vitals"
+    }
+   },
+   {
+    "logo": {
+     "$media": "logo-62.png",
+     "alt": "Webtop"
+    }
+   }
+  ]
+ },
+ "problem": {
+  "heading": "The AI gap is widening",
+  "lede": "Waiting on AI means carrying higher operating costs while revenue drifts to businesses that serve customers faster",
+  "image": {
+   "$media": "enterprise-transformation.jpg",
+   "alt": "Sketched enterprise architecture diagram on a desk, mapping channels, business capabilities, applications, data and infrastructure, with notes on strategic outcomes and key considerations"
+  },
+  "items": [
+   {
+    "icon": "systems",
+    "label": "Existing systems",
+    "headline": "Make the systems you rely on work better",
+    "description": "Reduce complexity and improve performance while creating a stronger foundation for what comes next."
+   },
+   {
+    "icon": "next",
+    "label": "What is next",
+    "headline": "Build what your business needs next",
+    "description": "Create digital products and platforms that move from idea to launch faster and adapt as needs change."
+   },
+   {
+    "icon": "ai",
+    "label": "Where AI matters",
+    "headline": "Apply AI where it changes the outcome",
+    "description": "Bring AI into the workflows where it can reduce manual effort and improve decisions."
+   }
+  ]
+ },
+ "pillars": {
+  "heading": "From human effort to AI powered execution",
+  "lede": "Simplify decisions, accelerate execution, and create more value",
+  "items": [
+   {
+    "key": "modernize",
+    "title": "Modernize what holds the business back",
+    "body": "Lower running costs and systems ready for AI, without starting over",
+    "chips": [
+     {
+      "text": "Enterprise Software Dev"
+     },
+     {
+      "text": "Legacy Modernization"
+     },
+     {
+      "text": "Cloud Engineering"
+     },
+     {
+      "text": "Data Engineering"
+     },
+     {
+      "text": "System Integrations"
+     }
+    ]
+   },
+   {
+    "key": "build",
+    "title": "Build what is next, with AI inside",
+    "body": "From idea to market in weeks, not quarters",
+    "chips": [
+     {
+      "text": "Product Engineering"
+     },
+     {
+      "text": "Quality Engineering"
+     },
+     {
+      "text": "IoT & Emerging Tech"
+     },
+     {
+      "text": "Dedicated Teams"
+     }
+    ]
+   },
+   {
+    "key": "ai",
+    "title": "Put AI to work",
+    "body": "Faster decisions, less routine work, returns measured in revenue, not pilots",
+    "chips": [
+     {
+      "text": "AI Strategy & Consulting"
+     },
+     {
+      "text": "Agentic AI & Automation"
+     },
+     {
+      "text": "Enterprise AI Integration"
+     },
+     {
+      "text": "Generative AI"
+     },
+     {
+      "text": "AI & Machine Learning"
+     }
+    ]
+   }
+  ]
+ },
+ "engineering": {
+  "heading": "Accelerate delivery with AI",
+  "lede": "Every stage of delivery accelerated, from first specification to production release",
+  "diagram": {
+   "$media": "engineering-ai-diagram.png",
+   "alt": "Diagram showing Enterprise systems, Products & platforms, and Data & cloud feeding into a central AI hub, which connects out to Integration, Automation, and Machine learning"
+  }
+ },
+ "caseStudies": {
+  "heading": "Success stories",
+  "lede": "Impact delivered with a measurable business outcome",
+  "items": [
+   {
+    "theme": "light",
+    "tag": "AI · Aviation",
+    "title": "50% faster audit preparation",
+    "desc": "AI checks every sign-off, so audit gaps surface early.",
+    "image": {
+     "$media": "aviation-mx-records-card.webp",
+     "alt": "A laptop showing an aircraft maintenance records screen with every item checked and an Audit ready badge"
+    },
+    "video": null,
+    "storyUrl": "https://people10.com/category/success-stories/"
+   },
+   {
+    "theme": "light",
+    "tag": "AI · Logistics",
+    "title": "40% faster exception resolution",
+    "desc": "Root cause and recovery plan, the moment a shipment slips.",
+    "image": {
+     "$media": "transport-exception-copilot-fade.webp",
+     "alt": "A tablet showing a delayed shipment on a route map with its root cause and a recommended reroute"
+    },
+    "video": null,
+    "storyUrl": "https://people10.com/category/success-stories/"
+   },
+   {
+    "theme": "light",
+    "tag": "AI · Insurance",
+    "title": "3× faster submission intake",
+    "desc": "ACORD forms, SOVs and loss runs read for underwriters.",
+    "image": {
+     "$media": "underwriting-property-card.webp",
+     "alt": "A laptop showing a commercial property submission with extracted documents, risk summary and a recommended premium"
+    },
+    "video": null,
+    "storyUrl": "https://people10.com/category/success-stories/"
+   }
+  ]
+ },
+ "aiLabs": {
+  "heading": "P10 AI labs",
+  "lede": "Your business challenge is our next AI experiment",
+  "entries": [
+   {
+    "tabLabel": "Equipment troubleshooting",
+    "name": "Equipment troubleshooting copilot",
+    "head": "Smarter equipment diagnostics with AI",
+    "copy": "Help maintenance teams diagnose faults faster, shorten repair cycles, and spend less time searching for technical answers",
+    "impactLabel": null,
+    "impactHeadline": null,
+    "url": "https://people10.com/ai-powered-equipment-troubleshooting-copilot/",
+    "video": {
+     "$media": "equipment-troubleshooting.mp4",
+     "alt": "Equipment troubleshooting copilot demo"
+    },
+    "poster": {
+     "$media": "ai-labs-equipment.webp",
+     "alt": "A maintenance engineer in a plant using a tablet showing a pump diagnostic view"
+    },
+    "metrics": [],
+    "chips": [
+     {
+      "text": "Agentic AI"
+     },
+     {
+      "text": "RAG"
+     },
+     {
+      "text": "Manufacturing"
+     }
+    ]
+   },
+   {
+    "tabLabel": "AI clinical decision support",
+    "name": "AI clinical decision support",
+    "head": "AI-assisted clinical decision support",
+    "copy": "Help clinicians review patient information faster, identify care priorities, and assess AI-generated next steps using their clinical judgment",
+    "impactLabel": null,
+    "impactHeadline": null,
+    "url": null,
+    "video": {
+     "$media": "ai-cdss.mp4",
+     "alt": "AI clinical decision support demo"
+    },
+    "poster": {
+     "$media": "ai-labs-clinical.webp",
+     "alt": "A clinician reviewing patient information and vitals on a monitor"
+    },
+    "metrics": [],
+    "chips": [
+     {
+      "text": "Healthcare"
+     },
+     {
+      "text": "Clinical AI"
+     },
+     {
+      "text": "Decision support"
+     }
+    ]
+   },
+   {
+    "tabLabel": "AI baggage recovery",
+    "name": "AI baggage recovery",
+    "head": "AI-powered lost baggage recovery",
+    "copy": "Help baggage agents find lost bags faster by combining AI-generated descriptions with visual scan matching and ranked confidence scores",
+    "impactLabel": null,
+    "impactHeadline": null,
+    "url": null,
+    "video": {
+     "$media": "baggage-recovery.mp4",
+     "alt": "AI baggage recovery demo"
+    },
+    "poster": {
+     "$media": "ai-labs-baggage.webp",
+     "alt": "An airline baggage agent in a baggage hall using a tablet that shows a suitcase scan and ranked matching bags"
+    },
+    "metrics": [],
+    "chips": [
+     {
+      "text": "Aviation"
+     },
+     {
+      "text": "Computer vision"
+     },
+     {
+      "text": "GenAI"
+     }
+    ]
+   }
+  ]
+ },
+ "industries": {
+  "heading": "Deep sector expertise, delivered",
+  "lede": "The best execution in your industry, guaranteed",
+  "items": [
+   {
+    "name": "Aviation"
+   },
+   {
+    "name": "Engineering & Manufacturing"
+   },
+   {
+    "name": "Healthcare"
+   },
+   {
+    "name": "Banking & Finance"
+   },
+   {
+    "name": "Insurance"
+   },
+   {
+    "name": "Retail & E-Commerce"
+   },
+   {
+    "name": "Transport & Logistics"
+   },
+   {
+    "name": "Travel"
+   }
+  ]
+ },
+ "_status": "published"
+}

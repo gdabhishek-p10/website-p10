@@ -1,0 +1,100 @@
+{
+ "header": {
+  "navLinks": [
+   {
+    "label": "Services",
+    "href": "/services",
+    "external": false
+   },
+   {
+    "label": "Industries",
+    "href": "#industries",
+    "external": false
+   },
+   {
+    "label": "Success stories",
+    "href": "#work",
+    "external": false
+   },
+   {
+    "label": "About",
+    "href": "#about",
+    "external": false
+   }
+  ],
+  "ctaLabel": "Talk to us",
+  "ctaHref": "#contact"
+ },
+ "footer": {
+  "columns": [
+   {
+    "title": "Explore",
+    "links": [
+     {
+      "label": "Services",
+      "href": "/services",
+      "external": false
+     },
+     {
+      "label": "AI labs",
+      "href": "#labs",
+      "external": false
+     },
+     {
+      "label": "Industries",
+      "href": "#Industries",
+      "external": false
+     },
+     {
+      "label": "Success stories",
+      "href": "#",
+      "external": false
+     }
+    ]
+   },
+   {
+    "title": "About",
+    "links": [
+     {
+      "label": "About",
+      "href": "#about",
+      "external": false
+     },
+     {
+      "label": "Careers",
+      "href": "#industries",
+      "external": false
+     },
+     {
+      "label": "Contact",
+      "href": "#contact",
+      "external": false
+     },
+     {
+      "label": "CSR",
+      "href": "#csr",
+      "external": false
+     }
+    ]
+   },
+   {
+    "title": "Insights",
+    "links": [
+     {
+      "label": "Blogs",
+      "href": "https://people10.com/insights/",
+      "external": true
+     },
+     {
+      "label": "News & PR",
+      "href": "https://people10.com/category/success-stories/",
+      "external": true
+     }
+    ]
+   }
+  ],
+  "copyright": "© 2026 People10. All rights reserved.",
+  "tagline": "Engineering the Intelligent Enterprise"
+ },
+ "_status": "published"
+}
