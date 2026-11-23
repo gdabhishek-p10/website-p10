@@ -9,6 +9,7 @@ import AILabs from './AILabs';
 import Footer from './Footer';
 import VideoModal, { type VideoModalState } from './VideoModal';
 import ChatWidget, { type ChatState } from './ChatWidget';
+import LabApproach from './LabApproach';
 import PalettePicker from './PalettePicker';
 import type { HomeData } from '@/lib/homepage';
 
@@ -44,7 +45,7 @@ export default function HomeClient({ data }: { data: HomeData }) {
         <PropositionStack pillars={data.pillars} />
         <CredLogos logos={data.logos} />
         <EngineeringAI engineering={data.engineering} />
-        <AILabs aiLabs={data.aiLabs} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
+        <LabApproach heading={data.aiLabs.heading} onStart={() => setChat((c) => ({ open: true, seed: '', nonce: c.nonce + 1 }))} />
       </main>
       <Footer footer={data.footer} />
       {!modal.open && (
