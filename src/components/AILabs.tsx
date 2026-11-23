@@ -35,7 +35,9 @@ export default function AILabs({
     const g = gap(el);
     const inView = Math.max(1, Math.floor((el.clientWidth + 20) / g));
     const first = end ? Math.max(0, aiLabs.entries.length - inView) : Math.round(el.scrollLeft / g);
-    setShown([first, Math.min(aiLabs.entries.length - 1, first + inView - 1)]);
+    const last = Math.min(aiLabs.entries.length - 1, first + inView - 1);
+    // keep the same array when nothing changed, otherwise the effect below re-renders forever
+    setShown((prev) => (prev[0] === first && prev[1] === last ? prev : [first, last]));
   }
 
   // the number of experiments in view depends on the screen width, so work the dots out on load and on resize too
