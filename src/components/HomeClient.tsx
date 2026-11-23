@@ -5,7 +5,7 @@ import Hero from './Hero';
 import CredLogos from './CredLogos';
 import PropositionStack from './PropositionStack';
 import EngineeringAI from './EngineeringAI';
-import AILabs from './AILabs';
+import LabStack from './LabStack';
 import Footer from './Footer';
 import VideoModal, { type VideoModalState } from './VideoModal';
 import ChatWidget, { type ChatState } from './ChatWidget';
@@ -41,7 +41,7 @@ export default function HomeClient({ data }: { data: HomeData }) {
       <Header header={data.header} />
       <main>
         <Hero hero={data.hero} />
-        <AILabs bare aiLabs={data.aiLabs} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
+        <LabStack aiLabs={data.aiLabs} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
         <PropositionStack pillars={data.pillars} />
         <CredLogos logos={data.logos} />
         <EngineeringAI engineering={data.engineering} />
