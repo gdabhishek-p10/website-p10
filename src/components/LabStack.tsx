@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { HomeData } from '@/lib/homepage';
 
-const THEMES = ['white', 'pink', 'green', 'blue'] as const;
+const THEMES = ['pink', 'green', 'blue'] as const; // no white card: the section background is white
 
 // Pinned stack of full-height cards: each card pins while the next one slides over it,
 // tilting back, shrinking and fading out as it is covered (same behaviour as gethyped.nl's expertise stack).
