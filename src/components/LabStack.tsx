@@ -115,6 +115,13 @@ export default function LabStack({
                 <div className="lab-stack-top">
                   <div className="lab-stack-label">AI lab</div>
                   <h2 className="lab-stack-heading">{d.name}</h2>
+                  {d.chips.length > 0 && (
+                    <ul className="lab-stack-chips">
+                      {d.chips.map((c) => (
+                        <li key={c}>{c}</li>
+                      ))}
+                    </ul>
+                  )}
                   <div className="lab-stack-number lab-stack-heading" aria-hidden="true">
                     {String(i + 1).padStart(2, '0')}
                   </div>
