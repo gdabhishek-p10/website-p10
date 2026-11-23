@@ -5,11 +5,11 @@ import Hero from './Hero';
 import CredLogos from './CredLogos';
 import PropositionStack from './PropositionStack';
 import EngineeringAI from './EngineeringAI';
-import AILabs from './AILabs';
+import ExpertiseStack from './ExpertiseStack';
 import Footer from './Footer';
 import VideoModal, { type VideoModalState } from './VideoModal';
 import ChatWidget, { type ChatState } from './ChatWidget';
-import LabApproach from './LabApproach';
+import LabApproachSection from './LabApproachSection';
 import PalettePicker from './PalettePicker';
 import type { HomeData } from '@/lib/homepage';
 
@@ -41,11 +41,11 @@ export default function HomeClient({ data }: { data: HomeData }) {
       <Header header={data.header} />
       <main>
         <Hero hero={data.hero} />
-        <AILabs bare aiLabs={data.aiLabs} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
+        <ExpertiseStack aiLabs={data.aiLabs} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
         <PropositionStack pillars={data.pillars} />
         <CredLogos logos={data.logos} />
         <EngineeringAI engineering={data.engineering} />
-        <LabApproach heading={data.aiLabs.heading} onStart={() => setChat((c) => ({ open: true, seed: '', nonce: c.nonce + 1 }))} />
+        <LabApproachSection heading={data.aiLabs.heading} onStart={() => setChat((c) => ({ open: true, seed: '', nonce: c.nonce + 1 }))} />
       </main>
       <Footer footer={data.footer} />
       {!modal.open && (
