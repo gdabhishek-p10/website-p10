@@ -1091,17 +1091,17 @@ footer{background:var(--paper);padding:var(--section-pad) 0 25px;border-top:1px 
 .lab-stack-content.theme-green{--bg:#33c791;--outline:#fff;--num:#73e2b6;--label:#fff}
 .lab-stack-content.theme-blue{--bg:#0d8dff;--outline:#fff;--num:#28aaff;--label:#fff}
 .lab-stack-top{position:relative;display:flex;flex-flow:column;align-items:flex-start;gap:1.5em}
-.lab-stack-label{padding:0 9px;border-radius:6px;background:var(--label);font-size:18px;line-height:36px;font-weight:500;letter-spacing:-.03em}
-.lab-stack-heading{margin:0;font-size:clamp(2.75em,5.6vw,5em);line-height:.95;font-weight:600;letter-spacing:-.05em;text-wrap:balance} /* lab names are longer than gethyped's one-word titles, so 80px at most and capped so they stay clear of the number and the video */
-.lab-stack-top .lab-stack-heading:not(.lab-stack-number){max-width:min(100% - 2.2em,10.5em)}
-.lab-stack-number{position:absolute;top:0;right:0;color:var(--num);font-size:6em}
+.lab-stack-label{padding:0 9px;border-radius:6px;background:var(--label);font-size:var(--fs-h6);line-height:32px;font-weight:500;letter-spacing:-.01em}
+.lab-stack-heading{margin:0;font-size:var(--fs-h2);line-height:1.08;font-weight:700;letter-spacing:-.045em;text-wrap:balance} /* card titles sit on the h2 level, below the h1 hero title */
+.lab-stack-top .lab-stack-heading:not(.lab-stack-number){max-width:min(100% - 6em,14em)}
+.lab-stack-number{position:absolute;top:0;right:0;color:var(--num);font-size:var(--fs-h1);line-height:1;letter-spacing:-.05em}
 .lab-stack-img{position:absolute;right:4em;bottom:4em;padding:8px;border:0;border-radius:24px;background:var(--outline);transform:rotate(2.5deg);cursor:pointer;line-height:0}
 .lab-stack-media{display:block;width:19em;aspect-ratio:3/4;border-radius:15px;overflow:hidden;background:#08131b}
 .lab-stack-media video{display:block;width:100%;height:100%;object-fit:cover}
 .lab-stack-bottom{position:relative;z-index:2;display:flex;flex-flow:column;align-items:flex-start;gap:1.5em;max-width:35em}
-.lab-stack-bottom h3{margin:0;font-size:24px;line-height:1.1;font-weight:600;letter-spacing:-.03em}
-.lab-stack-bottom p{margin:0;font-size:18px;line-height:1.3;font-weight:500;letter-spacing:-.03em}
-.lab-stack-btn{display:inline-flex;align-items:center;gap:10px;padding:3px 3px 3px 10px;border-radius:12px;background:#fa5424;color:#fffef7;font-size:15px;line-height:1;font-weight:600;letter-spacing:-.02em;transition:transform .2s}
+.lab-stack-bottom h3{margin:0;font-size:var(--fs-h3);line-height:1.18;font-weight:700;letter-spacing:-.03em}
+.lab-stack-bottom p{margin:0;font-size:var(--fs-h5);line-height:1.45;font-weight:400;letter-spacing:-.01em}
+.lab-stack-btn{display:inline-flex;align-items:center;gap:10px;padding:3px 3px 3px 10px;border-radius:12px;background:#fa5424;color:#fffef7;font-size:var(--fs-h6);line-height:1;font-weight:600;letter-spacing:-.01em;transition:transform .2s}
 .lab-stack-btn i{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#fff;color:#161616}
 .lab-stack-btn svg{width:16px;height:16px}
 .lab-stack-btn:hover{transform:translateY(-2px)}
@@ -1112,7 +1112,6 @@ footer{background:var(--paper);padding:var(--section-pad) 0 25px;border-top:1px 
  .lab-stack-slide{padding-top:3em}
  .lab-stack-content{gap:1.5em;padding:1.5em;border-radius:1.5em;justify-content:flex-start}
  .lab-stack-top{gap:1em}
- .lab-stack-heading{font-size:3.5em}
  .lab-stack-img{position:static;z-index:-1;width:max-content;transform:rotate(-2deg);transform-origin:0 0;border-radius:1.5em}
  .lab-stack-media{width:12em}
  .lab-stack-bottom{gap:1em;max-width:100%;margin-top:auto}
