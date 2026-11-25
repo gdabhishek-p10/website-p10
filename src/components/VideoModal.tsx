@@ -13,12 +13,21 @@ export default function VideoModal({ state, onClose }: { state: VideoModalState;
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    // the cards behind keep playing on their own; hold them still while the pop-up is open and let the visible ones go on after
+    const behind = [...document.querySelectorAll<HTMLVideoElement>('video[data-bg-video]')];
     if (state.open) {
+      behind.forEach((v) => v.pause());
       video.play().catch(() => {});
       document.body.style.overflow = 'hidden';
     } else {
       video.pause();
+      video.removeAttribute('src'); // let go of the file so nothing keeps playing or buffering behind the closed pop-up
+      video.load();
       document.body.style.overflow = '';
+      behind.forEach((v) => {
+        const r = v.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < window.innerHeight) v.play().catch(() => {});
+      });
     }
   }, [state.open]);
 

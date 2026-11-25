@@ -1127,34 +1127,7 @@ footer{background:var(--paper);padding:var(--section-pad) 0 25px;border-top:1px 
 .lab-sw button{padding:9px 18px;border:0;border-radius:999px;background:transparent;color:var(--ink);font-size:var(--fs-h6);font-weight:700;cursor:pointer;transition:background .2s,color .2s}
 .lab-sw button:hover{background:rgba(7,16,24,.07)}
 .lab-sw button.is-on{background:var(--ink);color:#fff}
-.lp,.lb{--lab-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:var(--section-pad) 0;background:var(--paper)}
-
-/* Protocol */
-.lp-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,80px);align-items:start;margin-top:12px}
-.lp-visual{position:sticky;top:120px;display:flex;flex-direction:column;align-items:center;gap:22px;padding:30px 0}
-.lp-lens{position:relative;display:grid;place-items:center;width:min(84%,360px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--ochre-tint) 72%);border:1px solid color-mix(in srgb,var(--ochre) 35%,#fff);box-shadow:0 30px 60px -30px rgba(138,92,0,.4)}
-.lp-orbit{position:absolute;inset:-18px;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--ochre) 55%,#fff);animation:lpSpin 28s linear infinite}
-.lp-orbit:before{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--cta)}
-.lp-orbit-b{inset:-40px;border-color:rgba(10,143,189,.35);animation-duration:46s;animation-direction:reverse}
-.lp-orbit-b:before{background:var(--blue)}
-@keyframes lpSpin{to{transform:rotate(360deg)}}
-.lp-art{position:absolute;inset:0;display:grid;place-items:center;color:#8a5c00;opacity:0;transform:scale(.7) rotate(-8deg);transition:opacity .5s,transform .6s cubic-bezier(.2,.8,.2,1)}
-.lp-art svg{width:46%;height:46%;stroke-width:1.3}
-.lp-art.is-on{opacity:1;transform:none}
-.lp-count{font-size:var(--fs-h4);color:#5b676d;font-variant-numeric:tabular-nums}
-.lp-count b{font-size:var(--fs-h2);letter-spacing:-.04em;color:var(--cta)}
-.lp-steps{margin:0;padding:0;list-style:none}
-.lp-step{position:relative;display:flex;align-items:flex-start;gap:26px;min-height:clamp(220px,36svh,330px);opacity:.38;transition:opacity .4s}
-.lp-step.is-on{opacity:1}
-.lp-step.is-done{opacity:.65}
-.lp-step:not(:last-child):before{content:"";position:absolute;left:24px;top:56px;bottom:4px;width:3px;border-radius:3px;background:var(--line);transition:background .6s}
-.lp-step.is-done:before{background:linear-gradient(180deg,var(--ochre),var(--cta))}
-.lp-num{position:relative;z-index:1;flex:0 0 auto;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid var(--line);font-size:var(--fs-h4);font-weight:800;color:#8a99a1;transition:background .4s,border-color .4s,color .4s,transform .4s}
-.lp-step.is-on .lp-num,.lp-step.is-done .lp-num{background:var(--cta);border-color:var(--cta);color:#fff}
-.lp-step.is-on .lp-num{transform:scale(1.12)}
-.lp-step h3{margin:6px 0 10px;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-.045em}
-.lp-step p{margin:0;max-width:30ch;font-size:var(--fs-h4);line-height:1.45;color:#3d474d}
-.lp .lab-benefits{margin-top:clamp(20px,3vw,40px)}
+.lb{--lab-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:var(--section-pad) 0;background:var(--paper)}
 
 /* Bench: the idea travelling down a pipeline, in a light theme with the logo's ochre gold */
 .lb{--gold:#dcae3a;overflow:hidden}
@@ -1226,15 +1199,9 @@ footer{background:var(--paper);padding:var(--section-pad) 0 25px;border-top:1px 
 @keyframes lbHub{from{transform:scale(1);opacity:.7}to{transform:scale(2.4);opacity:0}}
 
 @media(max-width:900px){.lb-flow{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}.lb-line{display:none}}
-@media(max-width:900px){
- .lp-grid{grid-template-columns:1fr;gap:0}
- .lp-visual{top:60px;z-index:2;flex-direction:row;justify-content:center;gap:20px;padding:10px 0;background:var(--paper)}
- .lp-lens{width:120px}.lp-orbit{inset:-8px}.lp-orbit-b{inset:-16px}
- .lp-step{min-height:200px}.lp-step h3{font-size:var(--fs-h3)}.lp-step p{font-size:var(--fs-h5)}
-}
 @media(max-width:600px){.lb-flow{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){
- .lp *,.lb *{animation:none!important;transition:none!important}
+ .lb *{animation:none!important;transition:none!important}
  .lb-solid,.lb-sn{opacity:1;transform:none}.lb-sl{stroke-dashoffset:0}.lb-tick{stroke-dashoffset:0}.lb-cursor{display:none}
 }
 
@@ -1248,23 +1215,19 @@ footer{background:var(--paper);padding:var(--section-pad) 0 25px;border-top:1px 
 @media(max-width:900px){.hero-solo .hero-grid{grid-template-columns:1fr}.hero-solo h1{font-size:clamp(40px,calc((100vw - 2 * var(--gutter)) * .144),110px)}.hero-art{height:clamp(300px,52svh,440px)}}
 .bento{padding:0 0 var(--section-pad);background:var(--paper)}
 .bento-outer{width:min(calc(100% - 32px),1400px);margin:0 auto}
-.bento-grid{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:22px;height:clamp(500px,76svh,720px)}
-.bento-item{display:flex;flex-direction:column;gap:14px;min-height:0;margin:0}
-.bento-tile{position:relative;flex:1 1 0;min-height:0;border-radius:18px;overflow:hidden;background:#eceff0;box-shadow:0 14px 34px -22px rgba(7,16,24,.45)}
+.bento-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:22px;height:clamp(500px,76svh,720px)}
+.bento-item{display:flex;flex-direction:column;min-height:0;margin:0;padding:10px 10px 0;border:2px solid var(--ink);border-radius:20px;background:#fff;overflow:hidden} /* the card: video and title inside one black outline */
+.bento-tile{position:relative;display:block;flex:1 1 0;min-height:0;width:100%;padding:0;border:0;border-radius:12px;overflow:hidden;background:#eceff0;cursor:pointer}
 .bento-main{grid-row:1/3}
-.bento-tile .exp-media{height:100%;min-height:0;border:0;border-radius:0;box-shadow:none;background:#eceff0}
-.bento-tile video{filter:brightness(1.16) saturate(1.05);transition:filter .3s}
-.bento-tile .exp-controls{z-index:3;cursor:auto}
+.bento-tile video{display:block;width:100%;height:100%;object-fit:cover;filter:brightness(1.16) saturate(1.05);transition:filter .3s,transform .5s}
 .bento-cursor{position:absolute;z-index:4;left:var(--cx,50%);top:var(--cy,50%);display:grid;place-items:center;width:58px;height:58px;margin:-29px 0 0 -29px;color:#fff;filter:drop-shadow(0 2px 8px rgba(7,16,24,.55));pointer-events:none;opacity:0;transform:scale(.55);transition:opacity .2s,transform .25s}
 .bento-main .bento-cursor{width:78px;height:78px;margin:-39px 0 0 -39px}
 .bento-cursor svg{width:100%;height:100%}
-.bento-tile.is-paused:hover .bento-cursor{opacity:1;transform:scale(1)}
-.bento-tile[data-ctl="1"] .bento-cursor{opacity:0;transform:scale(.55)}
-@media(hover:hover){.bento-tile.is-paused,.bento-tile.is-paused .exp-media,.bento-tile.is-paused video{cursor:none}} /* the video sets its own hand cursor, so hide it there too; the control bar keeps its own */
-.bento-title{margin:0;padding:0 4px;color:var(--ink);font-size:var(--fs-h5);font-weight:700;line-height:1.25;letter-spacing:-.01em}
-.bento-main .bento-title{font-size:var(--fs-h3)}
-.bento-more{display:flex;justify-content:center;padding-top:clamp(28px,3.4vw,44px)} /* the button after the videos, same as option 1's */
-.bento-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;padding:24px 4px 0;color:#6b5320;font-size:var(--fs-h6);font-weight:600}
+.bento-tile:hover .bento-cursor{opacity:1;transform:scale(1)}
+@media(hover:hover){.bento-tile,.bento-tile video{cursor:none}} /* the round play button replaces the pointer over the video */
+.bento-tile:focus-visible{outline:2px solid var(--ochre);outline-offset:3px}
+.bento-title{margin:0;padding:14px 6px 16px;color:var(--ink);font-size:var(--fs-h4);font-weight:700;line-height:1.25;letter-spacing:-.01em} /* the same size for all three titles */
+.bento-more{display:flex;justify-content:center;padding-top:clamp(14px,1.8vw,22px)} /* the button after the videos, same as option 1's */
 @media(max-width:900px){
  .bento-grid{grid-template-columns:1fr;grid-template-rows:none;height:auto;gap:28px}
  .bento-main{grid-row:auto}
@@ -1354,8 +1317,6 @@ footer{background:var(--paper);padding:var(--section-pad) 0 25px;border-top:1px 
 .ha-build.is-paused *,.ha-build.is-paused{animation-play-state:paused!important}
 
 /* Hero art / field */
-.ha-field{position:relative;width:100%;height:100%;-webkit-mask-image:radial-gradient(ellipse 68% 66% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 68% 66% at 50% 50%,#000 55%,transparent 100%)}
-.ha-field-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 @keyframes hab-win{0%,2.778%{opacity:0;transform:translateY(26px) scale(.96)}13.889%,100%{opacity:1;transform:none}}
 @keyframes hab-k1{0%,11.111%{opacity:0;transform:translateY(20px) scale(.94)}20%,100%{opacity:1;transform:none}}
 @keyframes hab-k2{0%,13.333%{opacity:0;transform:translateY(20px) scale(.94)}22.222%,100%{opacity:1;transform:none}}
@@ -1422,14 +1383,13 @@ footer{background:var(--paper);padding:var(--section-pad) 0 25px;border-top:1px 
 .lab-stack-slide{height:33.25em;padding-top:1.25em} /* 1.25em between cards, card height 32em: text on the left, the video on the right half */
 .lab-stack-wrap{perspective:250vw;width:100%;height:100%}
 .lab-stack-content{--bg:#fff;--outline:#fff;position:absolute;inset:0;display:flex;align-items:center;padding:2.5em;overflow:hidden;border-radius:2em;background:var(--bg);color:#161616;transform-origin:50% 10%;transform-style:preserve-3d}
-.lab-stack-content.theme-pink{--bg:#fcb8fa}
-.lab-stack-content.theme-green{--bg:#33c791}
 .lab-stack-content.theme-blue{--bg:#0d8dff}
+.lab-stack-content.theme-white{box-shadow:inset 0 0 0 1px var(--line)}
 .lab-stack-text{position:relative;z-index:2;display:flex;flex-flow:column;align-items:flex-start;gap:1.25em;width:calc(50% - 3em)}
 .lab-stack-heading{margin:0;font-size:var(--fs-h2);line-height:1.08;font-weight:700;letter-spacing:-.045em;text-wrap:balance} /* card titles sit on the h2 level, below the h1 hero title */
-.lab-stack-text p{margin:0;font-size:var(--fs-h5);line-height:1.45;font-weight:400;letter-spacing:-.01em}
-.lab-stack-img{position:absolute;top:2em;right:2em;bottom:2em;width:calc(50% - 2em);display:flex;padding:4px;border:0;border-radius:22px;background:var(--outline);cursor:pointer}
-.lab-stack-media{display:block;width:100%;height:100%;border-radius:18px;overflow:hidden;background:#08131b}
+.lab-stack-text p{margin:0;font-size:var(--fs-h4);line-height:1.45;font-weight:400;letter-spacing:-.01em}
+.lab-stack-img{position:absolute;top:2em;right:2em;bottom:2em;width:calc(50% - 2em);display:flex;padding:0;border:0;border-radius:22px;overflow:hidden;cursor:pointer}
+.lab-stack-media{display:block;width:100%;height:100%;border-radius:22px;overflow:hidden;background:#08131b}
 .lab-stack-media video{display:block;width:100%;height:100%;object-fit:cover}
 .lab-stack-cta{padding:14px 24px;cursor:pointer} /* the site's CTA button (.btn) */
 .lab-stack-more{display:flex;justify-content:center;padding-top:2.5em}
@@ -1447,3 +1407,120 @@ footer{background:var(--paper);padding:var(--section-pad) 0 25px;border-top:1px 
 .lab-stack.is-pinned .lab-stack-slide:not(.is-last){position:sticky;top:calc(64px - 1.25em)}
 .lab-stack.is-pinned .lab-stack-slide.is-last,.lab-stack-more{position:relative;z-index:1} /* the last card and the button after it paint above the pinned cards, and scroll away normally */
 .lab-stack-content{will-change:transform,opacity}
+
+/* ===== Lab layout: Stage (ls-) ===== */
+/* One scene, many steps: [data-step] picks the step and .ls-r1/.ls-r2/.ls-r3 mean "step reached", so every part keeps its place and only transitions. */
+.ls{--gold:#dcae3a;--ls-gap:calc(44px + var(--fs-h4) * 4.4);overflow:clip}
+.ls-wrap{margin:clamp(8px,1.5vw,20px) 0 48px}
+.ls{--ls-r:280px;--ls-tw:240px}
+.ls-pin{position:relative;width:calc(var(--ls-tw) + var(--ls-r) + 230px);height:calc(2 * var(--ls-r));margin:0 auto 0;left:calc(-1 * (var(--ls-tw) + var(--ls-r) - 230px) / 2)} /* the orbit: titles, the half circle, then the picture sitting at its centre; shifted left so the picture, not the whole group, is centred on the page */
+.ls-stage{position:absolute;left:calc(var(--ls-tw) + var(--ls-r));top:calc(var(--ls-r) - 56px);width:400px;transform:translate(-50%,-50%)} /* picture and words together are centred in the circle, so the picture sits a little above its middle */
+.ls-arc{position:absolute;left:var(--ls-tw);top:0;overflow:visible;pointer-events:none}
+.ls-arc path{fill:none;stroke-width:2;stroke-linecap:round}
+.ls-arc-base{stroke:var(--line)}
+.ls-arc-fill{stroke:var(--ochre)}
+.ls-svg{display:block;width:100%;height:auto;overflow:visible}
+.ls-glow,.ls-bulb,.ls-clone,.ls-rip,.ls-pulse{transform-origin:0 0}
+/* step 0: a spark. Its glow breathes, rings spread from it */
+.ls-glow{transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .7s}
+.ls-r1 .ls-glow{transform:scale(2.2);opacity:0}
+.ls-glow-c{transform-origin:0 0}
+[data-step="0"] .ls-glow-c{animation:lsBreath 2.8s ease-in-out infinite}
+.ls-rip{fill:none;stroke:rgba(184,134,11,.6);stroke-width:1.4;opacity:0}
+[data-step="0"] .ls-rip{animation:lsRip 3s ease-out infinite;animation-delay:calc(var(--r) * 1s)}
+.ls-bulb{transition:transform .5s cubic-bezier(.5,0,.8,.4),opacity .4s}
+.ls-bulb path{fill:none;stroke:var(--ochre);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.ls-r1 .ls-bulb{transform:scale(.2);opacity:0}
+/* step 1: the glow resolves into a screen; its blocks fly out of the spark and land where the cursor goes */
+.ls-screen{transition:transform .8s cubic-bezier(.5,0,.2,1)}
+.ls-paper{fill:#fff;opacity:0;transition:opacity .5s .2s}
+.ls-r1 .ls-paper{opacity:1}
+.ls-frame{fill:none;stroke:var(--ochre);stroke-width:2.4;stroke-dasharray:1 2;stroke-dashoffset:1;transition:stroke-dashoffset .9s cubic-bezier(.5,0,.2,1) .05s,stroke-width .8s}
+.ls-r1 .ls-frame{stroke-dashoffset:0}
+.ls-r3 .ls-frame{stroke-width:6}
+.ls-chrome{opacity:0;transition:opacity .4s}
+.ls-r1 .ls-chrome{opacity:1;transition-delay:.5s}
+.ls-wdot{fill:#d4d9dc}
+.ls-wline{stroke:#e2e5e7;stroke-width:2}
+.ls-ghost{fill:none;stroke:rgba(184,134,11,.7);stroke-width:1.6;stroke-dasharray:6 5;opacity:0}
+[data-step="1"] .ls-ghost{animation:lsGhost var(--gd) ease both} /* each outline shows until its block lands on it */
+.ls-blk{fill:var(--gold);opacity:0;transform-box:fill-box;transform-origin:center;transform:translate(var(--bx),var(--by)) scale(.08);transition:transform .35s ease-in,opacity .25s}
+.ls-first{fill:var(--ochre)}
+.ls-r1 .ls-blk{opacity:1;transform:none;transition:transform .6s cubic-bezier(.2,.9,.3,1.12),opacity .2s;transition-delay:calc(.3s + var(--i) * .5s)}
+.ls-cursor{fill:var(--ink);stroke:#fff;stroke-width:1.5;stroke-linejoin:round;opacity:0}
+[data-step="1"] .ls-cursor{animation:lsCursor 3s cubic-bezier(.5,0,.2,1) both}
+/* step 2: a test sweep crosses the same blocks; each one that passes gets a tick, and the measure fills */
+.ls-scan{fill:var(--ochre);opacity:0}
+[data-step="2"] .ls-scan{animation:lsScan 1.5s ease-in-out .1s both}
+.ls-badge{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(0);transition:transform .35s ease-in,opacity .2s}
+.ls-badge circle{fill:var(--ochre)}
+.ls-badge path{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.ls-r2 .ls-badge{opacity:1;transform:none;transition:transform .45s cubic-bezier(.2,1.4,.4,1),opacity .2s;transition-delay:var(--td)}
+.ls-track{fill:var(--line);opacity:0;transition:opacity .4s}
+.ls-r2 .ls-track{opacity:1}
+.ls-meter{fill:var(--ochre);transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform .4s ease-in}
+.ls-r2 .ls-meter{transform:none;transition:transform .9s cubic-bezier(.3,.7,.2,1) 1.5s}
+/* step 3: the finished screen shrinks into the hub and is copied outwards, ring by ring */
+.ls-r3 .ls-screen{transform:scale(.32)}
+.ls-link{stroke:var(--ochre);stroke-width:1.6;stroke-linecap:round;opacity:.55;stroke-dasharray:1 2;stroke-dashoffset:1;transition:stroke-dashoffset .4s ease-in}
+.ls-r3 .ls-link{stroke-dashoffset:0;transition:stroke-dashoffset .6s ease-out;transition-delay:calc(.3s + var(--i) * .05s)}
+.ls-clone{opacity:0;transform:translate(0,0) scale(0);transition:transform .5s cubic-bezier(.5,0,.8,.4),opacity .3s}
+.ls-r3 .ls-clone{opacity:1;transform:translate(var(--dx),var(--dy)) scale(var(--s));transition:transform .8s cubic-bezier(.2,.9,.3,1.1),opacity .3s;transition-delay:calc(.45s + var(--i) * .05s)}
+.ls-cwin{fill:#fff;stroke:var(--ochre);stroke-width:6}
+.ls-cblk{fill:var(--gold)}
+.ls-pulse{fill:none;stroke:var(--ochre);stroke-width:2;opacity:0}
+[data-step="3"] .ls-pulse{animation:lsPulse 2.4s ease-out 1.4s infinite}
+@keyframes lsGhost{0%{opacity:0}10%,80%{opacity:1}100%{opacity:0}}
+@keyframes lsBreath{50%{transform:scale(1.08);opacity:.8}}
+@keyframes lsRip{from{transform:scale(.6);opacity:.9}to{transform:scale(2.4);opacity:0}}
+@keyframes lsCursor{0%{opacity:0;transform:translate(0,0)}6%{opacity:1;transform:translate(0,0)}25%,31%{opacity:1;transform:translate(0,-36px)}41.7%,47%{opacity:1;transform:translate(-56px,15px)}58.3%,63%{opacity:1;transform:translate(47px,-2px)}75%,82%{opacity:1;transform:translate(47px,32px)}100%{opacity:0;transform:translate(120px,84px)}}
+@keyframes lsScan{0%{opacity:0;transform:translateY(0)}12%,88%{opacity:.8}100%{opacity:0;transform:translateY(112px)}}
+@keyframes lsPulse{from{transform:scale(.5);opacity:.7}to{transform:scale(3);opacity:0}}
+/* the rail: each dot is placed on the half circle (--x/--y from the component), its title sits outside it, to the left */
+.ls-rail{margin:0;padding:0;list-style:none}
+.ls-item{position:absolute;left:calc(var(--ls-tw) + var(--x) * 1px - 8px);top:calc(var(--y) * 1px - 8px);width:16px;height:16px}
+.ls-btn{display:block;width:16px;height:16px;padding:0;border:0;background:none;font:inherit;color:inherit;cursor:pointer}
+.ls-btn:focus-visible{outline:2px solid var(--ochre);outline-offset:6px;border-radius:50%}
+.ls-dot{position:relative;z-index:1;display:block;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--line);transition:border-color .4s,background .4s,box-shadow .4s}
+.ls-item.is-done .ls-dot,.ls-item.is-active .ls-dot{border-color:var(--ochre);background:var(--ochre)}
+.ls-item.is-active .ls-dot{box-shadow:0 0 0 6px rgba(220,174,58,.28)}
+.ls-name{position:absolute;right:30px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:var(--fs-h2);font-weight:700;line-height:1.1;letter-spacing:-.045em;color:#6b777d;transition:color .4s}
+.ls-btn:hover .ls-name,.ls-item.is-active .ls-name{color:var(--ink)}
+.ls-copy{position:absolute;left:calc(var(--ls-tw) + var(--ls-r));top:calc(var(--ls-r) + 62px);width:340px;transition:top .6s cubic-bezier(.2,.8,.2,1);transform:translateX(-50%);text-align:center}
+.ls-copy.is-low{top:calc(var(--ls-r) + 114px)} /* the spark and the screen are small and the words can sit close; the network is wide and needs the room */
+.ls-copy p{margin:0;font-size:var(--fs-h4);line-height:1.45;color:#3d474d;text-wrap:balance;animation:lsIn .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes lsIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ls.is-off *{animation-play-state:paused!important}
+@media(max-width:900px){ /* no room for a half circle: titles in a row, then the picture, then the words */
+ .ls-pin{width:auto;height:auto;left:0;display:flex;flex-direction:column;align-items:center;gap:18px}
+ .ls-arc{display:none}
+ .ls-rail{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px}
+ .ls-item{position:static;width:auto;height:auto}
+ .ls-btn{display:flex;align-items:center;gap:8px;width:auto;height:auto}
+ .ls-dot{flex:none}
+ .ls-name{position:static;transform:none;font-size:var(--fs-h4);letter-spacing:-.02em}
+ .ls-stage{position:static;transform:none;width:min(440px,100%)}
+ .ls-copy,.ls-copy.is-low{position:static;transform:none;width:auto;max-width:34ch;min-height:calc(var(--fs-h4) * 2.9)}
+}
+@media(prefers-reduced-motion:reduce){
+ .ls *{animation:none!important;transition:none!important}
+}
+
+/* ===== Lab layout: Stage v2 (ls-v2), the Stage with a straight vertical line instead of the half circle ===== */
+@media(min-width:901px){
+ .ls-v2{--ls-h:420px}
+ .ls-v2 .ls-pin{width:min(900px,100%);height:var(--ls-h);left:0}
+ .ls-v2 .ls-arc{left:0}
+ .ls-v2 .ls-item{left:-8px}
+ .ls-v2 .ls-name{right:auto;left:32px} /* titles to the right of the line */
+ .ls-v2 .ls-stage{left:50%;top:170px}
+ .ls-v2 .ls-copy{left:50%;top:288px}
+ .ls-v2 .ls-copy.is-low{top:340px}
+}
+
+/* Hero art loop: the flow, then the build, one after the other; each cross-fades in and out */
+.ha-loop{position:relative;width:100%;height:100%}
+.ha-loop-scene{position:absolute;inset:0;animation:haLoopIn .5s ease both;transition:opacity .5s ease}
+.ha-loop.is-out .ha-loop-scene{opacity:0}
+@keyframes haLoopIn{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.ha-loop-scene{animation:none;transition:none}}

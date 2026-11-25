@@ -1,52 +1,49 @@
 'use client';
-import { useRef, useState } from 'react';
 import type { HomeData } from '@/lib/homepage';
-import LabVideo from './LabVideo';
 
 type Lab = HomeData['aiLabs']['entries'][number];
 
-// One video card with its title beneath it. It rests on the video's first frame; while it is paused the pointer turns into a round play button that
-// follows it around the card (nothing is drawn on the card otherwise), and the usual controls show along the bottom on hover.
-function BentoCard({ lab, main }: { lab: Lab; main: boolean }) {
-  const ref = useRef<HTMLElement>(null);
-  const [playing, setPlaying] = useState(false);
-
+// One card: the video and its title inside a black outline. The video rests on its own first frame (nothing autoplays); while the
+// pointer is over it, it turns into a round play button that follows it around, and a click opens the video in the pop-up player.
+function BentoCard({ lab, main = false, onPlay }: { lab: Lab; main?: boolean; onPlay: (video: string, poster: string) => void }) {
   function move(e: React.PointerEvent<HTMLElement>) {
-    const el = ref.current;
-    if (!el) return;
+    const el = e.currentTarget;
     const r = el.getBoundingClientRect();
     el.style.setProperty('--cx', `${e.clientX - r.left}px`);
     el.style.setProperty('--cy', `${e.clientY - r.top}px`);
-    // over the control bar the normal cursor comes back
-    el.dataset.ctl = (e.target as HTMLElement).closest('.exp-controls') ? '1' : '';
   }
 
-  function leave() {
-    const el = ref.current;
-    if (!el) return;
-    el.style.removeProperty('--cx');
-    el.style.removeProperty('--cy');
-    el.dataset.ctl = '';
+  function leave(e: React.PointerEvent<HTMLElement>) {
+    e.currentTarget.style.removeProperty('--cx');
+    e.currentTarget.style.removeProperty('--cy');
   }
 
   return (
     <figure className={`bento-item${main ? ' bento-main' : ''}`}>
-      <article ref={ref} className={`bento-tile${playing ? '' : ' is-paused'}`} onPointerMove={move} onPointerLeave={leave}>
-        <LabVideo src={lab.video} poster={lab.poster} label={`${lab.name} demo video`} autoPlay={false} onPlayingChange={setPlaying} />
+      <button type="button" className="bento-tile" aria-label={`Play video: ${lab.name}`} onClick={() => onPlay(lab.video, lab.poster)} onPointerMove={move} onPointerLeave={leave}>
+        <video src={`${lab.video}#t=0.001`} muted playsInline preload="metadata" tabIndex={-1} />
         <span className="bento-cursor" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round">
             <path d="M8.5 6v12l10-6z" />
           </svg>
         </span>
-      </article>
+      </button>
       <figcaption className="bento-title">{lab.name}</figcaption>
     </figure>
   );
 }
 
-// The AI lab demos as a bento of video cards: the first one large, the next two stacked beside it, and the same
-// "Explore more" button as option 1 after them.
-export default function LabsBento({ aiLabs, onExplore }: { aiLabs: HomeData['aiLabs']; onExplore: () => void }) {
+// The AI lab demos as a bento of cards: the first one large, the next two stacked beside it (close in size, the large one
+// only a little wider), and the same "Explore more" button as option 1 close below them.
+export default function LabsBento({
+  aiLabs,
+  onPlay,
+  onExplore,
+}: {
+  aiLabs: HomeData['aiLabs'];
+  onPlay: (video: string, poster: string) => void;
+  onExplore: () => void;
+}) {
   const [main, ...rest] = aiLabs.entries;
   if (!main) return null;
   const side = rest.slice(0, 2);
@@ -55,14 +52,10 @@ export default function LabsBento({ aiLabs, onExplore }: { aiLabs: HomeData['aiL
     <section className="bento" id="labs-top" aria-label={aiLabs.heading}>
       <div className="bento-outer">
         <div className="bento-grid">
-          <BentoCard lab={main} main />
+          <BentoCard lab={main} main onPlay={onPlay} />
           {side.map((d) => (
-            <BentoCard key={d.key} lab={d} main={false} />
+            <BentoCard key={d.key} lab={d} onPlay={onPlay} />
           ))}
-        </div>
-        <div className="bento-foot">
-          <span>{aiLabs.heading}</span>
-          <span>{aiLabs.lede}</span>
         </div>
         <div className="bento-more">
           <button type="button" className="btn lab-stack-cta" onClick={onExplore}>

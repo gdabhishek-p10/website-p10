@@ -1,13 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 import LabApproach from './LabApproach';
-import LabProtocol from './LabProtocol';
 import LabBench from './LabBench';
+import LabStage from './LabStage';
 
 const LAYOUTS = [
   { id: 'bench', label: 'Bench' },
   { id: 'classic', label: 'Classic' },
-  { id: 'protocol', label: 'Protocol' },
+  { id: 'stage', label: 'Stage' },
+  { id: 'stage2', label: 'Stage v2' },
 ] as const;
 type Layout = (typeof LAYOUTS)[number]['id'];
 
@@ -49,8 +50,9 @@ export default function LabApproachSection({ heading, onStart }: { heading: stri
         </div>
       </div>
       {layout === 'classic' && <LabApproach {...props} />}
-      {layout === 'protocol' && <LabProtocol {...props} />}
       {layout === 'bench' && <LabBench {...props} />}
+      {layout === 'stage' && <LabStage {...props} />}
+      {layout === 'stage2' && <LabStage {...props} variant="line" />}
     </>
   );
 }

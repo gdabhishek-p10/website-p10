@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import type { HomeData } from '@/lib/homepage';
 
-const THEMES = ['pink', 'green', 'blue'] as const; // no white card: the section background is white
+const THEMES = ['blue', 'white', 'blue'] as const; // the white card gets a thin outline (see styles.css) so it reads on the white page
 
 const easeIn = (t: number) => t * t; // gsap "power1.in"
 const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2); // gsap "power1.inOut"
@@ -119,7 +119,7 @@ export default function LabStack({
                 </div>
                 <button type="button" className="lab-stack-img" aria-label={`Play video: ${d.name}`} onClick={() => onPlay(d.video, d.poster)}>
                   <span className="lab-stack-media">
-                    <video src={d.video} poster={d.poster} muted loop playsInline autoPlay preload="metadata" />
+                    <video data-bg-video src={d.video} poster={d.poster} muted loop playsInline autoPlay preload="metadata" />
                   </span>
                 </button>
               </article>

@@ -1,5 +1,4 @@
 'use client';
-import { useState } from 'react';
 import Reveal from './Reveal';
 import { useCycle } from '@/hooks/useLabs';
 import { STEPS, CLOSE, CTA } from './labApproachData';
@@ -76,10 +75,9 @@ const VISUALS = [
 ];
 
 // Layout 4, "Bench": the idea travelling down a pipeline. A marker runs along a line through the four stops (it steps on
-// by itself until the mouse is over it, or pick a stop), and each stop plays its own little scene above the line. No cards, no frames.
+// by itself, or pick a stop), and each stop plays its own little scene above the line. No cards, no frames.
 export default function LabBench({ heading, onStart }: { heading: string; onStart: () => void }) {
-  const [hover, setHover] = useState(false);
-  const [active, setActive] = useCycle(STEPS.length, CYCLE_MS, hover);
+  const [active, setActive] = useCycle(STEPS.length, CYCLE_MS, false);
   const last = STEPS.length - 1;
 
   return (
@@ -92,8 +90,6 @@ export default function LabBench({ heading, onStart }: { heading: string; onStar
         <div
           className="lb-flow"
           style={{ ['--at' as string]: active / last }}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
         >
           <div className="lb-line" aria-hidden="true">
             <span className="lb-fill" />
