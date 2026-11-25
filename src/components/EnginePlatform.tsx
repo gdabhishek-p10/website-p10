@@ -33,7 +33,7 @@ export function calloutGeom(i: number) {
 const ORDER = [0, 1, 5, 2, 4, 3];
 
 type Props = {
-  icons: ReactNode[]; labels: string[]; ariaLabels: string[];
+  icons: ReactNode[]; labels: string[]; heads: string[]; ariaLabels: string[];
   appear: number[]; act: number[]; tint: number[];
   cubeAppear: number; pulse: number;
   signal: { p: number; i: number; op: number } | null;
@@ -41,7 +41,7 @@ type Props = {
   live: boolean; onOpen: (i: number) => void;
 };
 
-export default function Platform({ icons, labels, ariaLabels, appear, act, tint, cubeAppear, pulse, signal, leader, live, onOpen }: Props) {
+export default function Platform({ icons, labels, heads, ariaLabels, appear, act, tint, cubeAppear, pulse, signal, leader, live, onOpen }: Props) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
 
   // signal path from the cube to the active segment
@@ -101,8 +101,9 @@ export default function Platform({ icons, labels, ariaLabels, appear, act, tint,
                 <path className="p3-top" d={top} fill={`url(#${uid}top)`} stroke="#ece2cc" strokeWidth="1" strokeLinejoin="round" />
                 <path d={top} fill={`url(#${uid}gold)`} opacity={Math.min(1, tint[i] * 0.22 + act[i] * 0.6)} strokeLinejoin="round" />
                 <path d={top} fill="none" stroke="#e5ab3a" strokeWidth="2" opacity={act[i]} strokeLinejoin="round" />
-                <svg x={ix - 29} y={iy - 47} width="58" height="58" viewBox="0 0 24 24" fill="none" stroke={act[i] > 0.5 ? '#9a6a00' : '#111'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{icons[i]}</svg>
-                <text x={ix} y={iy + 32} textAnchor="middle" className="p3-label" fill={act[i] > 0.5 ? '#7a5200' : '#1b1b1b'}>{labels[i]}</text>
+                <svg x={ix - 29} y={iy - 55} width="58" height="58" viewBox="0 0 24 24" fill="none" stroke={act[i] > 0.5 ? '#9a6a00' : '#111'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{icons[i]}</svg>
+                <text x={ix} y={iy + 23} textAnchor="middle" className="p3-label" fill={act[i] > 0.5 ? '#7a5200' : '#1b1b1b'}>{labels[i]}</text>
+                <text x={ix} y={iy + 47} textAnchor="middle" className="p3-head" fill={act[i] > 0.5 ? '#7a5200' : '#4b5a62'}>{heads[i]}</text>
               </g>
             </g>
           </g>
@@ -132,8 +133,7 @@ export default function Platform({ icons, labels, ariaLabels, appear, act, tint,
           <polygon points={`${left},${bt} ${left + sx},${bt - sy} ${right},${bt - sy} ${fr},${bt}`} fill={`url(#${uid}ct)`} stroke="#fffaf0" strokeOpacity=".9" strokeWidth="1.2" strokeLinejoin="round" />
           <rect x={left} y={bt} width={fw} height={bh} rx="3" fill={`url(#${uid}cl)`} stroke="#fff6dc" strokeOpacity=".9" strokeWidth="1.3" />
           <rect x={left + 6} y={bt + 6} width={fw - 12} height="12" rx="6" fill="#fff" opacity=".4" />
-          <text x={left + fw / 2} y={bt + 60} textAnchor="middle" className="p3-p10">P10</text>
-          <text x={left + fw / 2} y={bt + 86} textAnchor="middle" className="p3-intel">INTELLIGENCE</text>
+          <text x={left + fw / 2} y={bt + 72} textAnchor="middle" className="p3-p10">AI SDLC</text>
         </g>
       </g>
 

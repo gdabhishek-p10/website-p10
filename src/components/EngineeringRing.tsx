@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { AiMark, STAGE_ICON } from './EngineeringFlow';
 import { Scene, STATUS, TITLES } from './EngineScenes';
-import Platform, { PCX, PCY, PH, PW, calloutGeom, iconPos } from './EnginePlatform';
+import Platform, { PCX, PCY, PH, PW, iconPos } from './EnginePlatform';
 
 /*
  * The P10 delivery platform, one stage at a time — each stage opens as a working window.
@@ -32,12 +32,12 @@ const ICONS: Record<string, ReactNode> = {
   observe: (<><rect x="4" y="12" width="4" height="8" rx="1" /><rect x="10" y="4" width="4" height="16" rx="1" /><rect x="16" y="9" width="4" height="11" rx="1" /></>),
 };
 const STAGES = [
-  { key: 'intent', label: 'Intent', hint: 'You describe the feature', head: "Define the 'why'", body: 'Turn business goals into clear, actionable outcomes with AI' },
-  { key: 'spec', label: 'Specification', hint: 'AI drafts the spec', head: 'Turn intent into design', body: 'AI-assisted requirements, architecture and planning' },
-  { key: 'build', label: 'Build', hint: 'AI writes the code', head: 'Build faster', body: 'AI-native development, with intelligent copilots and reusable components' },
-  { key: 'qa', label: 'QA', hint: 'AI tests and fixes itself', head: 'Assure at speed', body: 'AI-powered testing, security and quality checks' },
-  { key: 'deploy', label: 'Deploy', hint: 'AI ships to production', head: 'Release with confidence', body: 'Automated deployments and AI-assisted change management' },
-  { key: 'observe', label: 'Observe', hint: 'AI watches and learns', head: 'Learn and improve', body: 'Real-time insights, anomaly detection and continuous optimisation' },
+  { key: 'intent', label: 'Intent', hint: 'You describe the feature', head: "Define the 'why'" },
+  { key: 'spec', label: 'Specification', hint: 'AI drafts the spec', head: 'Design the plan' },
+  { key: 'build', label: 'Build', hint: 'AI writes the code', head: 'Build faster' },
+  { key: 'qa', label: 'QA', hint: 'AI tests and fixes itself', head: 'Test at speed' },
+  { key: 'deploy', label: 'Deploy', hint: 'AI ships to production', head: 'Release safely' },
+  { key: 'observe', label: 'Observe', hint: 'AI watches and learns', head: 'Keep improving' },
 ];
 const N = STAGES.length; // = SEGS
 const DUR = [11.0, 7.4, 7.4, 10.8, 8.0, 10.4]; // seconds per stage — QA runs longest (tests, the AI self-fix, then review)
@@ -152,8 +152,6 @@ export default function EngineeringRing() {
   const stage = STAGES[si];
   const platLive = platOp > 0.3, winLive = winOp > 0.5;
   const sigP = finale ? 0 : prog(s, 0.1, 0.65);
-  const callOp = finale ? 0 : ease(prog(s, 0.2, 0.5)) * (mode === 'manual' ? 1 : 1 - ease(prog(s, dur - 0.5, 0.4)));
-  const cg = calloutGeom(si);
 
   return (
     <div className="er" ref={rootRef} style={{ height: (H - CROP - CROP_BOTTOM) * scale }} role="group"
@@ -161,17 +159,13 @@ export default function EngineeringRing() {
       <div className="er-stage" style={{ width: W, height: H, transform: `scale(${scale}) translateY(-${CROP}px)` }}>
         <div className="er-layer" style={{ opacity: platOp, pointerEvents: platLive ? 'auto' : 'none' }}>
           <Platform
-            icons={STAGES.map((st) => ICONS[st.key])} labels={STAGES.map((st) => st.label.toUpperCase())}
+            icons={STAGES.map((st) => ICONS[st.key])} labels={STAGES.map((st) => st.label.toUpperCase())} heads={STAGES.map((st) => st.head)}
             ariaLabels={STAGES.map((st) => `${st.label}: ${st.hint}`)}
             appear={appear} act={act} tint={tint}
             cubeAppear={ease(prog(intro, 0, 0.7))} pulse={finale ? 0.5 + 0.5 * Math.sin(t * 3) : 0.35 + 0.25 * Math.sin(t * 2.2)}
             signal={finale ? null : { p: sigP, i: si, op: 1 - winP }}
-            leader={finale ? null : { i: si, op: callOp * (1 - winP) }}
+            leader={null}
             live={platLive} onOpen={open} />
-        </div>
-
-        <div className={`er-call ${cg.left ? 'left' : 'right'}`} style={{ top: cg.y - 30, opacity: callOp }} aria-hidden>
-          <b>{stage.head}</b><span>{stage.body}</span>
         </div>
 
         <div className={`ew s-${stage.key}`} style={{ left: winX, top: winY, opacity: winOp, pointerEvents: winLive ? 'auto' : 'none', transform: `translate(-50%,-50%) scale(${0.2 + 0.8 * winP})` }}>
@@ -198,6 +192,11 @@ export default function EngineeringRing() {
         </div>
       </div>
 
+      <button type="button" className="er-pp" onClick={toggle} aria-label={mode === 'auto' ? 'Pause the animation' : 'Play the animation'}>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          {mode === 'auto' ? <path d="M8 5.5v13M16 5.5v13" /> : <path d="M8.5 5.8v12.4l10-6.2z" />}
+        </svg>
+      </button>
     </div>
   );
 }
