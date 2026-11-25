@@ -1093,20 +1093,11 @@ footer{background:var(--paper);padding:var(--section-pad) 0 25px;border-top:1px 
 .lab-stack-text{position:relative;z-index:2;display:flex;flex-flow:column;align-items:flex-start;gap:1.25em;width:calc(50% - 3em)}
 .lab-stack-heading{margin:0;font-size:var(--fs-h2);line-height:1.08;font-weight:700;letter-spacing:-.045em;text-wrap:balance} /* card titles sit on the h2 level, below the h1 hero title */
 .lab-stack-text p{margin:0;font-size:var(--fs-h5);line-height:1.45;font-weight:400;letter-spacing:-.01em}
-.lab-stack-link{display:inline-flex;align-items:center;gap:8px;padding-bottom:3px;border-bottom:2px solid currentColor;font-size:var(--fs-h6);font-weight:700;letter-spacing:.04em;text-transform:uppercase;transition:gap .2s}
-.lab-stack-link svg{width:16px;height:16px}
-.lab-stack-link:hover{gap:12px}
 .lab-stack-img{position:absolute;top:2em;right:2em;bottom:2em;width:calc(50% - 2em);display:flex;padding:4px;border:0;border-radius:22px;background:var(--outline);cursor:pointer}
 .lab-stack-media{display:block;width:100%;height:100%;border-radius:18px;overflow:hidden;background:#08131b}
 .lab-stack-media video{display:block;width:100%;height:100%;object-fit:cover}
-.lab-stack-btn{display:inline-flex;align-items:center;gap:10px;padding:3px 3px 3px 10px;border-radius:12px;background:#fa5424;color:#fffef7;font-size:var(--fs-h6);line-height:1;font-weight:600;letter-spacing:-.01em;transition:transform .2s}
-.lab-stack-btn i{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#fff;color:#161616}
-.lab-stack-btn svg{width:16px;height:16px}
-.lab-stack-btn:hover{transform:translateY(-2px)}
+.lab-stack-cta{padding:14px 24px;cursor:pointer} /* the site's CTA button (.btn) */
 .lab-stack-more{display:flex;justify-content:center;padding-top:2.5em}
-.lab-stack-btn-lg{padding:5px 5px 5px 20px;gap:16px;border:0;border-radius:14px;font-size:var(--fs-h5);cursor:pointer}
-.lab-stack-btn-lg i{width:42px;height:42px;border-radius:10px}
-.lab-stack-btn-lg svg{width:18px;height:18px}
 @media(max-width:767px){
  .lab-stack{padding-inline:12px}
  .lab-stack-slide{height:calc(100vh - 2.75em);height:calc(100svh - 2.75em)}
@@ -1114,4 +1105,4 @@ footer{background:var(--paper);padding:var(--section-pad) 0 25px;border-top:1px 
  .lab-stack-text{width:100%}
  .lab-stack-img{position:static;width:100%;flex:1 1 0;min-height:0}
 }
-@media(prefers-reduced-motion:reduce){.lab-stack-btn,.lab-stack-link{transition:none}}
+

@@ -86,25 +86,20 @@ export default function LabStack({
     <section className="lab-stack" id="labs-top" aria-label={aiLabs.heading} ref={rootRef}>
       {aiLabs.entries.map((d, i) => {
         const theme = THEMES[i % THEMES.length];
-        const arrow = (
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
-        );
         const cta = d.url ? (
-          <a className="lab-stack-link" href={d.url} target="_blank" rel="noopener">
-            Get demo {arrow}
+          <a className="btn lab-stack-cta" href={d.url} target="_blank" rel="noopener">
+            Get demo <span className="arrow">→</span>
           </a>
         ) : (
           <a
-            className="lab-stack-link"
+            className="btn lab-stack-cta"
             href="#"
             onClick={(e) => {
               e.preventDefault();
               onPlay(d.video, d.poster);
             }}
           >
-            Get demo {arrow}
+            Get demo <span className="arrow">→</span>
           </a>
         );
         return (
@@ -127,13 +122,8 @@ export default function LabStack({
         );
       })}
       <div className="lab-stack-more">
-        <button type="button" className="lab-stack-btn lab-stack-btn-lg" onClick={onExplore}>
-          <span>Explore more</span>
-          <i aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </i>
+        <button type="button" className="btn lab-stack-cta" onClick={onExplore}>
+          Explore more <span className="arrow">→</span>
         </button>
       </div>
     </section>
