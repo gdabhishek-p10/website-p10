@@ -97,6 +97,11 @@ export default function ExpertiseStack({
             </div>
           ))}
         </div>
+        <div className="exp-more">
+          <a className="btn" href="#capabilities">
+            Explore more <span className="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </section>
   );

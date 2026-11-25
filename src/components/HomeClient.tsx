@@ -1,11 +1,10 @@
 'use client';
 import { useState } from 'react';
 import Header from './Header';
-import Hero from './Hero';
 import CredLogos from './CredLogos';
 import PropositionStack from './PropositionStack';
 import EngineeringAI from './EngineeringAI';
-import ExpertiseStack from './ExpertiseStack';
+import HeroOptions from './HeroOptions';
 import Footer from './Footer';
 import VideoModal, { type VideoModalState } from './VideoModal';
 import ChatWidget, { type ChatState } from './ChatWidget';
@@ -40,8 +39,11 @@ export default function HomeClient({ data }: { data: HomeData }) {
     <>
       <Header header={data.header} />
       <main>
-        <Hero hero={data.hero} />
-        <ExpertiseStack aiLabs={data.aiLabs} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
+        <HeroOptions
+          data={data}
+          onPlay={(src, poster) => setModal({ open: true, src, poster })}
+          onExplore={() => setChat((c) => ({ open: true, seed: 'Show me more of your AI labs', nonce: c.nonce + 1 }))}
+        />
         <PropositionStack pillars={data.pillars} />
         <CredLogos logos={data.logos} />
         <EngineeringAI engineering={data.engineering} />

@@ -4,7 +4,21 @@ import { useEffect, useRef, useState } from 'react';
 const fmt = (t: number) => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
 
 // Plays on its own, muted and looping, while it is on screen. Hover (or tap) shows the controls: play/pause, seek, sound.
-export default function LabVideo({ src, poster, label }: { src: string; poster: string; label: string }) {
+// With `autoPlay={false}` it waits for a click and rests on the video's own first frame (no poster image);
+// `onPlayingChange` lets the parent follow whether it is playing.
+export default function LabVideo({
+  src,
+  poster,
+  label,
+  autoPlay = true,
+  onPlayingChange,
+}: {
+  src: string;
+  poster: string;
+  label: string;
+  autoPlay?: boolean;
+  onPlayingChange?: (playing: boolean) => void;
+}) {
   const ref = useRef<HTMLVideoElement>(null);
   const userPaused = useRef(false);
   const [playing, setPlaying] = useState(false);
@@ -17,14 +31,14 @@ export default function LabVideo({ src, poster, label }: { src: string; poster: 
     if (!v) return;
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !userPaused.current) v.play().catch(() => {});
+        if (entry.isIntersecting && !userPaused.current && autoPlay) v.play().catch(() => {});
         else if (!entry.isIntersecting) v.pause();
       },
       { threshold: 0.5 },
     );
     io.observe(v);
     return () => io.disconnect();
-  }, []);
+  }, [autoPlay]);
 
   function togglePlay() {
     const v = ref.current;
@@ -54,16 +68,22 @@ export default function LabVideo({ src, poster, label }: { src: string; poster: 
     <div className="exp-media">
       <video
         ref={ref}
-        src={src}
-        poster={poster}
+        src={autoPlay ? src : `${src}#t=0.001`}
+        poster={autoPlay ? poster : undefined}
         muted
         loop
         playsInline
         preload="metadata"
         aria-label={label}
         onClick={togglePlay}
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
+        onPlay={() => {
+          setPlaying(true);
+          onPlayingChange?.(true);
+        }}
+        onPause={() => {
+          setPlaying(false);
+          onPlayingChange?.(false);
+        }}
         onVolumeChange={(e) => setMuted(e.currentTarget.muted)}
         onLoadedMetadata={(e) => setTime({ now: 0, total: e.currentTarget.duration })}
         onTimeUpdate={(e) => setTime({ now: e.currentTarget.currentTime, total: e.currentTarget.duration })}

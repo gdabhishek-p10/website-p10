@@ -1,15 +1,13 @@
 'use client';
 import { useEffect, useState } from 'react';
 import LabApproach from './LabApproach';
-import LabFlow from './LabFlow';
 import LabProtocol from './LabProtocol';
 import LabBench from './LabBench';
 
 const LAYOUTS = [
-  { id: 'classic', label: 'Classic' },
-  { id: 'pipeline', label: 'Pipeline' },
-  { id: 'protocol', label: 'Protocol' },
   { id: 'bench', label: 'Bench' },
+  { id: 'classic', label: 'Classic' },
+  { id: 'protocol', label: 'Protocol' },
 ] as const;
 type Layout = (typeof LAYOUTS)[number]['id'];
 
@@ -17,7 +15,7 @@ const STORAGE_KEY = 'pp-lab-approach-layout';
 
 // The P10 AI Labs section above the footer, with a switch at the top to try different layouts on the same content.
 export default function LabApproachSection({ heading, onStart }: { heading: string; onStart: () => void }) {
-  const [layout, setLayout] = useState<Layout>('classic');
+  const [layout, setLayout] = useState<Layout>(LAYOUTS[0].id);
 
   useEffect(() => {
     try {
@@ -51,7 +49,6 @@ export default function LabApproachSection({ heading, onStart }: { heading: stri
         </div>
       </div>
       {layout === 'classic' && <LabApproach {...props} />}
-      {layout === 'pipeline' && <LabFlow {...props} />}
       {layout === 'protocol' && <LabProtocol {...props} />}
       {layout === 'bench' && <LabBench {...props} />}
     </>
