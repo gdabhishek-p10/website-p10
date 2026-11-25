@@ -41,7 +41,11 @@ export default function HomeClient({ data }: { data: HomeData }) {
       <Header header={data.header} />
       <main>
         <Hero hero={data.hero} />
-        <LabStack aiLabs={data.aiLabs} onPlay={(src, poster) => setModal({ open: true, src, poster })} />
+        <LabStack
+          aiLabs={data.aiLabs}
+          onPlay={(src, poster) => setModal({ open: true, src, poster })}
+          onExplore={() => setChat((c) => ({ open: true, seed: 'Show me more of your AI labs', nonce: c.nonce + 1 }))}
+        />
         <PropositionStack pillars={data.pillars} />
         <CredLogos logos={data.logos} />
         <EngineeringAI engineering={data.engineering} />
